@@ -5,7 +5,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         // 메인 페이지
-        index: 'index.html'
+        index: 'index.html',
       },
     },
   },

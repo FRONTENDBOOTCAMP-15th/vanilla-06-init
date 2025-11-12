@@ -1,5 +1,5 @@
 # vanilla 06 init - brunch
-
+test 중 입니다.
 ---
 
 | 팀원 | github |

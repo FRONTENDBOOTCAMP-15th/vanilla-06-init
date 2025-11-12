@@ -1,0 +1,6 @@
+{
+  "files.readonlyInclude": {
+    "api/bruno/readonly-brunch/**": true,
+    "api/dbinit/readonly-brunch/**": true
+  }
+}

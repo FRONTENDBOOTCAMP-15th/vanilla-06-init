@@ -148,7 +148,8 @@ dist
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -213,5 +214,8 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# api 푸쉬방지
+api/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,windows,osx,visualstudiocode

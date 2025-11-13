@@ -1,0 +1,78 @@
+/* 글쓰기 페이지 */
+.write_sec {
+  .ttl_area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.625rem 1.25rem;
+
+    .btn_close,
+    .btn_submit {
+      display: block;
+      flex-shrink: 0;
+      width: 1.875rem;
+      height: 1.875rem;
+      background-position: center center;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+    }
+
+    .btn_close {
+      background-image: url('/public/icons/ico-close-thin.svg');
+    }
+    .btn_submit:disabled {
+      background-image: url('/public/icons/ico-done-thin.svg');
+    }
+    .btn_submit {
+      background-image: url('/public/icons/ico-done-on-thin.svg');
+    }
+
+    .ttl {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.1875rem;
+      line-height: 1.375rem;
+      color: #111;
+    }
+  }
+
+  .write_group,
+  .editor_area {
+    display: flex;
+    align-items: center;
+    padding: 1.5625rem;
+    height: 3.75rem;
+    border-top: 0.0625rem solid #eee;
+  }
+
+  .editor_area {
+    display: block;
+    height: auto;
+  }
+
+  .form_input {
+    color: #111;
+
+    &::placeholder {
+      color: #959595;
+    }
+  }
+
+  .ttl_group {
+    .form_input {
+      font-size: 1.5rem;
+      line-height: 1.625rem;
+    }
+  }
+
+  .sub_ttl_group {
+    .form_input {
+      font-size: 1.25rem;
+      line-height: 1.125rem;
+    }
+  }
+
+  #editor {
+    min-height: 25rem;
+  }
+}

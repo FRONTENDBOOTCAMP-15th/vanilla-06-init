@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>작가 홈</title>
+
+   <script type="module" src="../src/components/Header.ts"></script>
+
+  <link rel="stylesheet" href="./author.css">
+  <link rel="stylesheet" href="../src/styles/layout.css">
+  <link rel="stylesheet" href="../src/styles/main.css">
+  <link rel="stylesheet" href="../src/styles/utils.css">
+  <link rel="stylesheet" href="../src/styles/base.css">
+</head>
+<body class="author_page">
+  <!-- 헤더 컴포넌트 -->
+  <init-header></init-header>
+
+  <!-- 작가 프로필 박스 -->
+   <section class="author_header">
+    <div class="author_header_content">
+
+      <div class="author_header_left">
+        <h2 class="author_name">AB</h2>
+        <p class="author_job">기획자</p>
+
+        <div class="author_stats">
+          <span>구독자</span>
+          <span>관심작가</span>
+        </div>
+      </div>
+
+      <img class="author_profile" src="../src/assets/images/author_img.jpg">
+    </div>
+
+    <button class="author_subs_bts">구독중</button>
+   </section>
+  
+</body>
+</html>

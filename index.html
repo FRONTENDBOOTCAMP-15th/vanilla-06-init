@@ -3,33 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vanilla-init-brunch</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
-
     <section class="mainpage_rank">
-      <p class="mainpage_subtitle">Todday's Pick</p>
-      <h1 class="mainpage_ranktitle">요즘 뜨는 브랜치</h1>
+      <div class="mainpage_onetitle">
+        <p class="mainpage_subtitle">Todday's Pick</p>
+        <h1 class="mainpage_ranktitle">요즘 뜨는 브랜치</h1>
+      </div>
 
       <ol class="mainpage_list">
         <li class="mainpage_item">
-          <h2 class="mainpage_secondtitle">무사히 마흔살이 될 수 있을까</h2>
-          <span class="mainpage_by">by</span>
-          <span class="mainpage_name">강윤이</span>
-          <p class="mainpage_desc">
-            병원에서 암 진단을 받고 나와 햇볕이 작열하며 끓어오르는 거리를 ...
-          </p>
+          <div class="mainpage_text">
+            <h2 class="mainpage_secondtitle">무사히 마흔살이 될 수 있을까</h2>
+            <img
+              src="./public/icons/text-by-gray.png"
+              class="mainpage_gray_by"
+            />
+            <span class="mainpage_name">강윤이</span>
+            <p class="mainpage_desc">
+              병원에서 암 진단을 받고 나와 햇볕이 작열하며 끓어오르는 거리를 ...
+            </p>
+          </div>
+
+          <div class="mainpage_book">
+            <img
+              src="https://img1.daumcdn.net/thumb/R240x0.fpng/?fname=http://t1.daumcdn.net/brunch/service/user/7R05/image/Y1QAAEV9BEAfRZmaYXFqnfxj0wU.png"
+              class="mainpage_bookimg"
+            />
+            <p>무사히 마흔살이 될 수 있을까</p>
+            <p>강윤이</p>
+            <img src="./public/icons/logo/logo-white.png" />
+          </div>
         </li>
+
         <li class="mainpage_item">
           <h2 class="mainpage_secondtitle">맞벌이 하루살이</h2>
           <span class="mainpage_by">by</span>
           <span class="mainpage_name">서리</span>
           <p class="mainpage_desc">
-            누구의 엄마로 불리지만, 그 전에 내 이름이 있다. 엄마로 육아하면서
-            ...
+            누구의 엄마로 불리지만, 그 전에 내 이름이 있다. 엄마로 육아하면서...
           </p>
         </li>
         <li class="mainpage_item">
@@ -66,6 +81,7 @@
             원래부터 도시를 싫어했다. 남편과 연애할 때도 맨날 귀촌하자고 서 ...
           </p>
         </li>
+
         <li class="mainpage_item">
           <h2 class="mainpage_secondtitle">수요에세이</h2>
           <span class="mainpage_by">by</span>
@@ -106,7 +122,7 @@
       <h1 class="mainpage_author_title">TOP 구독 작가</h1>
 
       <div class="mainpage_author">
-        <img src="./public/icons/image.png" />
+        <img src="./src/assets/image/image.png" />
         <h2 class="mainpage_author_name">피터팬</h2>
         <p class="mainpage_author_job">목사 만화가</p>
         <p class="mainpage_author_desc">
@@ -115,7 +131,7 @@
       </div>
 
       <div class="mainpage_author">
-        <img src="./public/icons/image-1.png" />
+        <img src="./src/assets/image/image-1.png" />
         <h2 class="mainpage_author_name">빛날현</h2>
         <p class="mainpage_author_job">에세이스트</p>
         <p class="mainpage_author_desc">
@@ -124,7 +140,7 @@
       </div>
 
       <div class="mainpage_author">
-        <img src="./public/icons/image-2.png" />
+        <img src="./src/assets/image/image-2.png" />
         <h2 class="mainpage_author_name">허사이</h2>
         <p class="mainpage_author_desc">
           책방 셔틀맨을 꿈꾸는 40대 공돌이. 다양한 ...
@@ -132,7 +148,7 @@
       </div>
 
       <div class="mainpage_author">
-        <img src="./public/icons/image-3.png" />
+        <img src="./src/assets/image/image-3.png" />
         <h2 class="mainpage_author_name">마틸다 하나씨</h2>
         <p class="mainpage_author_job">에세이스트</p>
         <p class="mainpage_author_desc">

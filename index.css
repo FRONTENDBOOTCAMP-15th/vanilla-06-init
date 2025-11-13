@@ -1,0 +1,117 @@
+body {
+  padding: 0;
+  margin: 1.56 0;
+  background: linear-gradient(0deg, #fff 0%, #fff 100%), #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainpage_onetitle {
+  margin: 1.56 1.56;
+  display: inline-flex;
+  padding-right: 11.5625rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.3125rem;
+}
+
+.mainpage_subtitle {
+  display: flex;
+  justify-content: center;
+  color: #111;
+  font-family: Georgia;
+  font-size: 0.75rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.875rem;
+}
+
+.mainpage_ranktitle {
+  color: #111;
+  font-family: Pretendard;
+  font-size: 1.1875rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.375rem; /* 115.789% */
+}
+
+.mainpage_list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 0;
+  margin: 0;
+  width: 19.375rem;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.mainpage_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 19.375rem;
+}
+
+.mainpage_secondtitle {
+  display: flex;
+  width: 11.24rem;
+  height: 2.875rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #111;
+  font-family: Pretendard;
+  font-size: 1.0625rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4375rem;
+}
+
+.mainpage_gray_by {
+  display: flex;
+  width: 0.92806rem;
+  height: 1.1875rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #bbb;
+  font-family: Georgia;
+  font-size: 0.8125rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.1875rem; /* 146.154% */
+}
+.mainpage_name {
+  display: flex;
+  width: 2.12763rem;
+  height: 1.25rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #959595;
+  font-family: Pretendard;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 1.25rem; /* 153.846% */
+}
+
+.mainpage_desc {
+  width: 5rem;
+  height: 7rem;
+  flex-shrink: 0;
+  border-radius: 0.0625rem 0.125rem 0.125rem 0.0625rem;
+}
+
+.mainpage_book .mainpage_bookimg {
+  width: 5rem;
+  height: 7rem;
+  flex-shrink: 0;
+  border-radius: 0.0625rem 0.125rem 0.125rem 0.0625rem;
+  background:
+    url(<path-to-image>) lightgray 0% 0% / 33.33333432674408px
+      33.33333432674408px repeat,
+    #ddd;
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vanilla-init-brunch</title>
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="../src/pages/posts/write.ts"></script>
+  </head>
+  <body>
+    <form id="postForm" action="">
+      <section class="write_sec">
+        <div class="ttl_area">
+          <button class="btn_close" type="button" aria-label="닫기"></button>
+          <h1 class="ttl">글쓰기</h1>
+          <button
+            id="editorSubmit"
+            class="btn_submit"
+            type="submit"
+            aria-label="제출"
+            disabled
+          ></button>
+        </div>
+        <div class="write_group ttl_group">
+          <label for="formTtl" class="sr-only">제목</label>
+          <input
+            id="formTtl"
+            class="form_input"
+            type="text"
+            placeholder="제목"
+          />
+        </div>
+        <div class="write_group sub_ttl_group">
+          <label for="formSubTtl" class="sr-only">소제목</label>
+          <input
+            id="formSubTtl"
+            class="form_input"
+            type="text"
+            placeholder="소제목"
+          />
+        </div>
+        <div class="editor_area">
+          <div id="editor"></div>
+        </div>
+      </section>
+    </form>
+  </body>
+</html>

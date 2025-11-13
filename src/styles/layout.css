@@ -1,0 +1,230 @@
+/* ========== header ========== */
+.header {
+  position: sticky;
+  z-index: 300;
+  top: 0;
+  border-bottom: 0.0625rem solid #e0e0e0;
+  background-color: #fff;
+
+  .inner {
+    display: flex;
+    padding: 0.875rem 1.25rem;
+    align-items: center;
+  }
+
+  .gnb-logo {
+    width: 7.5rem;
+    margin-right: auto;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      padding: calc(22 / 120 * 100%);
+      background-image: url('/public/icons/logo/logo.png');
+      background-position: center center;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .link-notice,
+  .link-search,
+  .link-profile {
+    display: block;
+    flex-shrink: 0;
+    width: 1.875rem;
+    margin-left: 0.625rem;
+    background-position: center center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+
+    &::after {
+      display: block;
+      content: '';
+      width: 100%;
+      padding-top: 100%;
+    }
+  }
+
+  .link-notice {
+    background-image: url('/public/icons/ico-notice-thin.svg');
+  }
+  .link-search {
+    background-image: url('/public/icons/ico-search-thin.svg');
+  }
+  .link-profile {
+    margin-left: 1.3125rem;
+    border-radius: 50%;
+    background-color: #959595;
+  }
+
+  .btn-dark {
+    display: flex;
+    margin-left: 0.625rem;
+    padding: 0.25rem 0.8125rem;
+    border-radius: 6.25rem;
+    flex-shrink: 0;
+    background: #231f20;
+    font-size: 0.625rem;
+    line-height: 1.5;
+    color: #fff;
+  }
+}
+
+/* ========== navigation ========== */
+.nav {
+  position: fixed;
+  z-index: 300;
+  bottom: 0;
+  width: 100%;
+  padding: 1.125rem 0 0.5rem;
+  background-color: #fff;
+
+  .nav-list {
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-item {
+    .nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      line-height: 1.6875rem;
+      color: #111;
+      transition: 0.25s all;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      &::before {
+        content: '';
+        display: block;
+        width: 3rem;
+        height: 3rem;
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .ico-home {
+      &::before {
+        background-image: url('/public/icons/ico-home.svg');
+      }
+    }
+    &.active .ico-home::before {
+      background-image: url('/public/icons/ico-home-on.svg');
+    }
+
+    .ico-discover {
+      &::before {
+        background-image: url('/public/icons/ico-search.svg');
+      }
+    }
+    &.active .ico-discover::before {
+      background-image: url('/public/icons/ico-search-on.svg');
+    }
+
+    .ico-write {
+      &::before {
+        background-image: url('/public/icons/ico-write.svg');
+      }
+    }
+    &.active .ico-write::before {
+      background-image: url('/public/icons/ico-write-on.svg');
+    }
+
+    .ico-drawer {
+      &::before {
+        background-image: url('/public/icons/ico-mybox.svg');
+      }
+    }
+    &.active .ico-drawer::before {
+      background-image: url('/public/icons/ico-mybox-on.svg');
+    }
+  }
+}
+
+/* ========== footer ========== */
+.footer {
+  background-color: #333;
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 22.5rem;
+    margin-inline: auto;
+    padding: 4.375rem 2.5rem 1.9375rem;
+  }
+
+  .share-area {
+    .share-list {
+      display: flex;
+      justify-content: center;
+      gap: 1.6875rem;
+    }
+
+    .share-link {
+      display: block;
+      width: 1.4375rem;
+      height: 1.4375rem;
+      background-position: center center;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+
+      &.ico-kakao {
+        background-image: url('/public/icons/ico-kakao-white.png');
+      }
+      &.ico-facebook {
+        background-image: url('/public/icons/ico-facebook-white.png');
+      }
+      &.ico-twitter-x {
+        background-image: url('/public/icons/ico-twiiter-x-white.png');
+      }
+    }
+  }
+
+  .policy-area {
+    margin-top: 5rem;
+
+    .policy-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0 1.1875rem;
+    }
+
+    .policy-link {
+      font-size: 0.75rem;
+      line-height: 1.25rem;
+      color: #959595;
+    }
+  }
+
+  .footer-logo {
+    width: 5.4375rem;
+    margin-top: 3.125rem;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 100%;
+      padding: calc(15 / 87 * 100%);
+      background-image: url('/public/icons/logo/logo-white.png');
+      background-position: center center;
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+    }
+  }
+}

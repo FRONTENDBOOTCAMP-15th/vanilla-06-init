@@ -9,55 +9,55 @@
 /* 상단 - 배경 이미지 + 제목 + 서브 제목 */
 .detail_header_wrap {
   width: 100%;
-  height: 240px;
+  height: 15rem;
   overflow: hidden;
-  padding: 79px 20px 16px 20px;
+  padding: 4.9375rem 1.25rem 1rem 1.25rem;
   background-size: cover;
   background-position: 50% 50%;
-  border: 1px solid #EEEEEE;
+  border: 0.0625rem solid #EEEEEE;
 }
 /* 상단 - 제목 */
 .detail_title {
   color: #333;
   font-family: 'Pretendard', sans-serif;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 300;
-  line-height: 34px;
+  line-height: 2.125rem;
   margin: 0;
 }
 /* 상단 - 서브 제목 */
 .detail_subtitle {
   color: #666;
   font-family: 'Pretendard', sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 300;
-  line-height: 21px;
+  line-height: 1.3125rem;
   margin: 0;
-  margin-top: 3px;
+  margin-top: 0.1875rem;
 }
 
 /* 상단 - by 텍스트 */
 .by {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #959595;
 }
 
 /* 상단 - 작가 이름 */
 .detail_author {
   color: #666;
-  font-size: 12px;
-  line-height: 19.5px;
-  margin-left: 3px;
+  font-size: 0.75rem;
+  line-height: 1.2188rem;
+  margin-left: 0.1875rem;
 }
 
 /* 상단 - 날짜 + 점 */
 .detail_date {
   color: #959595;
-  font-size: 12px;
-  line-height: 19.5px;
-  margin-left: 7px;
+  font-size: 0.75rem;
+  line-height: 1.2188rem;
+  margin-left: 0.4375rem;
   display: inline-flex;
-  gap: 4px;
+  gap: 0.25rem;
   align-items: center;
 }
 
@@ -65,36 +65,36 @@
 .detail_date::before {
   content: "";
   display: inline-block;
-  width: 2px;
-  height: 2px;
+  width: 0.125rem;
+  height: 0.125rem;
   border-radius: 50%;
   background-color: #959595;
 }
 
 /* 상단 - 작가/날짜 묶음 */
 .detail_info {
-  margin-top: 34px;
+  margin-top: 2.125rem;
   display: flex;
   align-items: center;
 }
 
 /* 본문 */
 .detail_content {
-padding: 0 20px;
+padding: 0 1.25rem;
 }
 
 /* 본문 - 텍스트 */
 .detail_content p {
   color: #1B1B1B;
-  font-size: 17.3px;
+  font-size: 1.0813rem;
   font-weight: 300;
-  line-height: 28px;
+  line-height: 1.75rem;
 }
 
 /* 본문 - 이미지 */
 .detail_content_img img {
   width: 100%;
-  margin-top: 28px;
+  margin-top: 1.75rem;
 }
 
 /* 본문 - 이미지 캡션 */
@@ -102,29 +102,29 @@ padding: 0 20px;
   color: #838383;
   display: block;
   text-align: center;
-  font-size: 13.3px;
-  line-height: 17.33px;
-  margin-top: 8px;
+  font-size: 0.8313rem;
+  line-height: 1.0831rem;
+  margin-top: 0.5rem;
 }
 
 /* 태그 */
 .detail_tag_list {
   display: flex;
-  gap: 8px;
-  margin-top: 40px;
-  padding: 0 26px 0 20px;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  padding: 0 1.625rem 0 1.25rem;
   color: #666;
 text-align: center;
-font-size: 14px;
+font-size: 0.875rem;
 font-weight: 400;
-line-height: 30px;
+line-height: 1.875rem;
 }
 
 /* 태그 - 버튼 */
 .detail_tag_item {
-  padding: 0 10px;
-  border: 1px solid #EEEEEE;
-  border-radius: 30px;
+  padding: 0 0.625rem;
+  border: 0.0625rem solid #EEEEEE;
+  border-radius: 1.875rem;
 }
 
 /* 작가 정보 */
@@ -132,66 +132,66 @@ line-height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0 20px;
-  border: 1px solid #EEEEEE;
+  padding: 0 1.25rem;
+  border: 0.0625rem solid #EEEEEE;
 }
 
 /* 작가 정보 - 이름 */
 
 .detail_author_name {
   color: #333;
-font-size: 22px;
+font-size: 1.375rem;
 font-weight: 300;
-line-height: 24px;
-margin: 69px 0 0 0;
+line-height: 1.5rem;
+margin: 4.3125rem 0 0 0;
 }
 
 /* 작가 정보 - 직업 */
 
 .detail_author_job {
 color: #959595;
-font-size: 12px;
+font-size: 0.75rem;
 font-weight: 400;
-line-height: 18px;
-margin: 4px 0 0 0;
+line-height: 1.125rem;
+margin: 0.25rem 0 0 0;
 }
 
 /* 작가 정보 - 소개 */
 
 .detail_author_desc {
 color: #959595;
-font-size: 12px;
-line-height: 20px;
-margin: 16px 0 0 0;
+font-size: 0.75rem;
+line-height: 1.25rem;
+margin: 1rem 0 0 0;
 }
 
 /* 작가 정보 - 정보 + 구독자 묶음 */
 
 .detail_author_subs_wrap {
   display: flex;
-  gap: 4px;
+  gap: 0.25rem;
   align-items: center;
-  margin-top: 23px;
-  margin-bottom: 49px;
+  margin-top: 1.4375rem;
+  margin-bottom: 3.0625rem;
 }
 
 /* 작가 정보 - 구독자 */
 
 .detail_author_subs {
 color: #959595;
-font-size: 14px;
+font-size: 0.875rem;
 font-weight: 400;
-line-height: 21px;
+line-height: 1.3125rem;
 }
 
 /* 작가 정보 - 구독자 수 */
 
 .detail_author_subscriber {
   color: #666;
-font-size: 14px;
+font-size: 0.875rem;
 font-weight: 400;
-line-height: 21px;
-letter-spacing: -0.14px;
+line-height: 1.3125rem;
+letter-spacing: -0.0088rem;
 }
 
 /* 작가 정보 - 오른쪽 프로필 + 구독 버튼 */
@@ -199,17 +199,17 @@ letter-spacing: -0.14px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 93px;
+  gap: 5.8125rem;
 }
 
 /* 작가 정보 - 사진 */
 
 .detail_author_img {
-  width: 50px;
-  height: 50px;
+  width: 3.125rem;
+  height: 3.125rem;
   border-radius: 50%;
   object-fit: cover;
-  margin-top: 66px;
+  margin-top: 4.125rem;
   flex-shrink: 0;
 }
 
@@ -217,24 +217,24 @@ letter-spacing: -0.14px;
 .detail_btn_subs {
   color: #00C6BE;
 text-align: center;
-font-size: 14px;
-line-height: 36px;
-letter-spacing: -0.5px;
-border: 1px solid #00C6BE;
-border-radius: 30px;
-width: 65px;
-height: 36px;
+font-size: 0.875rem;
+line-height: 2.25rem;
+letter-spacing: -0.0313rem;
+border: 0.0625rem solid #00C6BE;
+border-radius: 1.875rem;
+width: 4.0625rem;
+height: 2.25rem;
 }
 
 
 /* 액션바 */
 .detail_action_bar {
   display: flex;
-  height: 50px;
-  padding: 0 20px;
+  height: 3.125rem;
+  padding: 0 1.25rem;
   align-items: center;
-  gap: 3px;
-  border: 1px solid #EEEEEE;
+  gap: 0.1875rem;
+  border: 0.0625rem solid #EEEEEE;
 }
 
 /* 액션바 - 체크박스 숨김 */
@@ -248,18 +248,18 @@ height: 36px;
   display: flex;
   align-items: center;
   cursor: pointer;
-  gap: 3px;
+  gap: 0.1875rem;
 }
 
 /* 액션바 - 좋아요 x */
 
 .detail_like_icon {
-  width: 21px;
-  height: 21px;
+  width: 1.3125rem;
+  height: 1.3125rem;
 
   background-image: url('../public/icons/toggle-like.png');
-  background-size: 21px 42px;
-  background-position: 0 -21px;
+  background-size: 1.3125rem 2.625rem;
+  background-position: 0 -1.3125rem;
 }
 
 /* 액션바 - 버튼 누르면 바뀜 */

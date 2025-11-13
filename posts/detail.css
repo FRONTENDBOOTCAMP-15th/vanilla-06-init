@@ -1,0 +1,34 @@
+/* 전체 페이지 */
+.detail_page {
+  width: 360px;
+  margin: 0 auto;
+  background-color: #ffffff;
+}
+
+/* 상단 배경 글씨 겹치기 */
+.detail_header_wrap {
+  position: relative;
+  width: 100%;
+  height: 239px;
+  overflow: hidden;
+}
+
+/* 상단 배경 이미지 */
+.detail_header_image {
+  width: 100%;
+  height: 100%;
+}
+
+.detail_header_bg {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transform: translateY(-230px);
+}
+
+/* 글씨 - 이미지 위에 올리기 */
+.detail_header {
+  position: absolute;
+  left: 20px;
+  bottom: 16px;
+}

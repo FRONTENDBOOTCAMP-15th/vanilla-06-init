@@ -5,9 +5,16 @@
   height: auto !important;
 }
 
+.by {
+  font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
 .color-white {
   color: #ffffff !important;
 }
 .color-light-gray {
   color: #f8f8f8 !important;
+}
+.color-mint {
+  color: #00c6be !important;
 }

@@ -76,3 +76,323 @@
     min-height: 25rem;
   }
 }
+
+/* 검색결과 페이지 */
+.search_header {
+  border-bottom: 1px solid #ddd;
+
+  .search_box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 12px 20px 30px;
+
+    .search_input {
+      flex: 1;
+      margin-left: 25px;
+      font-weight: 300;
+      font-size: 24px;
+      color: #333;
+      text-align: center;
+
+      &::placeholder {
+        color: #bfbfbf;
+      }
+    }
+
+    .btn_reset {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background-image: url('/public/icons/ico-close-circle-gray.png');
+      background-position: center center;
+      background-size: 100 auto;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .search_tab_area {
+    display: flex;
+
+    .search_tab {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 37px;
+      color: #666;
+    }
+  }
+}
+
+.search_body {
+  padding: 11px 0;
+  background-color: #f8f8f8;
+
+  ol,
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.search_init_panel {
+  .recommend_author_area {
+    padding: 25px 0 30px;
+  }
+
+  .recommend_author_ttl {
+    font-size: 12px;
+    line-height: 18px;
+    color: #bbb;
+  }
+
+  .recommend_author_txt {
+    margin-top: 12px;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 29px;
+    color: #333;
+  }
+
+  .search_recent_area {
+    padding: 18px 0;
+    border-top: 1px solid #eee;
+  }
+
+  .recent_keyword_ttl {
+    font-size: 12px;
+    line-height: 18px;
+    color: #828282;
+  }
+
+  .search_recent_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    margin-top: 16px;
+  }
+
+  .search_recent_item {
+    display: flex;
+    align-items: center;
+
+    .search_recent_link {
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.2;
+      color: #333;
+    }
+
+    .btn_remove {
+      width: 16px;
+      height: 16px;
+      margin-left: auto;
+      background-image: url('/public/icons/ico-close-gray.png');
+      background-position: center center;
+      background-size: 9px auto;
+      background-repeat: no-repeat;
+    }
+  }
+}
+
+.search_result_panel {
+  .aux-area {
+    display: flex;
+
+    .search_result_count {
+      font-weight: 300;
+      font-size: 12px;
+      color: #959595;
+      line-height: 36px;
+    }
+
+    .search_sort_area {
+      display: flex;
+      gap: 18px;
+      margin-left: auto;
+
+      .search_sort_btn {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 300;
+        font-size: 13px;
+        color: #959595;
+        line-height: 36px;
+
+        &.active {
+          color: #333;
+
+          &::before {
+            content: '';
+            display: block;
+            width: 4px;
+            height: 4px;
+            background-color: #00c6be;
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+  }
+
+  .post_area {
+    margin-top: 12px;
+  }
+
+  .post_card {
+    display: grid;
+    grid-template-areas:
+      'ttl ttl ttl'
+      'excerpt excerpt thumb'
+      'date author thumb';
+    grid-template-columns: max-content 1fr 60px;
+    gap: 0 7px;
+
+    & + .post_card {
+      margin-top: 34px;
+    }
+
+    .post_link {
+      display: contents;
+    }
+
+    .post_ttl {
+      grid-area: ttl;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      margin: 0;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    .post_excerpt {
+      grid-area: excerpt;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      margin: 0;
+      margin-top: 3px;
+      margin-bottom: 6px;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 20px;
+      color: #959595;
+    }
+    .date {
+      grid-area: date;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 19px;
+      color: #959595;
+    }
+    .author_box {
+      display: flex;
+      align-items: center;
+      grid-area: author;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 2px;
+        height: 2px;
+        flex-shrink: 0;
+        background-color: #ddd;
+        margin-right: 5px;
+      }
+
+      .by {
+        font-size: 13px;
+        line-height: 12px;
+        color: #bbb;
+      }
+      .author {
+        margin-left: 2px;
+        font-weight: 300;
+        font-size: 12px;
+        line-height: 19px;
+        color: #959595;
+      }
+    }
+    .thumb {
+      grid-area: thumb;
+      margin-top: 6px;
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+    }
+  }
+
+  .author_card {
+    display: grid;
+    grid-template-areas:
+      'thumb ttl'
+      'thumb excerpt'
+      'keyword keyword';
+    grid-template-columns: 40px 1fr;
+    gap: 0 19px;
+    padding: 18px 0 24px;
+    border-bottom: 1px solid #eee;
+
+    .author_link {
+      display: contents;
+    }
+
+    .thumb {
+      grid-area: thumb;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      overflow: hidden;
+    }
+
+    .author_ttl {
+      grid-area: ttl;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      margin: 0;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 26px;
+    }
+    .author_excerpt {
+      grid-area: excerpt;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      margin: 0;
+      margin-top: 3px;
+      margin-bottom: 6px;
+      font-weight: 300;
+      font-size: 12px;
+      line-height: 20px;
+      color: #959595;
+    }
+  }
+  .keyword_area {
+    grid-area: keyword;
+    margin-top: 11px;
+    padding-left: 44px;
+    width: 100%;
+  }
+}

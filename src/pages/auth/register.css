@@ -1,0 +1,128 @@
+.register_singup {
+  height: 37rem;
+  display: flex;
+  justify-content: center; /* 가로 중앙 */
+  align-items: center; /* 세로 중앙 */
+}
+
+.inner {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register_member {
+  width: 4.125rem;
+  height: 1.375rem;
+  color: #111;
+  font-family: Pretendard;
+  font-size: 1.1875rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.register_action {
+  width: 100%;
+  max-width: 22.5rem;
+  margin-top: 2rem;
+}
+
+.register_field {
+  display: flex;
+  height: 2.6875rem;
+  border-bottom: 1px solid #d7d7d7;
+  align-items: center;
+  margin: 1rem 1.25rem 0.5rem 1.25rem;
+}
+
+.register_field:focus-within {
+  border-bottom: 1px solid #00c6be;
+}
+
+.register_field .register_button {
+  display: inline-flex;
+  padding: 0 0.625rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 62.4375rem;
+  border: 1px solid #00c6be;
+  color: #00c6be;
+  text-align: center;
+  font-size: 0.8125rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.8125rem; /* 223.077% */
+  margin-left: auto;
+}
+
+.register_field input {
+  color: #111;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.01875rem;
+}
+
+.eye_checkbox {
+  margin-left: auto;
+}
+
+.eye_checkbox .icon {
+  display: block;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url(/public/icons/toggle-eye.svg);
+  background-size: 100% auto;
+  background-position: top 0 center;
+}
+
+.eye_checkbox input[type='checkbox']:checked + .icon {
+  background-position: top -24px center;
+}
+
+.register_msg {
+  display: flex;
+  width: 13.3rem;
+  height: 1rem;
+  margin: 0 7.94rem 1rem 1.25rem;
+  flex-direction: column;
+  justify-content: center;
+  color: #00c6be;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: -0.01875rem;
+}
+
+.register_pwdmsg {
+  display: flex;
+  width: 13.3rem;
+  height: 0.5rem;
+  margin: 0 7rem 1rem 1.25rem;
+  flex-direction: column;
+  justify-content: center;
+  color: #fc3b75;
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: -0.01875rem;
+}
+
+.register_submit {
+  display: flex;
+  width: 20rem;
+  height: 3.125rem;
+  padding: 0.85938rem 0;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 0.25rem;
+  background: #00c6be;
+  color: #fff;
+  margin: 10rem auto 0;
+}
+
+.register_submit:disabled {
+  background-color: #aaa;
+}

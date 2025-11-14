@@ -5,46 +5,56 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vanilla-init-brunch</title>
+    <link rel="stylesheet" href="./login.css" />
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
 
-    <section class="login_img">
-      <img src="../public/icons/loginImage.png" />
-      <p class="login_header">브런치 작가로 데뷔하세요.</p>
-      <p class="login_sub">
-        진솔한 에세이부터 업계 전문 지식까지, 당신의 이야기를 세상에 선보이세요.
-      </p>
+    <section>
+      <div class="login_view">
+        <img src="/src/assets/image/loginImage.png" class="login_img" />
+        <div class="login_write">
+          <p class="login_header">브런치 작가로 데뷔하세요.</p>
+          <p class="login_sub">
+            진솔한 에세이부터 업계 전문 지식까지, <br />당신의 이야기를 세상에
+            선보이세요.
+          </p>
+        </div>
 
-      <div class="login_field">
-        <label for="userEmail"></label>
-        <input
-          placeholder="이메일"
-          required
-          id="userEmail"
-          type="email"
-          name="email"
-        />
-      </div>
-      <div class="login_field">
-        <label for="userPwd"></label>
-        <input
-          placeholder="비밀번호"
-          required
-          id="userPwd"
-          type="password"
-          name="password"
-        />
-      </div>
+        <div class="login_field">
+          <label for="userEmail"></label>
+          <input
+            required
+            placeholder="이메일"
+            id="userEmail"
+            type="email"
+            name="email"
+          />
+        </div>
 
-      <div class="login_remember">
-        <img src="../public/icons/Icon30px.png" />
-        <input type="radio" class="login_check" />로그인 정보 저장
-      </div>
+        <div class="login_field">
+          <label for="userPwd"></label>
+          <input
+            required
+            placeholder="비밀번호"
+            id="userPwd"
+            type="password"
+            name="password"
+          />
+        </div>
 
-      <button type="submit" class="login_primary_btn">로그인</button>
-      <button type="button" class="login_btn">회원가입</button>
+        <div class="login_remember">
+          <div class="login_checkbox">
+            <input id="login" type="checkbox" class="sr-only" />
+            <label for="login" class="checkicon"></label>
+          </div>
+          <span class="login_check">로그인 정보 저장</span>
+        </div>
+
+        <button type="submit" class="login_btn">로그인</button>
+        <button type="button" class="login_member">회원가입</button>
+      </div>
     </section>
   </body>
 </html>

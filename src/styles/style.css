@@ -4,14 +4,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.625rem 1.25rem;
+    padding: 10px 20px;
 
     .btn_close,
     .btn_submit {
       display: block;
       flex-shrink: 0;
-      width: 1.875rem;
-      height: 1.875rem;
+      width: 30px;
+      height: 30px;
       background-position: center center;
       background-size: 100% auto;
       background-repeat: no-repeat;
@@ -30,8 +30,8 @@
     .ttl {
       margin: 0;
       font-weight: 600;
-      font-size: 1.1875rem;
-      line-height: 1.375rem;
+      font-size: 19px;
+      line-height: 22px;
       color: #111;
     }
   }
@@ -40,9 +40,9 @@
   .editor_area {
     display: flex;
     align-items: center;
-    padding: 1.5625rem;
-    height: 3.75rem;
-    border-top: 0.0625rem solid #eee;
+    padding: 25px;
+    height: 60px;
+    border-top: 1px solid #eee;
   }
 
   .editor_area {
@@ -60,38 +60,38 @@
 
   .ttl_group {
     .form_input {
-      font-size: 1.5rem;
-      line-height: 1.625rem;
+      font-size: 24px;
+      line-height: 26px;
     }
   }
 
   .sub_ttl_group {
     .form_input {
-      font-size: 1.25rem;
-      line-height: 1.125rem;
+      font-size: 20px;
+      line-height: 18px;
     }
   }
 
   #editor {
-    min-height: 25rem;
+    min-height: 400px;
   }
 }
 
 /* 검색결과 페이지 */
 .search_header {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0.0625rem solid #ddd;
 
   .search_box {
     display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 12px 20px 30px;
+    gap: 0.5625rem;
+    padding: 0.75rem 1.25rem 1.875rem;
 
     .search_input {
       flex: 1;
-      margin-left: 25px;
+      margin-left: 1.5625rem;
       font-weight: 300;
-      font-size: 24px;
+      font-size: 1.5rem;
       color: #333;
       text-align: center;
 
@@ -101,8 +101,8 @@
     }
 
     .btn_reset {
-      width: 16px;
-      height: 16px;
+      width: 1rem;
+      height: 1rem;
       flex-shrink: 0;
       border-radius: 50%;
       background-image: url('/public/icons/ico-close-circle-gray.png');
@@ -121,15 +121,15 @@
       justify-content: center;
       align-items: center;
       font-weight: 300;
-      font-size: 14px;
-      line-height: 37px;
+      font-size: 0.875rem;
+      line-height: 2.3125rem;
       color: #666;
     }
   }
 }
 
 .search_body {
-  padding: 11px 0;
+  padding: 0.6875rem 0;
   background-color: #f8f8f8;
 
   ol,
@@ -141,40 +141,40 @@
 
 .search_init_panel {
   .recommend_author_area {
-    padding: 25px 0 30px;
+    padding: 1.5625rem 0 1.875rem;
   }
 
   .recommend_author_ttl {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
     color: #bbb;
   }
 
   .recommend_author_txt {
-    margin-top: 12px;
+    margin-top: 0.75rem;
     font-weight: 300;
-    font-size: 20px;
-    line-height: 29px;
+    font-size: 1.25rem;
+    line-height: 1.8125rem;
     color: #333;
   }
 
   .search_recent_area {
-    padding: 18px 0;
-    border-top: 1px solid #eee;
+    padding: 1.125rem 0;
+    border-top: 0.0625rem solid #eee;
   }
 
   .recent_keyword_ttl {
-    font-size: 12px;
-    line-height: 18px;
+    font-size: 0.75rem;
+    line-height: 1.125rem;
     color: #828282;
   }
 
   .search_recent_list {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1.25rem;
 
-    margin-top: 16px;
+    margin-top: 1rem;
   }
 
   .search_recent_item {
@@ -183,18 +183,18 @@
 
     .search_recent_link {
       font-weight: 300;
-      font-size: 15px;
+      font-size: 0.9375rem;
       line-height: 1.2;
       color: #333;
     }
 
     .btn_remove {
-      width: 16px;
-      height: 16px;
+      width: 1rem;
+      height: 1rem;
       margin-left: auto;
       background-image: url('/public/icons/ico-close-gray.png');
       background-position: center center;
-      background-size: 9px auto;
+      background-size: 0.5625rem auto;
       background-repeat: no-repeat;
     }
   }
@@ -206,24 +206,24 @@
 
     .search_result_count {
       font-weight: 300;
-      font-size: 12px;
+      font-size: 0.75rem;
       color: #959595;
-      line-height: 36px;
+      line-height: 2.25rem;
     }
 
     .search_sort_area {
       display: flex;
-      gap: 18px;
+      gap: 1.125rem;
       margin-left: auto;
 
       .search_sort_btn {
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 0.3125rem;
         font-weight: 300;
-        font-size: 13px;
+        font-size: 0.8125rem;
         color: #959595;
-        line-height: 36px;
+        line-height: 2.25rem;
 
         &.active {
           color: #333;
@@ -231,8 +231,8 @@
           &::before {
             content: '';
             display: block;
-            width: 4px;
-            height: 4px;
+            width: 0.25rem;
+            height: 0.25rem;
             background-color: #00c6be;
             border-radius: 50%;
           }
@@ -242,7 +242,7 @@
   }
 
   .post_area {
-    margin-top: 12px;
+    margin-top: 0.75rem;
   }
 
   .post_card {
@@ -251,11 +251,11 @@
       'ttl ttl ttl'
       'excerpt excerpt thumb'
       'date author thumb';
-    grid-template-columns: max-content 1fr 60px;
-    gap: 0 7px;
+    grid-template-columns: max-content 1fr 3.75rem;
+    gap: 0 0.4375rem;
 
     & + .post_card {
-      margin-top: 34px;
+      margin-top: 2.125rem;
     }
 
     .post_link {
@@ -272,8 +272,8 @@
       text-overflow: ellipsis;
       margin: 0;
       font-weight: 300;
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 1rem;
+      line-height: 1.5rem;
     }
     .post_excerpt {
       grid-area: excerpt;
@@ -284,18 +284,18 @@
       white-space: normal;
       text-overflow: ellipsis;
       margin: 0;
-      margin-top: 3px;
-      margin-bottom: 6px;
+      margin-top: 0.1875rem;
+      margin-bottom: 0.375rem;
       font-weight: 300;
-      font-size: 12px;
-      line-height: 20px;
+      font-size: 0.75rem;
+      line-height: 1.25rem;
       color: #959595;
     }
     .date {
       grid-area: date;
       font-weight: 300;
-      font-size: 12px;
-      line-height: 19px;
+      font-size: 0.75rem;
+      line-height: 1.1875rem;
       color: #959595;
     }
     .author_box {
@@ -306,31 +306,31 @@
       &::before {
         content: '';
         display: block;
-        width: 2px;
-        height: 2px;
+        width: 0.125rem;
+        height: 0.125rem;
         flex-shrink: 0;
         background-color: #ddd;
-        margin-right: 5px;
+        margin-right: 0.3125rem;
       }
 
       .by {
-        font-size: 13px;
-        line-height: 12px;
+        font-size: 0.8125rem;
+        line-height: 0.75rem;
         color: #bbb;
       }
       .author {
-        margin-left: 2px;
+        margin-left: 0.125rem;
         font-weight: 300;
-        font-size: 12px;
-        line-height: 19px;
+        font-size: 0.75rem;
+        line-height: 1.1875rem;
         color: #959595;
       }
     }
     .thumb {
       grid-area: thumb;
-      margin-top: 6px;
-      width: 60px;
-      height: 60px;
+      margin-top: 0.375rem;
+      width: 3.75rem;
+      height: 3.75rem;
       object-fit: cover;
     }
   }
@@ -341,10 +341,10 @@
       'thumb ttl'
       'thumb excerpt'
       'keyword keyword';
-    grid-template-columns: 40px 1fr;
-    gap: 0 19px;
-    padding: 18px 0 24px;
-    border-bottom: 1px solid #eee;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 0 1.1875rem;
+    padding: 1.125rem 0 1.5rem;
+    border-bottom: 0.0625rem solid #eee;
 
     .author_link {
       display: contents;
@@ -352,8 +352,8 @@
 
     .thumb {
       grid-area: thumb;
-      width: 40px;
-      height: 40px;
+      width: 2.5rem;
+      height: 2.5rem;
       border-radius: 50%;
       object-fit: cover;
       overflow: hidden;
@@ -369,8 +369,8 @@
       text-overflow: ellipsis;
       margin: 0;
       font-weight: 300;
-      font-size: 16px;
-      line-height: 26px;
+      font-size: 1rem;
+      line-height: 1.625rem;
     }
     .author_excerpt {
       grid-area: excerpt;
@@ -381,18 +381,18 @@
       white-space: normal;
       text-overflow: ellipsis;
       margin: 0;
-      margin-top: 3px;
-      margin-bottom: 6px;
+      margin-top: 0.1875rem;
+      margin-bottom: 0.375rem;
       font-weight: 300;
-      font-size: 12px;
-      line-height: 20px;
+      font-size: 0.75rem;
+      line-height: 1.25rem;
       color: #959595;
     }
   }
   .keyword_area {
     grid-area: keyword;
-    margin-top: 11px;
-    padding-left: 44px;
+    margin-top: 0.6875rem;
+    padding-left: 2.75rem;
     width: 100%;
   }
 }

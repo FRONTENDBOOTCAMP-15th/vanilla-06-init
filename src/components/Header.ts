@@ -13,28 +13,28 @@ class HeaderComponent extends HTMLElement {
     this.innerHTML = `
       <header id="header" class="header">
         <div class="inner">
-          <a class="gnb-logo" href="/">
+          <a class="gnb_logo" href="/">
             <span class="sr-only">brunchstory</span>
           </a>
           ${
             user.name
               ? `
-              <a href="#" class="link-notice">
+              <a href="#" class="link_notice">
                 <span class="sr-only">알림설정</span>
               </a>
-              <a href="/discover/discover.html" class="link-search">
+              <a href="/discover/discover.html" class="link_search">
                 <span class="sr-only">검색하기</span>
               </a>
-              <a href="/drawer/drawer.html" class="link-profile">
+              <a href="/drawer/drawer.html" class="link_profile">
                 <img class="profile" src="${user.image}" alt=""/>
-                <span class="sr-only">프로필</span>
+                <span class="sr_only">프로필</span>
               </a>
             `
               : `
-              <a href="/discover/discover.html" class="link-search">
-                <span class="sr-only">검색하기</span>
+              <a href="/discover/discover.html" class="link_search">
+                <span class="sr_only">검색하기</span>
               </a>
-              <a href="/auth/login.html" class="btn-dark">
+              <a href="/auth/login.html" class="btn_dark">
                 시작하기
               </a>
             `

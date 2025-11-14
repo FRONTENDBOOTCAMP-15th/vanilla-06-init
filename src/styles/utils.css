@@ -1,7 +1,7 @@
-.w-auto {
+.w_auto {
   width: auto !important;
 }
-.h-auto {
+.h_auto {
   height: auto !important;
 }
 
@@ -9,12 +9,12 @@
   font-family: Georgia, 'Times New Roman', Times, serif !important;
 }
 
-.color-white {
+.color_white {
   color: #ffffff !important;
 }
-.color-light-gray {
+.color_light_gray {
   color: #f8f8f8 !important;
 }
-.color-mint {
+.color_mint {
   color: #00c6be !important;
 }

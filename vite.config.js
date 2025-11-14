@@ -5,7 +5,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: 'index.html', // 메인 페이지
+        gnb: 'index.html', // 메인 페이지(임시)
+        index: path.resolve(__dirname, '/src/pages/index.html'), // 로그인 페이지
         login: path.resolve(__dirname, '/src/pages/auth/login.html'), // 로그인 페이지
         register: path.resolve(__dirname, '/src/pages/auth/register.html'), // 회원가입 페이지
         write: path.resolve(__dirname, '/src/pages/posts/write.html'), // 글쓰기 페이지

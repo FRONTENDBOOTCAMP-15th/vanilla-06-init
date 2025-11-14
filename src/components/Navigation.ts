@@ -10,12 +10,20 @@ class NavigationComponent extends HTMLElement {
     const routes: { href: string; icoClass: string; text: string }[] = [
       { href: '/index.html', icoClass: 'ico-home', text: '홈' },
       {
-        href: '/discover/discover.html',
+        href: '/src/pages/discover/discover.html',
         icoClass: 'ico-discover',
         text: '발견',
       },
-      { href: '/posts/write.html', icoClass: 'ico-write', text: '글쓰기' },
-      { href: '/drawer/drawer.html', icoClass: 'ico-drawer', text: '내 서랍' },
+      {
+        href: '/src/pages/posts/write.html',
+        icoClass: 'ico-write',
+        text: '글쓰기',
+      },
+      {
+        href: '/src/pages/drawer/drawer.html',
+        icoClass: 'ico-drawer',
+        text: '내 서랍',
+      },
     ];
 
     const navItems = routes

@@ -7,6 +7,7 @@ class HeaderComponent extends HTMLElement {
   }
 
   render() {
+    console.log('header');
     const user = this.getUser();
 
     this.innerHTML = `

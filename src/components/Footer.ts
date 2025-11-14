@@ -8,43 +8,43 @@ class FooterComponent extends HTMLElement {
     this.innerHTML = `
       <footer id="footer" class="footer">
         <div class="inner">
-          <div class="share-area">
-            <ul class="share-list">
-              <li class="share-item">
-                <a class="share-link ico-kakao" href="#"></a>
+          <div class="share_area">
+            <ul class="share_list">
+              <li class="share_item">
+                <a class="share_link ico_kakao" href="#"></a>
               </li>
-              <li class="share-item">
-                <a class="share-link ico-facebook" href="#"></a>
+              <li class="share_item">
+                <a class="share_link ico_facebook" href="#"></a>
               </li>
-              <li class="share-item">
-                <a class="share-link ico-twitter-x" href="#"></a>
+              <li class="share_item">
+                <a class="share_link ico_twitter_x" href="#"></a>
               </li>
             </ul>
           </div>
-          <div class="policy-area">
-            <ul class="policy-list">
-              <li class="policy-item">
-                <a href="#" class="policy-link">이용약관</a>
+          <div class="policy_area">
+            <ul class="policy_list">
+              <li class="policy_item">
+                <a href="#" class="policy_link">이용약관</a>
               </li>
-              <li class="policy-item">
-                <a href="#" class="policy-link">이전 이용약관</a>
+              <li class="policy_item">
+                <a href="#" class="policy_link">이전 이용약관</a>
               </li>
-              <li class="policy-item">
-                <a href="#" class="policy-link">카카오 유료서비스 이용약관</a>
+              <li class="policy_item">
+                <a href="#" class="policy_link">카카오 유료서비스 이용약관</a>
               </li>
-              <li class="policy-item">
-                <a href="#" class="policy-link color-light-gray">카카오 개인정보 처리방침</a>
+              <li class="policy_item">
+                <a href="#" class="policy_link color_light_gray">카카오 개인정보 처리방침</a>
               </li>
-              <li class="policy-item">
-                <a href="#" class="policy-link">청소년 보호정책</a>
+              <li class="policy_item">
+                <a href="#" class="policy_link">청소년 보호정책</a>
               </li>
-              <li class="policy-item">
-                <a href="#" class="policy-link">운영정책</a>
+              <li class="policy_item">
+                <a href="#" class="policy_link">운영정책</a>
               </li>
             </ul>
             </div>
-            <a class="footer-logo" href="/">
-              <span class="sr-only">brunchstory</span>
+            <a class="footer_logo" href="/">
+              <span class="sr_only">brunchstory</span>
             </a>
         </div>
       </footer>

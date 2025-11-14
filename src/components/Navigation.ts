@@ -8,20 +8,20 @@ class NavigationComponent extends HTMLElement {
     const path: string = location.pathname.replace(/\/$/, ''); // 끝 슬래시 제거
 
     const routes: { href: string; icoClass: string; text: string }[] = [
-      { href: '/index.html', icoClass: 'ico-home', text: '홈' },
+      { href: '/index.html', icoClass: 'ico_home', text: '홈' },
       {
         href: '/src/pages/discover/discover.html',
-        icoClass: 'ico-discover',
+        icoClass: 'ico_discover',
         text: '발견',
       },
       {
         href: '/src/pages/posts/write.html',
-        icoClass: 'ico-write',
+        icoClass: 'ico_write',
         text: '글쓰기',
       },
       {
         href: '/src/pages/drawer/drawer.html',
-        icoClass: 'ico-drawer',
+        icoClass: 'ico_drawer',
         text: '내 서랍',
       },
     ];
@@ -45,8 +45,8 @@ class NavigationComponent extends HTMLElement {
         const activeHomeClass = path === '' && text === '홈' ? 'active' : '';
 
         return `
-          <li class="nav-item ${activeClass} ${activeHomeClass}">
-            <a class="nav-link ${icoClass}" href="${href}">${text}</a>
+          <li class="nav_item ${activeClass} ${activeHomeClass}">
+            <a class="nav_link ${icoClass}" href="${href}">${text}</a>
           </li>
         `;
       })
@@ -54,7 +54,7 @@ class NavigationComponent extends HTMLElement {
 
     this.innerHTML = `
       <nav id="nav" class="nav">
-        <ul class="nav-list">
+        <ul class="nav_list">
           ${navItems}
         </ul>
       </nav>

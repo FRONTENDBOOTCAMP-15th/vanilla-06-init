@@ -84,6 +84,7 @@ button {
 }
 
 /* 접근성용 숨김 */
+.sr_only,
 .sr-only,
 .hidden,
 .blind {

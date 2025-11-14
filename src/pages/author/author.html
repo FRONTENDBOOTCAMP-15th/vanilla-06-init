@@ -3,20 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>작가 홈</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>작가 홈 | init 브런치</title>
 
-    <script type="module" src="../src/components/Header.ts"></script>
-    <link rel="stylesheet" href="../src/styles/layout.css" />
-    <link rel="stylesheet" href="../src/styles/main.css" />
-    <link rel="stylesheet" href="../src/styles/utils.css" />
-    <link rel="stylesheet" href="../src/styles/base.css" />
+    <script type="module" src="../../main.ts"></script>
     <link rel="stylesheet" href="./author.css" />
   </head>
   <body class="author_page">
+    <init-header></init-header>
+
     <!-- 헤더 컴포넌트 -->
     <div class="author_wrap">
-      <init-header></init-header>
-
       <!-- 작가 프로필 박스 -->
       <section class="author_header">
         <div class="author_header_content">
@@ -40,11 +37,11 @@
           <div class="author_header_right">
             <img
               class="author_profile"
-              src="../src/assets/images/author_img.jpg"
+              src="../../assets/images/detail_profile.png"
             />
             <button class="author_subs_btn">
               <img
-                src="../public/icons/ico-done-white.png"
+                src="/public/icons/ico-done-white.png"
                 class="check_icon"
               />구독중
             </button>
@@ -111,5 +108,8 @@
         </article>
       </section>
     </div>
+
+    <init-nav></init-nav>
+    <init-footer></init-footer>
   </body>
 </html>

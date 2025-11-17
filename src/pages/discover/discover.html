@@ -7,13 +7,19 @@
     <title>발견 | init 브런치</title>
 
     <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="./discover.ts"></script>
   </head>
   <body>
     <header class="search_header">
-      <h1 class="sr-only">검색 결과 페이지</h1>
+      <h1 class="sr_only">검색 결과 페이지</h1>
       <form id="searchForm" action="get">
         <div class="search_box">
-          <input type="text" class="search_input" placeholder="검색어 입력" />
+          <input
+            type="text"
+            id="searchInput"
+            class="search_input"
+            placeholder="검색어 입력"
+          />
           <button class="btn_reset" aria-label="검색어 초기화"></button>
         </div>
       </form>

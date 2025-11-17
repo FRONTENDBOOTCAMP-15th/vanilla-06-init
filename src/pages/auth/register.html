@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>회원가입 | init 브런치</title>
+
+    <script type="module" src="../../main.ts"></script>
+    <link rel="stylesheet" href="./register.css" />
+  </head>
+  <body>
+    <section class="register_singup">
+      <div class="inner">
+        <h1 class="register_member">회원가입</h1>
+
+        <form class="register_action">
+          <div class="register_field">
+            <div class="register_group">
+              <label for="nickname"></label>
+              <input
+                required
+                placeholder="별명"
+                id="nickname"
+                type="text"
+                name="nickname"
+                minlength="2"
+                maxlength="20"
+              />
+            </div>
+            <button type="button" class="register_button">중복확인</button>
+          </div>
+          <div class="register_msg">
+            <p class="regiter_msg1">사용할 수 있는 별명입니다.</p>
+          </div>
+
+          <div class="register_field">
+            <div class="register_group">
+              <label for="email"></label>
+              <input
+                required
+                placeholder="이메일"
+                id="email"
+                type="text"
+                name="email"
+              />
+            </div>
+            <button type="button" class="register_button">중복확인</button>
+          </div>
+          <div class="register_msg">
+            <p class="regiter_msg1">사용할 수 있는 이메일입니다.</p>
+          </div>
+
+          <div class="register_field">
+            <div class="register_group">
+              <label for="userPwd"></label>
+              <input
+                required
+                placeholder="비밀번호"
+                id="userPwd"
+                name="userPwd"
+                type="password"
+                minlength="8"
+              />
+            </div>
+            <div class="eye_checkbox">
+              <input id="eye1" type="checkbox" class="sr_only" />
+              <label for="eye1" class="icon"></label>
+            </div>
+          </div>
+
+          <div class="register_field">
+            <div class="register_group">
+              <label for="userPwd"></label>
+              <input
+                required
+                placeholder="비밀번호 확인"
+                id="userPwdConfirm"
+                name="userPwdConfirm"
+                type="password"
+                minlength="8"
+              />
+            </div>
+            <div class="eye_checkbox">
+              <input id="eye2" type="checkbox" class="sr_only" />
+              <label for="eye2" class="icon"></label>
+            </div>
+          </div>
+          <div class="register_pwdmsg">
+            <p class="regiter_msg2">
+              대소문자, 숫자 조합 8자 이상이어야 합니다.
+            </p>
+          </div>
+
+          <button type="submit" class="register_submit" disabled>
+            회원가입
+          </button>
+        </form>
+      </div>
+    </section>
+  </body>
+</html>

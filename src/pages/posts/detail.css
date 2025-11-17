@@ -1,0 +1,271 @@
+/* 기본 틀 */
+.detail_page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+/* 상단 - 배경 이미지 + 제목 + 서브 제목 */
+.detail_header_wrap {
+  width: 100%;
+  height: 15rem;
+  overflow: hidden;
+  padding: 4.9375rem 1.25rem 1rem 1.25rem;
+  background-size: cover;
+  background-position: 50% 50%;
+  border: 0.0625rem solid #eeeeee;
+}
+/* 상단 - 제목 */
+.detail_title {
+  color: #333;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 300;
+  line-height: 2.125rem;
+  margin: 0;
+}
+/* 상단 - 서브 제목 */
+.detail_subtitle {
+  color: #666;
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.3125rem;
+  margin: 0;
+  margin-top: 0.1875rem;
+}
+
+/* 상단 - by 텍스트 */
+.by {
+  font-size: 0.75rem;
+  color: #959595;
+}
+
+/* 상단 - 작가 이름 */
+.detail_author {
+  color: #666;
+  font-size: 0.75rem;
+  line-height: 1.2188rem;
+  margin-left: 0.1875rem;
+}
+
+/* 상단 - 날짜 + 점 */
+.detail_date {
+  color: #959595;
+  font-size: 0.75rem;
+  line-height: 1.2188rem;
+  margin-left: 0.4375rem;
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+/* 싱딘 - 점 */
+.detail_date::before {
+  content: '';
+  display: inline-block;
+  width: 0.125rem;
+  height: 0.125rem;
+  border-radius: 50%;
+  background-color: #959595;
+}
+
+/* 상단 - 작가/날짜 묶음 */
+.detail_info {
+  margin-top: 2.125rem;
+  display: flex;
+  align-items: center;
+}
+
+/* 본문 */
+.editor_render_sec {
+  padding-bottom: 2.5rem;
+}
+.editor_render_area {
+  padding: 4.375rem 0 2.5rem;
+}
+
+/* 본문 - 텍스트 */
+.detail_content p {
+  color: #1b1b1b;
+  font-size: 1.0813rem;
+  font-weight: 300;
+  line-height: 1.75rem;
+}
+
+/* 본문 - 이미지 */
+.detail_content_img img {
+  width: 100%;
+  margin-top: 1.75rem;
+}
+
+/* 본문 - 이미지 캡션 */
+.detail_content span {
+  color: #838383;
+  display: block;
+  text-align: center;
+  font-size: 0.8313rem;
+  line-height: 1.0831rem;
+  margin-top: 0.5rem;
+}
+
+/* 태그 */
+.detail_tag_list {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+  padding: 0 1.625rem 0 1.25rem;
+  color: #666;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.875rem;
+}
+
+/* 태그 - 버튼 */
+.detail_tag_item {
+  padding: 0 0.625rem;
+  border: 0.0625rem solid #eeeeee;
+  border-radius: 1.875rem;
+}
+
+/* 작가 정보 */
+.detail_author_box {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0 1.25rem;
+  border: 0.0625rem solid #eeeeee;
+}
+
+/* 작가 정보 - 이름 */
+
+.detail_author_name {
+  color: #333;
+  font-size: 1.375rem;
+  font-weight: 300;
+  line-height: 1.5rem;
+  margin: 4.3125rem 0 0 0;
+}
+
+/* 작가 정보 - 직업 */
+
+.detail_author_job {
+  color: #959595;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  margin: 0.25rem 0 0 0;
+}
+
+/* 작가 정보 - 소개 */
+
+.detail_author_desc {
+  color: #959595;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  margin: 1rem 0 0 0;
+}
+
+/* 작가 정보 - 정보 + 구독자 묶음 */
+
+.detail_author_subs_wrap {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  margin-top: 1.4375rem;
+  margin-bottom: 3.0625rem;
+}
+
+/* 작가 정보 - 구독자 */
+
+.detail_author_subs {
+  color: #959595;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.3125rem;
+}
+
+/* 작가 정보 - 구독자 수 */
+
+.detail_author_subscriber {
+  color: #666;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.3125rem;
+  letter-spacing: -0.0088rem;
+}
+
+/* 작가 정보 - 오른쪽 프로필 + 구독 버튼 */
+.detail_author_profile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5.8125rem;
+}
+
+/* 작가 정보 - 사진 */
+
+.detail_author_img {
+  width: 3.125rem;
+  height: 3.125rem;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 4.125rem;
+  flex-shrink: 0;
+}
+
+/* 작가 정보 - 구독 버튼 */
+.detail_btn_subs {
+  color: #00c6be;
+  text-align: center;
+  font-size: 0.875rem;
+  line-height: 2.25rem;
+  letter-spacing: -0.0313rem;
+  border: 0.0625rem solid #00c6be;
+  border-radius: 1.875rem;
+  width: 4.0625rem;
+  height: 2.25rem;
+}
+
+/* 액션바 */
+.detail_action_bar {
+  display: flex;
+  height: 3.125rem;
+  padding: 0 1.25rem;
+  align-items: center;
+  gap: 0.1875rem;
+  border: 0.0625rem solid #eeeeee;
+}
+
+/* 액션바 - 체크박스 숨김 */
+.detail_like_input {
+  display: none;
+}
+
+/* 액션바 - 좋아요 */
+
+.detail_like_label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.1875rem;
+}
+
+/* 액션바 - 좋아요 x */
+
+.detail_like_icon {
+  width: 1.3125rem;
+  height: 1.3125rem;
+
+  background-image: url('/public/icons/toggle-like.png');
+  background-size: 1.3125rem 2.625rem;
+  background-position: 0 -1.3125rem;
+}
+
+/* 액션바 - 버튼 누르면 바뀜 */
+
+.detail_like_input:checked + .detail_like_label .detail_like_icon {
+  background-position: 0 0;
+}

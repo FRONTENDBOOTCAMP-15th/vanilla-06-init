@@ -1,0 +1,30 @@
+.inner {
+  padding: 0 1.25rem;
+}
+
+.keyword_scroll_wrap {
+  width: 100%;
+  margin-top: 0.5625rem;
+}
+.keyword_area {
+  display: flex;
+  gap: 0.3125rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.keyword {
+  padding: 0.5625rem 0.9375rem 0.5rem;
+  border: 0.0625rem solid #ddd;
+  border-radius: 6.25rem;
+  background-color: #fff;
+  font-weight: 300;
+  font-size: 0.9375rem;
+  line-height: 1;
+  white-space: nowrap;
+}

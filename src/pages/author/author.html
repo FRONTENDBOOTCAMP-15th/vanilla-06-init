@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>작가 홈 | init 브런치</title>
+
+    <script type="module" src="../../main.ts"></script>
+    <link rel="stylesheet" href="./author.css" />
+  </head>
+  <body class="author_page">
+    <init-header></init-header>
+
+    <!-- 헤더 컴포넌트 -->
+    <div class="author_wrap">
+      <!-- 작가 프로필 박스 -->
+      <section class="author_header">
+        <div class="author_header_content">
+          <!-- 왼쪽 -->
+          <div class="author_header_left">
+            <h2 class="author_name">AB</h2>
+            <p class="author_job">기획자</p>
+
+            <div class="author_stats">
+              <div class="author_stat">
+                <span class="author_stat_label">구독자</span>
+                <span class="author_stat_value">30</span>
+              </div>
+              <div class="author_stat">
+                <span class="author_stat_label">관심작가</span>
+                <span class="author_stat_value">16</span>
+              </div>
+            </div>
+          </div>
+          <!-- 오른쪽 프로필 + 구독중 버튼 -->
+          <div class="author_header_right">
+            <img
+              class="author_profile"
+              src="../../assets/images/detail_profile.png"
+            />
+            <button class="author_subs_btn">
+              <img
+                src="/public/icons/ico-done-white.png"
+                class="check_icon"
+              />구독중
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="author_posts">
+        <article class="author_post">
+          <span class="author_post_tag">취준은 처음이라</span>
+
+          <h3 class="author_post_title">[취업특강] 노션 포트폴리오 만들기</h3>
+
+          <span class="author_post_source"
+            >with 노슈니, 슈크림 마을, 마포청년나루</span
+          >
+
+          <span class="author_post_text"
+            >취업 준비를 위해 반드시 필요한 첫 세 가지...</span
+          >
+
+          <div class="author_post_meta">
+            <span class="author_post_comment"> 댓글 0</span>
+            <span class="author_post_date">Jul 02. 2024</span>
+          </div>
+        </article>
+
+        <article class="author_post">
+          <span class="author_post_tag">취준은 처음이라</span>
+
+          <h3 class="author_post_title">[취업특강] 노션 포트폴리오 만들기</h3>
+
+          <span class="author_post_source"
+            >with 노슈니, 슈크림 마을, 마포청년나루</span
+          >
+
+          <span class="author_post_text"
+            >취업 준비를 위해 반드시 필요한 첫 세 가지...</span
+          >
+
+          <div class="author_post_meta">
+            <span class="author_post_comment"> 댓글 0</span>
+            <span class="author_post_date">Jul 02. 2024</span>
+          </div>
+        </article>
+
+        <article class="author_post">
+          <span class="author_post_tag">취준은 처음이라</span>
+
+          <h3 class="author_post_title">[취업특강] 노션 포트폴리오 만들기</h3>
+
+          <span class="author_post_source"
+            >with 노슈니, 슈크림 마을, 마포청년나루</span
+          >
+
+          <span class="author_post_text"
+            >취업 준비를 위해 반드시 필요한 첫 세 가지...</span
+          >
+
+          <div class="author_post_meta">
+            <span class="author_post_comment"> 댓글 0</span>
+            <span class="author_post_date">Jul 02. 2024</span>
+          </div>
+        </article>
+      </section>
+    </div>
+
+    <init-nav></init-nav>
+    <init-footer></init-footer>
+  </body>
+</html>

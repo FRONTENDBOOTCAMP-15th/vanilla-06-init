@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <title>내 서랍 | init 브런치</title>
+    <script type="module" src="/src/main.ts"></script>
+    <link rel="stylesheet" href="./drawer.css">
+  </head>
+  <body>
+    <init-header></init-header>
+
+    <div class="drawer_section_interest_author">
+      <div class="drawer_section_header">
+        <a href="#">
+          <span>관심 작가</span>
+          <img src="../../../public/icons/arw-next-thin.svg" alt="관심 작가로 이동" />
+        </a>
+      </div>
+      <div class="drawer_author_list"></div>
+    </div>
+
+    <div class="drawer_section_recently_viewed">
+      <div class="drawer_section_header">
+        <a href="#">
+          <span>최근 본</span>
+          <img src="../../../public/icons/arw-next-thin.svg" alt="최근 본으로 이동" />
+        </a>
+      </div>
+      <div class="drawer_book_list"></div>
+    </div>
+
+    <div class="drawer_section_interest_post">
+      <div class="drawer_section_header">
+        <a href="#">
+          <span>관심 글</span>
+          <img src="../../../public/icons/arw-next-thin.svg" alt="관심 글로 이동" />
+        </a>
+      </div>
+      <div class="drawer_post_list"></div>
+    </div>
+
+    <div class="drawer_my_brunch_section">
+      <div class="drawer_section_header">
+        <a href="#">
+          <span>내 브런치</span>
+          <img src="../../../public/icons/arw-next-thin.svg" alt="내 브런치로 이동" />
+        </a>
+      </div>
+    </div>
+
+    <div class="drawer_brunch_item">
+      <div class="drawer_brunch_title">D-70, 30주</div>
+      <div class="drawer_brunch_info">별과 만나기까지 100일간의 기록</div>
+      <div class="drawer_brunch_info">Feb 05 / 2024</div>
+    </div>
+
+    <div class="drawer_brunch_item">
+      <div class="drawer_brunch_title">6 윤희 - 2</div>
+      <div class="drawer_brunch_info">낙원</div>
+    </div>
+
+    <init-nav></init-nav>
+    <init-footer></init-footer>
+  </body>
+</html>

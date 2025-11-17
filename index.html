@@ -3,11 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./index.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vanilla-init-brunch</title>
+    <script type="module" src="./src/main.ts"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <init-header></init-header>
+
+    <hr />
+
+    <div class="temporary_route">
+      <a href="/src/pages/index.html">(고은별) index 페이지</a>
+      <a href="/src/pages/auth/login.html">(고은별) 로그인 페이지</a>
+      <a href="/src/pages/auth/register.html">(고은별) 회원가입 페이지</a>
+      <a href="/src/pages/posts/write.html">(문혁진) 글쓰기 페이지</a>
+      <a href="/src/pages/posts/detail.html">(조시연) 상세 페이지</a>
+      <a href="/src/pages/discover/discover.html">(문혁진) 발견 페이지</a>
+      <a href="/src/pages/author/author.html">(조시연) 작가 홈 페이지</a>
+      <a href="/src/pages/drawer/drawer.html">(장수정) 내 서랍 페이지</a>
+    </div>
+    <style>
+      .temporary_route {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 20px;
+      }
+      .temporary_route a {
+        font-size: 24px;
+        color: blue;
+        text-decoration: underline;
+      }
+      .temporary_route a:hover {
+        opacity: 0.5;
+      }
+    </style>
+    <script>
+      const temLinkEls = document.querySelectorAll('.temporary_route a');
+      temLinkEls.forEach((t, i) => {
+        const href = t.getAttribute('href');
+        t.innerHTML += ` : ${href}`;
+      });
+    </script>
+
+    <hr />
+
+    <init-nav></init-nav>
+    <init-footer></init-footer>
   </body>
 </html>

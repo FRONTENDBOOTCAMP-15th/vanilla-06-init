@@ -24,7 +24,7 @@
           ></button>
         </div>
         <div class="write_group ttl_group">
-          <label for="formTtl" class="sr-only">제목</label>
+          <label for="formTtl" class="sr_only">제목</label>
           <input
             id="formTtl"
             class="form_input"
@@ -33,7 +33,7 @@
           />
         </div>
         <div class="write_group sub_ttl_group">
-          <label for="formSubTtl" class="sr-only">소제목</label>
+          <label for="formSubTtl" class="sr_only">소제목</label>
           <input
             id="formSubTtl"
             class="form_input"
@@ -43,6 +43,13 @@
         </div>
         <div class="editor_area">
           <div id="editor"></div>
+        </div>
+        <div class="preview_area">
+          <div class="inner">
+            <label for="imgInput" class="lbl_img"></label>
+            <input type="file" id="imgInput" class="sr_only" accept="image/*" />
+            <img id="preview" alt="preview" />
+          </div>
         </div>
       </section>
     </form>

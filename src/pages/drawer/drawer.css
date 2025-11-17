@@ -1,0 +1,160 @@
+/*
+ * ====================================================
+ * drawer.css - 전체 레이아웃 및 스타일
+ * ====================================================
+ */
+
+/* ----------------------------------------------------
+ * 1. 전역 설정 및 섹션 구조
+ * ----------------------------------------------------
+ */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    padding: 16px;
+    background-color: #fff;
+    color: #333;
+    line-height: 1.4;
+    min-height: 100vh;
+}
+
+/* 동적 섹션 간 구분선 */
+.drawer_section_interest_author,
+.drawer_section_recently_viewed,
+.drawer_section_interest_post {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0; 
+}
+
+/*
+ * ----------------------------------------------------
+ * 2. 섹션 헤더 스타일 (텍스트와 화살표를 양 끝으로 벌림)
+ * ----------------------------------------------------
+ */
+.drawer_section_header {
+    margin-bottom: 15px;
+}
+
+.drawer_section_header a {
+    /* Flexbox를 사용하여 텍스트와 이미지를 정렬 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    
+    /* 링크 영역 스타일 */
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    width: 100%; 
+    padding: 0;
+}
+
+.drawer_section_header a span {
+    margin-right: 0; 
+}
+
+.drawer_section_header a img {
+    height: 14px; 
+    flex-shrink: 0;
+}
+
+/*
+ * ----------------------------------------------------
+ * 3. 작가 목록 스타일 (가로 스크롤)
+ * ----------------------------------------------------
+ */
+.drawer_author_list {
+    display: flex; 
+    overflow-x: auto; /* 가로 스크롤 허용 */
+    gap: 20px;
+    padding-bottom: 10px; 
+}
+
+/* 아래는 JS로 동적 생성될 항목에 적용될 스타일 (참고용) */
+.drawer_author_item { 
+    flex-shrink: 0; /* 축소 방지 */
+    width: 60px;
+    text-align: center;
+}
+.drawer_author_image { 
+    width: 60px; height: 60px; 
+    border-radius: 50%; 
+    background-color: #eee; /* placeholder 배경 */
+    margin-bottom: 5px;
+}
+.drawer_author_name { 
+    font-size: 0.85em; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+
+/*
+ * ----------------------------------------------------
+ * 4. 책/글 목록 스타일 (가로 스크롤)
+ * ----------------------------------------------------
+ */
+.drawer_book_list,
+.drawer_post_list {
+    display: flex; 
+    overflow-x: auto; 
+    gap: 12px; 
+    padding-bottom: 10px;
+}
+
+/* 아래는 JS로 동적 생성될 항목에 적용될 스타일 (참고용) */
+.drawer_book_item { 
+    flex-shrink: 0; 
+    width: 120px; /* 표지 폭 */
+}
+.drawer_book_cover { 
+    width: 100%; 
+    padding-top: 150%; /* 2:3 비율 (높이/너비) */
+    background-color: #eee;
+    border-radius: 4px; 
+    margin-bottom: 8px; 
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.drawer_book_title { 
+    font-size: 0.9em; 
+    font-weight: bold; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+.drawer_book_author { 
+    font-size: 0.8em; 
+    color: #666; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+}
+
+
+/*
+ * ----------------------------------------------------
+ * 5. 내 브런치 섹션 스타일 (정적 콘텐츠)
+ * ----------------------------------------------------
+ */
+
+.drawer_brunch_item {
+    margin-bottom: 15px;
+    padding-top: 10px;
+}
+
+.drawer_brunch_title {
+    font-size: 1em;
+    font-weight: bold;
+    margin-bottom: 3px;
+    color: #333;
+}
+
+.drawer_brunch_info {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 2px;
+}

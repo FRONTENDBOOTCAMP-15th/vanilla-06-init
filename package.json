@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "normalize.css": "^8.0.1",
-    "quill": "^2.0.3"
+    "quill": "^2.0.3",
+    "axios": "^1.13.2"
   }
 }

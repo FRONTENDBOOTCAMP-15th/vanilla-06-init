@@ -13,16 +13,6 @@ interface Author {
   image: string;
 }
 
-interface PostDetail {
-  _id: number;
-  title: string;
-  extra: { subTitle: string };
-  content: string;
-  user: Author;
-  likes: number;
-  bookmarks: number;
-}
-
 // 최근 본 글 저장 함수
 function saveRecent(id: string) {
   const list = JSON.parse(localStorage.getItem('recent') || '[]') as string[];

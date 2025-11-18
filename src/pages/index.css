@@ -30,6 +30,10 @@
   gap: 0.94rem;
   padding: 1.2rem 0;
   border-bottom: 1px solid #e6e6e6; /* 회색 선 */
+
+  a {
+    display: contents;
+  }
 }
 
 .mainpage_item:last-child {

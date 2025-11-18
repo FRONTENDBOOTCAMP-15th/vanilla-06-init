@@ -4,14 +4,7 @@ const axios = getAxios();
 
 // URL에서 postId 가져오기 (▶ 숫자로 변환)
 const params = new URLSearchParams(window.location.search);
-const postId = Number(params.get('postId')); // ⭐ 핵심 수정
-
-// 타입 정의
-interface Author {
-  _id: number;
-  name: string;
-  image: string;
-}
+const postId = Number(params.get('postId'));
 
 // 최근 본 글 저장 함수
 function saveRecent(id: string) {
@@ -123,12 +116,34 @@ async function renderDetail() {
       post.extra.subTitle;
     document.querySelector('.editor_render_area')!.innerHTML = post.content;
 
+    // 썸네일 이미지
+    const detailHeader = document.querySelector(
+      '.detail_header_wrap',
+    ) as HTMLDivElement;
+
+    // 본문에서 첫 이미지 찾기
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = post.content;
+
+    const firstImage = tempDiv.querySelector('img') as HTMLImageElement;
+
+    if (firstImage) {
+      detailHeader.style.backgroundImage = `url(${firstImage.src})`;
+    }
+
     document.querySelector('.detail_author')!.textContent = post.user.name;
     document.querySelector('.detail_author_name')!.textContent = post.user.name;
 
     document
       .querySelector('.detail_author_img')!
       .setAttribute('src', post.user.image);
+
+    // 프로필 클릭하면 작가 홈 이동
+    const authorProfile = document.querySelector('.detail_author_img');
+    authorProfile?.addEventListener('click', e => {
+      e.stopPropagation();
+      window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
+    });
 
     // 좋아요 / 구독 상태 조회
     let myLike = await getMyLike(post._id);
@@ -179,7 +194,7 @@ async function renderDetail() {
     });
 
     // 최근 본 글 저장
-    saveRecent(String(postId)); // 문자열로 저장
+    saveRecent(String(postId));
   } catch (err) {
     console.error('상세 조회 실패:', err);
   }

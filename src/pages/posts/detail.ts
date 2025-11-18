@@ -2,7 +2,7 @@ import { getAxios } from '../../utils/axios.ts';
 
 const axios = getAxios();
 
-// URL에서 postId 가져오기 (▶ 숫자로 변환)
+// URL에서 postId 가져오기
 const params = new URLSearchParams(window.location.search);
 const postId = Number(params.get('postId'));
 
@@ -147,13 +147,13 @@ async function renderDetail() {
       window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
     });
 
-    // 작가 이름 클릭 → 작가 홈 이동
+    // 작가 이름 클릭하면 작가 홈 이동
     const authorName = document.querySelector('.detail_author_name');
     authorName?.addEventListener('click', () => {
       window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
     });
 
-    // by 옆의 글자 전체(.detail_author) 클릭도 가능하게
+    // by 옆의 글자 클릭 가능
     const authorText = document.querySelector('.detail_author');
     authorText?.addEventListener('click', () => {
       window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
@@ -214,5 +214,4 @@ async function renderDetail() {
   }
 }
 
-// 실행
 renderDetail();

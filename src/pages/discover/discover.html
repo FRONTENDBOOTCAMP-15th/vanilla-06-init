@@ -24,14 +24,14 @@
         </div>
       </form>
       <div class="search_tab_area">
-        <button class="search_tab" type="button">글</button>
+        <button class="search_tab active" type="button">글</button>
         <button class="search_tab" type="button">작가</button>
       </div>
     </header>
 
     <div class="search_body">
       <!-- s:검색 전 -->
-      <div class="search_panel search_init_panel">
+      <div id="searchInitPanel" class="search_panel search_init_panel active">
         <section class="recommend_author_area">
           <div class="inner">
             <h2 class="recommend_author_ttl">추천 작가 키워드</h2>
@@ -72,7 +72,7 @@
       <!-- e:검색 전 -->
 
       <!-- s:검색 결과 내용 -->
-      <div class="search_panel search_result_panel">
+      <div id="searchResultPanel" class="search_panel search_result_panel">
         <div class="inner">
           <div class="aux-area">
             <span class="search_result_count">글 검색 결과 800건</span>
@@ -83,8 +83,9 @@
               <button class="search_sort_btn sort_recent">최신순</button>
             </div>
           </div>
-          <div class="post_area">
-            <!-- s:글 결과 목록 -->
+
+          <!-- s:글 결과 목록 -->
+          <div id="postArea" class="post_area active">
             <article class="post_card">
               <a href="#" class="post_link">
                 <h3 class="post_ttl">
@@ -106,9 +107,11 @@
                 />
               </a>
             </article>
-            <!-- s:글 결과 목록 -->
+          </div>
+          <!-- e:글 결과 목록 -->
 
-            <!-- s:작가 결과 목록 -->
+          <!-- s:작가 결과 목록 -->
+          <div id="authorArea" class="author_area">
             <article class="author_card">
               <a href="#" class="author_link">
                 <img
@@ -120,20 +123,20 @@
                 <p class="author_excerpt">
                   두아들 아빠 기록남기기 좋아하는 아빠 고민하는 아 빠입니
                 </p>
-                <div class="keyword_area">
-                  <a href="#" class="keyword">콘텐츠</a>
-                  <a href="#" class="keyword">만화</a>
-                </div>
               </a>
+              <div class="keyword_area">
+                <a href="#" class="keyword">콘텐츠</a>
+                <a href="#" class="keyword">만화</a>
+              </div>
             </article>
-            <!-- s:작가 결과 목록 -->
           </div>
+          <!-- e:작가 결과 목록 -->
         </div>
       </div>
       <!-- e:검색 결과 내용 -->
 
       <!-- s:검색 결과 없음 -->
-      <div class="search_panel search_empty_panel">
+      <div class="search_panel">
         <div class="empty_box">
           <p class="txt">검색 결과가 없습니다.</p>
         </div>

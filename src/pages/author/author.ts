@@ -1,5 +1,4 @@
 import { getAxios } from '../../utils/axios';
-import type { AxiosError } from 'axios';
 
 const axios = getAxios();
 
@@ -22,6 +21,7 @@ interface AuthorPost {
   extra: { subTitle: string };
   comments?: number;
   createdAt: string;
+  user: AuthorInfo;
 }
 
 interface BookmarkCounts {
@@ -29,7 +29,7 @@ interface BookmarkCounts {
   followingAuthors: number;
 }
 
-// API 호출 함수들 ---------------------------------
+// API 호출 함수들
 
 async function getAuthorInfo(id: number): Promise<AuthorInfo> {
   const { data } = await axios.get(`/users/${id}`);
@@ -78,29 +78,24 @@ async function getBookmarkCounts(userId: number): Promise<BookmarkCounts> {
   };
 }
 
-// ❗ any 제거한 getAuthorPosts
 async function getAuthorPosts(userId: number): Promise<AuthorPost[]> {
   try {
-    const { data } = await axios.get(`/posts/user/${userId}`);
-    return data.items;
-  } catch (error) {
-    const err = error as AxiosError;
+    // 서버 전체 글 목록 조회
+    const { data } = await axios.get(`/posts?type=brunch`);
 
-    // 작성한 글이 없을 때
-    if (err.response && err.response.status === 404) {
-      return [];
-    }
+    const allPosts = data.item ?? [];
 
-    throw err;
+    // 작성자가 쓴 글만 필터링
+    return allPosts.filter((post: AuthorPost) => post.user._id === userId);
+  } catch (err) {
+    console.error('작성자 글 목록 조회 실패:', err);
+    return [];
   }
 }
 
-// 렌더링 함수 --------------------------------------
+// 렌더링 함수
 
 async function renderAuthorPage() {
-  // (1) URL 검증
-  console.log('🔍 디버그 - userId:', userId);
-
   if (!userId || Number.isNaN(userId)) {
     alert('잘못된 접근입니다. 작가 정보를 찾을 수 없습니다.');
     window.location.href = '/';
@@ -111,7 +106,6 @@ async function renderAuthorPage() {
   let authorData: AuthorInfo;
   try {
     authorData = await getAuthorInfo(userId);
-    console.log('🔍 디버그 - getAuthorInfo:', authorData);
   } catch (err) {
     console.error('❌ getAuthorInfo 에러:', err);
     alert('존재하지 않는 작가입니다.');
@@ -151,7 +145,6 @@ async function renderAuthorPage() {
 
   // (6) 게시글 목록 렌더링
   const posts = await getAuthorPosts(userId);
-  console.log('🔍 디버그 - getAuthorPosts:', posts);
 
   if (posts.length === 0) {
     postContainer.innerHTML = `<p class="no_posts">작성한 게시글이 없습니다.</p>`;
@@ -184,7 +177,7 @@ async function renderAuthorPage() {
     if (!item) return;
 
     const id = item.getAttribute('data-id');
-    window.location.href = `/src/pages/detail/detail.html?postId=${id}`;
+    window.location.href = `/src/pages/posts/detail.html?postId=${id}`;
   });
 
   // (8) 구독 버튼 토글

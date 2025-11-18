@@ -5,6 +5,8 @@ import { formatDate } from '../../utils/formatDate.ts';
 import { summaryContent } from '../../utils/summaryContent.ts';
 
 const STORAGE_KEY = 'recentSearch';
+const searchBoxEl = document.querySelector('.search_box') as HTMLDivElement;
+const btnResetEl = document.querySelector('#btnReset') as HTMLButtonElement;
 const formEl = document.querySelector('#searchForm') as HTMLFormElement;
 const searchEl = document.querySelector('#searchInput') as HTMLInputElement;
 const searchInitEl = document.querySelector(
@@ -16,6 +18,9 @@ const searchResultEl = document.querySelector(
 const searchEls = document.querySelectorAll<HTMLDivElement>('.search_panel');
 const postAreaEl = document.querySelector('#postArea') as HTMLDivElement;
 const authorAreaEl = document.querySelector('#authorArea') as HTMLDivElement;
+const searchTabAreabEl = document.querySelector(
+  '.search_tab_area',
+) as HTMLDivElement;
 const searchTabEls = document.querySelectorAll<HTMLButtonElement>(
   '.search_tab_area .search_tab',
 );
@@ -28,23 +33,6 @@ const emptyHTML = `
         <p class="txt">검색 결과가 없습니다.</p>
       </div>
       `;
-
-let timer: number | undefined;
-searchEl.addEventListener('input', () => {
-  clearTimeout(timer);
-
-  timer = window.setTimeout(() => {
-    changeSearch();
-  }, 300);
-});
-
-formEl.addEventListener('submit', (e: Event) => {
-  e.preventDefault();
-
-  changeSearch();
-  const val = searchEl.value;
-  saveRecentSearch(val);
-});
 
 function activeCheckTab(val: string) {
   let activeIndex = -1;
@@ -115,8 +103,12 @@ function changeSearch() {
 
   searchEls.forEach(t => t.classList.remove('active'));
   if (val === '') {
+    searchTabAreabEl.classList.remove('active');
+    searchBoxEl.classList.remove('is_val');
     searchInitEl.classList.add('active');
   } else {
+    searchTabAreabEl.classList.add('active');
+    searchBoxEl.classList.add('is_val');
     searchResultEl.classList.add('active');
   }
 
@@ -161,11 +153,10 @@ function renderPost(posts: PostItem[], val: string) {
             <span class="by">by</span>
             <span class="author">${post.user.name}</span>
           </div>
-          <img
-            class="thumb"
-            src="${post.image}"
-            alt=""
-          />
+          <init-img
+          class="thumb"
+          src="${post.image}"
+        />
         </a>
       </article>
     `;
@@ -237,6 +228,13 @@ function getRecentSearch() {
   return stored ? JSON.parse(stored) : [];
 }
 
+function removeRecentSearch(keyword: string) {
+  console.log(keyword);
+  const currentList: string[] = getRecentSearch();
+  const updatedList: string[] = currentList.filter(item => item !== keyword);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedList));
+}
+
 function renderRecentSearch() {
   const keywords = getRecentSearch();
 
@@ -258,5 +256,48 @@ function renderRecentSearch() {
 
 function init() {
   renderRecentSearch();
+
+  let timer: number | undefined;
+  searchEl.addEventListener('input', () => {
+    clearTimeout(timer);
+
+    timer = window.setTimeout(() => {
+      changeSearch();
+    }, 300);
+  });
+
+  formEl.addEventListener('submit', (e: Event) => {
+    e.preventDefault();
+    const val = searchEl.value;
+    saveRecentSearch(val);
+    changeSearch();
+  });
+
+  btnResetEl.addEventListener('click', () => {
+    searchEl.value = '';
+  });
+
+  searchRecentListEl.addEventListener('click', (e: Event) => {
+    const el = e.target as HTMLElement;
+
+    const removeButton = el.closest('.btn_remove');
+
+    if (removeButton) {
+      const searchRecentItem = el.closest(
+        '.search_recent_item',
+      ) as HTMLUListElement;
+      const text = searchRecentItem?.querySelector(
+        '.search_recent_link',
+      )?.textContent;
+      if (text) {
+        removeRecentSearch(text);
+      }
+      el.closest('.search_recent_item')?.remove();
+    }
+  });
+
+  // - 쿼리로 가져오기
+
+  // - 서밋시 갱신 쿼리로
 }
 init();

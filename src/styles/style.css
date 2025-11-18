@@ -109,6 +109,9 @@
 
 /* 검색결과 페이지 */
 .search_header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
   border-bottom: 0.0625rem solid #ddd;
 
   .search_box {
@@ -144,21 +147,31 @@
 
   .search_tab_area {
     display: flex;
+    margin-bottom: -1px;
 
     .search_tab {
       display: flex;
       flex: 1;
       justify-content: center;
       align-items: center;
+      border-bottom: 1px solid transparent;
       font-weight: 300;
       font-size: 0.875rem;
       line-height: 2.3125rem;
       color: #666;
+
+      &.active {
+        color: #00c6be;
+        border-color: currentColor;
+      }
     }
   }
 }
 
 .search_body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   padding: 0.6875rem 0;
   background-color: #f8f8f8;
 
@@ -166,6 +179,22 @@
   ul {
     margin: 0;
     padding: 0;
+  }
+}
+
+.search_panel {
+  display: none;
+  flex-direction: column;
+  flex: 1;
+
+  &.active {
+    display: flex;
+  }
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
   }
 }
 
@@ -271,8 +300,16 @@
     }
   }
 
-  .post_area {
+  .post_area,
+  .author_area {
+    display: none;
+    flex-direction: column;
+    flex: 1;
     margin-top: 0.75rem;
+
+    &.active {
+      display: flex;
+    }
   }
 
   .post_card {
@@ -322,6 +359,8 @@
       color: #959595;
     }
     .date {
+      display: flex;
+      align-items: center;
       grid-area: date;
       font-weight: 300;
       font-size: 0.75rem;
@@ -424,5 +463,247 @@
     margin-top: 0.6875rem;
     padding-left: 2.75rem;
     width: 100%;
+  }
+}
+
+.empty_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.92rem;
+  margin-block: auto;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 2.94269rem;
+    height: 4.20244rem;
+    flex-shrink: 0;
+    background-image: url('/public/icons/ico-brunch-gray.svg');
+    background-repeat: no-repeat;
+    background-size: 100 auto;
+  }
+
+  .txt {
+    font-weight: 300;
+    font-size: 1.125rem;
+    line-height: 1.25rem;
+    color: #959595;
+    text-align: center;
+  }
+}
+
+.drawer_sec {
+  margin-top: 2.13rem;
+
+  .aux_ttl_area {
+    margin-bottom: 0.87rem;
+
+    .arw_more {
+      display: flex;
+      align-items: center;
+      gap: 0.19rem;
+
+      &::after {
+        content: '';
+        display: block;
+        width: 1.25rem;
+        height: 1.25rem;
+        flex-shrink: 0;
+        background-image: url('/public/icons/arw-right-sm.svg');
+        background-size: 100% auto;
+      }
+    }
+
+    .ttl {
+      margin: 0;
+      font-weight: 600;
+      font-size: 1.1875rem;
+      line-height: 1.375rem;
+      color: #111;
+    }
+  }
+}
+
+/* brunch_book */
+.brunch_book {
+  flex-shrink: 0;
+  position: relative;
+  width: 7.67856rem;
+  border-radius: 0.096rem 0.19194rem 0.19194rem 0.096rem;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    padding-top: calc(172 / 122 * 100%);
+    background-image:
+      url('/public/icons/ico-brunch-book.png'),
+      url('https://img1.daumcdn.net/thumb/R240x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/haoS/image/hQBgd-M8Hs2EGbIz2h-4PBAo6yM');
+    background-position:
+      center bottom 0.5781rem,
+      center center;
+    background-repeat: no-repeat, no-repeat;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0.35rem;
+    top: 0;
+    width: 0.19194rem;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .txt_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 2.5625rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4.375rem;
+    height: 5.75rem;
+    padding: 0.625rem 0.5625rem;
+    background-color: #fff;
+
+    .ttl {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      font-weight: 300;
+      font-size: 0.67188rem;
+      line-height: 0.86381rem;
+      color: #333;
+    }
+
+    .name {
+      font-weight: 300;
+      font-size: 0.47994rem;
+      line-height: 0.67188rem;
+      color: #959595;
+    }
+  }
+}
+
+.brunch_author_list {
+  display: flex;
+  gap: 1.63rem;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .brunch_author_link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 1rem;
+  }
+
+  .thumb {
+    flex-shrink: 0;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+  }
+
+  .name {
+    font-weight: 300;
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    color: #959595;
+  }
+}
+
+.brunch_book_list {
+  display: flex;
+  gap: 2.2rem;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0 -1.25rem;
+  padding: 0 1.25rem;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.brunch_link {
+  .brunch_txt {
+    margin-top: 1rem;
+    text-align: center;
+
+    .ttl {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      white-space: normal;
+      text-overflow: ellipsis;
+      font-weight: 400;
+      font-size: 0.75rem;
+      line-height: 1.4375rem;
+      color: #111;
+    }
+
+    .name {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.23rem;
+      margin-top: 0.1rem;
+      font-weight: 300;
+      font-size: 0.8125rem;
+      color: #959595;
+      line-height: 1.25rem;
+    }
+  }
+}
+
+.mybrunch_list {
+  display: flex;
+  flex-direction: column;
+  margin: 0 -1.25rem;
+
+  .mybrunch_card {
+    padding: 0.87rem 1.58rem 0.75rem;
+    border-top: 1px solid #eee;
+
+    .ttl {
+      font-weight: 400;
+      font-size: 1.0625rem;
+      line-height: 1.625rem;
+      color: #111;
+    }
+
+    .desc {
+      margin-top: 0.5rem;
+      margin-bottom: 0.56rem;
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      color: #959595;
+    }
+
+    .date {
+      font-size: 0.75rem;
+      line-height: 1.125rem;
+      color: #959595;
+    }
   }
 }

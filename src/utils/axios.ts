@@ -1,11 +1,13 @@
 // src/utils/axios.ts
 import axios from 'axios';
 
+const API_SERVER = 'https://fesp-api.koyeb.app/market';
+
 export function getAxios() {
   const instance = axios.create({
-    baseURL: 'https://fesp-api.koyeb.app/market',
+    baseURL: API_SERVER,
     headers: {
-      'client-id': 'brunch',
+      'Client-Id': 'febc15-vanilla06-ecad',
     },
   });
 
@@ -29,6 +31,7 @@ export function getAxios() {
         window.location.href = '/src/pages/auth/login.html';
       }
       return Promise.reject(err);
+
     },
   );
 

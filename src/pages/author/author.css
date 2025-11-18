@@ -101,33 +101,43 @@
   line-height: 1.25rem;
 }
 
-/* 버튼 */
+/* 기본 구독 버튼 */
 .author_subs_btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  justify-items: center;
+  justify-content: center;
+
+  width: 78px;
   height: 2.25rem;
+
   gap: 0.125rem;
-  padding: 0.5rem 1.25rem;
+  padding: 0 0.5rem;
+
   border-radius: 1.875rem;
   border: none;
   background-color: #00c6be;
-  color: white;
-  text-align: center;
-  font-size: 0.875rem;
-  font-weight: 400;
-  line-height: 2.125rem;
-  cursor: pointer;
-  flex-shrink: 0;
-  white-space: nowrap;
+  color: #ffffff;
 
-  align-self: flex-end;
-  margin-top: 1rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  cursor: pointer;
+
+  white-space: nowrap;
 }
 
-.check_icon {
-  width: 1.0625rem;
-  height: 1.0625rem;
+/* ⭐ 구독중(active)일 때 체크 아이콘 추가 */
+.author_subs_btn.active::before {
+  content: '';
+  display: inline-block;
+
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+
+  background-image: url('/icons/ico-done-white.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* 글 목록 */

@@ -9,7 +9,7 @@ export function getAxios() {
     },
   });
 
-  // 요청 보내기 전에 실행되는 interceptor
+  // 요청 인터셉터
   instance.interceptors.request.use(config => {
     const token = localStorage.getItem('token');
 
@@ -19,6 +19,18 @@ export function getAxios() {
 
     return config;
   });
+
+  // 응답 인터셉터 — 401 자동 로그인 이동
+  instance.interceptors.response.use(
+    res => res,
+    err => {
+      if (err.response?.status === 401) {
+        alert('로그인이 필요한 기능입니다.');
+        window.location.href = '/src/pages/auth/login.html';
+      }
+      return Promise.reject(err);
+    },
+  );
 
   return instance;
 }

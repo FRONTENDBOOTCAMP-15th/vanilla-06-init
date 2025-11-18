@@ -2,10 +2,9 @@ import { getAxios } from '../../utils/axios.ts';
 
 const axios = getAxios();
 
-// URL에서 postId 가져오기
-
+// URL에서 postId 가져오기 (▶ 숫자로 변환)
 const params = new URLSearchParams(window.location.search);
-const postId = params.get('postId');
+const postId = Number(params.get('postId')); // ⭐ 핵심 수정
 
 // 타입 정의
 interface Author {
@@ -24,9 +23,17 @@ interface PostDetail {
   bookmarks: number;
 }
 
-//  API 함수들
+// 최근 본 글 저장 함수
+function saveRecent(id: string) {
+  const list = JSON.parse(localStorage.getItem('recent') || '[]') as string[];
+  const filtered = list.filter(v => v !== id);
+  filtered.unshift(id);
 
-async function getPostDetail(id: string) {
+  localStorage.setItem('recent', JSON.stringify(filtered.slice(0, 10)));
+}
+
+// API 함수들
+async function getPostDetail(id: number) {
   const { data } = await axios.get(`/posts/${id}`);
   return data;
 }
@@ -96,7 +103,6 @@ async function getSubscriberCount(userId: number) {
 }
 
 // 상세 페이지 렌더링
-
 async function renderDetail() {
   if (!postId) return;
 
@@ -105,7 +111,6 @@ async function renderDetail() {
     const post = data.item;
 
     // DOM 요소 찾기
-
     const likeInput = document.querySelector(
       '.detail_like_input',
     ) as HTMLInputElement;
@@ -114,8 +119,7 @@ async function renderDetail() {
     const likeCountEl = document.querySelector('.detail_like_count')!;
     const subCountEl = document.querySelector('.detail_author_subscriber')!;
 
-    // 처음에 UI 깡초기화 (이게 페이지 이동 시 상태가 남는 걸 막는 핵심!)
-
+    // UI 초기화
     likeInput.checked = false;
     subBtn.textContent = '+ 구독';
     subBtn.classList.remove('active');
@@ -123,8 +127,7 @@ async function renderDetail() {
     likeCountEl.textContent = '0';
     subCountEl.textContent = '0';
 
-    // 상세 기본 데이터 렌더링
-
+    // 상세 기본 정보 렌더링
     document.querySelector('.detail_title')!.textContent = post.title;
     document.querySelector('.detail_subtitle')!.textContent =
       post.extra.subTitle;
@@ -137,8 +140,7 @@ async function renderDetail() {
       .querySelector('.detail_author_img')!
       .setAttribute('src', post.user.image);
 
-    // 좋아요/구독 상태 조회 (비동기)
-
+    // 좋아요 / 구독 상태 조회
     let myLike = await getMyLike(post._id);
     let myLikeId = myLike?._id || null;
 
@@ -147,13 +149,9 @@ async function renderDetail() {
 
     const subscriberCount = await getSubscriberCount(post.user._id);
 
-    // 조회된 실제 상태 기반으로 UI “재적용”
-
-    // 좋아요
+    // UI 적용
     likeInput.checked = !!myLikeId;
     likeCountEl.textContent = post.likes.toString();
-
-    // 구독
     subCountEl.textContent = subscriberCount.toString();
 
     if (mySubId) {
@@ -165,7 +163,6 @@ async function renderDetail() {
     }
 
     // 좋아요 클릭 이벤트
-
     likeLabel.addEventListener('click', async () => {
       myLikeId = await toggleLike(post._id, myLikeId);
 
@@ -176,7 +173,6 @@ async function renderDetail() {
     });
 
     // 구독 클릭 이벤트
-
     subBtn.addEventListener('click', async () => {
       mySubId = await toggleSubscribe(post.user._id, mySubId);
 
@@ -191,6 +187,9 @@ async function renderDetail() {
       const updatedSubs = await getSubscriberCount(post.user._id);
       subCountEl.textContent = updatedSubs.toString();
     });
+
+    // 최근 본 글 저장
+    saveRecent(String(postId)); // 문자열로 저장
   } catch (err) {
     console.error('상세 조회 실패:', err);
   }

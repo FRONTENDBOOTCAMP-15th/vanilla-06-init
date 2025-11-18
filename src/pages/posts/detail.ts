@@ -1,12 +1,17 @@
-// ------------ 타입 정의 ---------------- //
+import { getAxios } from '../../utils/axios.ts';
+
+const axios = getAxios();
+
+// URL에서 postId 가져오기
+
+const params = new URLSearchParams(window.location.search);
+const postId = params.get('postId');
+
+// 타입 정의
 interface Author {
   _id: number;
   name: string;
   image: string;
-  extra?: {
-    job?: string;
-    biography?: string;
-  };
 }
 
 interface PostDetail {
@@ -15,90 +20,181 @@ interface PostDetail {
   extra: { subTitle: string };
   content: string;
   user: Author;
+  likes: number;
+  bookmarks: number;
 }
 
-interface PostDetailResponse {
-  ok: number;
-  item: PostDetail;
+//  API 함수들
+
+async function getPostDetail(id: string) {
+  const { data } = await axios.get(`/posts/${id}`);
+  return data;
 }
 
-// ------------ 기능 시작 ---------------- //
-
-const params = new URLSearchParams(window.location.search);
-const postId = params.get("postId");
-
-const baseURL = "https://fesp-api.koyeb.app/market";
-const token = localStorage.getItem("token");
-
-// API 요청
-async function getPostDetail(id: string): Promise<PostDetailResponse> {
-  // 공통 헤더 세팅
-const headers: Record<string, string> = {
-  "client-id": "brunch",  // 👉 서버가 요구하는 기본 헤더
-};
-
-// 토큰이 있으면 Authorization 추가
-if (token) {
-  headers["Authorization"] = `Bearer ${token}`;
+async function getMyLike(postId: number) {
+  try {
+    const { data } = await axios.get(`/bookmarks/post/${postId}`);
+    return data.item;
+  } catch {
+    return null;
+  }
 }
 
-// 최종 fetch 요청
-const res = await fetch(`${baseURL}/posts/${id}`, {
-  headers,
-});
-
-  return res.json();
+async function getMySubscribe(userId: number) {
+  try {
+    const { data } = await axios.get(`/bookmarks/user/${userId}`);
+    return data.item;
+  } catch {
+    return null;
+  }
 }
 
-// 최근 본 글 기록
-function saveRecent(id: string) {
-  const list = JSON.parse(localStorage.getItem("recent") || "[]") as string[];
-  const filtered = list.filter((v) => v !== id);
-  filtered.unshift(id);
-  localStorage.setItem("recent", JSON.stringify(filtered.slice(0, 10)));
+async function toggleLike(postId: number, bookmarkId: number | null) {
+  try {
+    if (!bookmarkId) {
+      const body = { target_id: postId, is_like: true };
+      const { data } = await axios.post('/bookmarks/post', body);
+      return data.item?._id;
+    } else {
+      await axios.delete(`/bookmarks/${bookmarkId}`, {
+        data: { target_id: postId },
+      });
+      return null;
+    }
+  } catch (err) {
+    console.error('좋아요 토글 실패:', err);
+    return bookmarkId;
+  }
 }
 
-// 렌더링
+async function toggleSubscribe(userId: number, bookmarkId: number | null) {
+  try {
+    if (!bookmarkId) {
+      const body = { target_id: userId, is_like: true };
+      const { data } = await axios.post('/bookmarks/user', body);
+      return data.item?._id;
+    } else {
+      await axios.delete(`/bookmarks/${bookmarkId}`, {
+        data: { target_id: userId },
+      });
+      return null;
+    }
+  } catch (err) {
+    console.error('구독 토글 실패:', err);
+    return bookmarkId;
+  }
+}
+
+async function refreshLikes(postId: number) {
+  const { data } = await axios.get(`/posts/${postId}`);
+  return data.item.likes;
+}
+
+async function getSubscriberCount(userId: number) {
+  const { data } = await axios.get(`/users/${userId}/bookmarks`);
+  return data.item.byUser.length;
+}
+
+// 상세 페이지 렌더링
+
 async function renderDetail() {
   if (!postId) return;
 
-  const data = await getPostDetail(postId);
-  const post = data.item;
+  try {
+    const data = await getPostDetail(postId);
+    const post = data.item;
 
-  // 제목
-  document.querySelector(".detail_title")!.textContent = post.title;
+    // DOM 요소 찾기
 
-  // 부제
-  document.querySelector(".detail_subtitle")!.textContent =
-    post.extra.subTitle ?? "";
+    const likeInput = document.querySelector(
+      '.detail_like_input',
+    ) as HTMLInputElement;
+    const likeLabel = document.querySelector('.detail_like_label')!;
+    const subBtn = document.querySelector('.detail_btn_subs')!;
+    const likeCountEl = document.querySelector('.detail_like_count')!;
+    const subCountEl = document.querySelector('.detail_author_subscriber')!;
 
-  // 작성자 이름 (상단)
-  document.querySelector(".detail_author")!.textContent = post.user.name;
+    // 처음에 UI 깡초기화 (이게 페이지 이동 시 상태가 남는 걸 막는 핵심!)
 
-  // 작성자 이름 (아래쪽)
-  document.querySelector(".detail_author_name")!.textContent =
-    post.user.name ?? "";
+    likeInput.checked = false;
+    subBtn.textContent = '+ 구독';
+    subBtn.classList.remove('active');
 
-  // 작성자 직업
-  document.querySelector(".detail_author_job")!.textContent =
-    post.user.extra?.job ?? "";
+    likeCountEl.textContent = '0';
+    subCountEl.textContent = '0';
 
-  // 작성자 소개
-  document.querySelector(".detail_author_desc")!.textContent =
-    post.user.extra?.biography ?? "";
+    // 상세 기본 데이터 렌더링
 
-  // 작성자 이미지
-  document
-    .querySelector(".detail_author_img")!
-    .setAttribute("src", post.user.image);
+    document.querySelector('.detail_title')!.textContent = post.title;
+    document.querySelector('.detail_subtitle')!.textContent =
+      post.extra.subTitle;
+    document.querySelector('.editor_render_area')!.innerHTML = post.content;
 
-  // 본문
-  document.querySelector(".editor_render_area")!.innerHTML = post.content;
+    document.querySelector('.detail_author')!.textContent = post.user.name;
+    document.querySelector('.detail_author_name')!.textContent = post.user.name;
 
-  saveRecent(postId);
+    document
+      .querySelector('.detail_author_img')!
+      .setAttribute('src', post.user.image);
+
+    // 좋아요/구독 상태 조회 (비동기)
+
+    let myLike = await getMyLike(post._id);
+    let myLikeId = myLike?._id || null;
+
+    let mySub = await getMySubscribe(post.user._id);
+    let mySubId = mySub?._id || null;
+
+    const subscriberCount = await getSubscriberCount(post.user._id);
+
+    // 조회된 실제 상태 기반으로 UI “재적용”
+
+    // 좋아요
+    likeInput.checked = !!myLikeId;
+    likeCountEl.textContent = post.likes.toString();
+
+    // 구독
+    subCountEl.textContent = subscriberCount.toString();
+
+    if (mySubId) {
+      subBtn.textContent = '구독중';
+      subBtn.classList.add('active');
+    } else {
+      subBtn.textContent = '+ 구독';
+      subBtn.classList.remove('active');
+    }
+
+    // 좋아요 클릭 이벤트
+
+    likeLabel.addEventListener('click', async () => {
+      myLikeId = await toggleLike(post._id, myLikeId);
+
+      likeInput.checked = !!myLikeId;
+
+      const updatedLikes = await refreshLikes(post._id);
+      likeCountEl.textContent = updatedLikes.toString();
+    });
+
+    // 구독 클릭 이벤트
+
+    subBtn.addEventListener('click', async () => {
+      mySubId = await toggleSubscribe(post.user._id, mySubId);
+
+      if (mySubId) {
+        subBtn.textContent = '구독중';
+        subBtn.classList.add('active');
+      } else {
+        subBtn.textContent = '+ 구독';
+        subBtn.classList.remove('active');
+      }
+
+      const updatedSubs = await getSubscriberCount(post.user._id);
+      subCountEl.textContent = updatedSubs.toString();
+    });
+  } catch (err) {
+    console.error('상세 조회 실패:', err);
+  }
 }
 
+// 실행
 renderDetail();
-
-console.log("postId =", postId);
-console.log("token =", token);

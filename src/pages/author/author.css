@@ -194,3 +194,8 @@
   color: #959595;
   margin-top: 0.3125rem;
 }
+
+/* 마우스 커서 */
+.author_post {
+  cursor: pointer;
+}

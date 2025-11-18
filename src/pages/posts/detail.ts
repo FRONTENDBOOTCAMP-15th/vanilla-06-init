@@ -7,11 +7,11 @@ const params = new URLSearchParams(window.location.search);
 const postId = Number(params.get('postId')); // ⭐ 핵심 수정
 
 // 타입 정의
-interface Author {
-  _id: number;
-  name: string;
-  image: string;
-}
+// interface Author {
+//   _id: number;
+//   name: string;
+//   image: string;
+// }
 
 // 최근 본 글 저장 함수
 function saveRecent(id: string) {

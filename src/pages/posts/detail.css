@@ -216,18 +216,47 @@
   flex-shrink: 0;
 }
 
-/* 작가 정보 - 구독 버튼 */
+/* 기본 구독 버튼 */
 .detail_btn_subs {
-  color: #00c6be;
-  text-align: center;
-  font-size: 0.875rem;
-  line-height: 2.25rem;
-  letter-spacing: -0.0313rem;
-  border: 0.0625rem solid #00c6be;
-  border-radius: 1.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   width: 4.0625rem;
   height: 2.25rem;
+
+  color: #00c6be;
+  background-color: #ffffff;
+
+  font-size: 0.875rem;
+  border: 1px solid #00c6be;
+  border-radius: 1.875rem;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
+
+/* 활성화된 구독중 버튼 */
+.detail_btn_subs.active {
+  background-color: #00c6be; 
+  color: #ffffff;
+  border-color: #00c6be;
+}
+
+/* 체크 이미지 아이콘 붙이기 */
+.detail_btn_subs.active::before {
+  content: "";
+  display: inline-block;
+  width: 14px;    /* 아이콘 크기 조절 */
+  height: 14px;
+  margin-right: 4px;
+
+  background-image: url("../../../public/icons/ico-done-white.png"); /* 경로 수정 */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 
 /* 액션바 */
 .detail_action_bar {

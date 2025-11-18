@@ -297,3 +297,10 @@
 .detail_like_input:checked + .detail_like_label .detail_like_icon {
   background-position: 0 0;
 }
+
+/* 마우스 커서 */
+.detail_author,
+.detail_author_name,
+.detail_author_img {
+  cursor: pointer;
+}

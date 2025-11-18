@@ -129,6 +129,8 @@ async function renderDetail() {
 
     if (firstImage) {
       detailHeader.style.backgroundImage = `url(${firstImage.src})`;
+    } else {
+      detailHeader.style.backgroundImage = 'none';
     }
 
     document.querySelector('.detail_author')!.textContent = post.user.name;
@@ -142,6 +144,18 @@ async function renderDetail() {
     const authorProfile = document.querySelector('.detail_author_img');
     authorProfile?.addEventListener('click', e => {
       e.stopPropagation();
+      window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
+    });
+
+    // 작가 이름 클릭 → 작가 홈 이동
+    const authorName = document.querySelector('.detail_author_name');
+    authorName?.addEventListener('click', () => {
+      window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
+    });
+
+    // by 옆의 글자 전체(.detail_author) 클릭도 가능하게
+    const authorText = document.querySelector('.detail_author');
+    authorText?.addEventListener('click', () => {
       window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
     });
 

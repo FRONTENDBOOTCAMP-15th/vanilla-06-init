@@ -9,6 +9,10 @@
   font-family: Georgia, 'Times New Roman', Times, serif !important;
 }
 
+.fw_400 {
+  font-weight: 400 !important;
+}
+
 .color_white {
   color: #ffffff !important;
 }

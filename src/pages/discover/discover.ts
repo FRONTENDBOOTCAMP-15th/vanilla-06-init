@@ -38,11 +38,13 @@ searchEl.addEventListener('input', () => {
   }, 300);
 });
 
-// formEl.addEventListener('submit', (e: Event) => {
-//   e.preventDefault();
+formEl.addEventListener('submit', (e: Event) => {
+  e.preventDefault();
 
-//   changeSearch();
-// });
+  changeSearch();
+  const val = searchEl.value;
+  saveRecentSearch(val);
+});
 
 function activeCheckTab(val: string) {
   let activeIndex = -1;

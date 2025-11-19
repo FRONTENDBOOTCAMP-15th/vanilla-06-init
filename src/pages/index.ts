@@ -45,38 +45,36 @@ function loadPosts() {
   if (data) {
     const sortedPosts = data.map((item: Post, index: number) => {
       return `
-              <li class="mainpage_item">
+            <li class="mainpage_item">
               <a href="./src/pages/posts/detail.html?postId=${item._id}">
-              <span class="mainpage_num">${index + 1}</span>
-              <div class="mainpage_text">
-              <h2 class="mainpage_secondtitle">${item.title || ''}</h2>
-              <span class="mainpage_gray_by">by</span>
-              <span class="mainpage_name">${item.user.name || ''}</span>
-              <p class="mainpage_desc">
-                ${summaryContent(item.content || '', 30)}
-              </p>
-            </div>
-            
+                <span class="mainpage_num">${index + 1}</span>
+                <div class="mainpage_text">
+                  <h2 class="mainpage_secondtitle">${item.title || ''}</h2>
+                  <span class="mainpage_gray_by">by</span>
+                  <span class="mainpage_name">${item.user.name || ''}</span>
+                  <p class="mainpage_desc">
+                    ${summaryContent(item.content || '', 30)}
+                  </p>
+                </div>
 
-            <div class="mainpage_book">
-              <img
-                src="${item?.image}"
-                class="mainpage_bookimg"
-              />
-              <div class="mainpage_overay">
-                <p class="mainpage_overay_title">
-                  ${item.title || ''}
-                </p>
-                <p class="mainpage_overay_name">${item.user.name || ''}</p>
-              </div>
-              <img
-                src="/public/icons/logo/logo-white.png"
-                class="mainpage_book_logo"
-              />
-            </div>
-            </a>
-          </li>
-         
+                <div class="mainpage_book test">
+                  <img
+                    src="${item?.image}"
+                    class="mainpage_bookimg"
+                  />
+                  <div class="mainpage_overay">
+                    <p class="mainpage_overay_title">
+                      ${item.title || ''}
+                    </p>
+                    <p class="mainpage_overay_name">${item.user.name || ''}</p>
+                  </div>
+                  <img
+                    src="/public/icons/logo/logo-white.png"
+                    class="mainpage_book_logo"
+                  />
+                </div>
+              </a>
+            </li>
 `;
     });
     return sortedPosts;

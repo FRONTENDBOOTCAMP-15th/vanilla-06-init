@@ -3,13 +3,6 @@ import axios from 'axios';
 
 const API_SERVER = 'https://fesp-api.koyeb.app/market';
 
-// 로그인 필요한 페이지 목록
-const AUTH_REQUIRED_PAGES = ['/src/pages/details/write.html'];
-
-console.log(AUTH_REQUIRED_PAGES);
-const currentPath = window.location.pathname;
-const needAuth = AUTH_REQUIRED_PAGES.some(page => currentPath.includes(page));
-
 export function getAxios() {
   const instance = axios.create({
     baseURL: API_SERVER,

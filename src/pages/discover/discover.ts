@@ -27,6 +27,9 @@ const searchTabEls = document.querySelectorAll<HTMLButtonElement>(
 const searchRecentListEl = document.querySelector(
   '#searchInitPanel .search_recent_list',
 ) as HTMLUListElement;
+const countEl = document.querySelector(
+  '.search_result_count',
+) as HTMLSpanElement;
 
 const emptyHTML = `
       <div class="empty_box">
@@ -98,9 +101,8 @@ async function matchingAuthor(val: string) {
   }
 }
 
-function changeSearch() {
-  const val = searchEl.value;
-
+function changeSearch(val = searchEl.value) {
+  console.log(val);
   searchEls.forEach(t => t.classList.remove('active'));
   if (val === '') {
     searchTabAreabEl.classList.remove('active');
@@ -136,6 +138,8 @@ function highlight(content: string, keyword: string): string {
 }
 
 function renderPost(posts: PostItem[], val: string) {
+  countEl.innerText = `글 검색 결과 ${posts.length}건`;
+
   const result = posts.map(post => {
     const { datetime, display } = formatDate(post.createdAt);
 
@@ -176,6 +180,8 @@ function renderAuthor(posts: UserItem[], val: string) {
     return item.name.includes(val);
   });
 
+  countEl.innerText = `작가 검색 결과 ${filtered.length}건`;
+
   const result = filtered.map(item => {
     return `
       <article class="author_card">
@@ -185,7 +191,7 @@ function renderAuthor(posts: UserItem[], val: string) {
             src="${item.image}"
             alt=""
           />
-          <h3 class="author_ttl">${item.name}</h3>
+          <h3 class="author_ttl">${highlight(item.name, val)}</h3>
           <p class="author_excerpt">
             ${summaryContent(item.extra?.statusMsg || '')}
           </p>
@@ -221,6 +227,7 @@ function saveRecentSearch(keyword: string) {
   list.unshift(keyword);
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  renderRecentSearch();
 }
 
 function getRecentSearch() {
@@ -275,6 +282,7 @@ function init() {
 
   btnResetEl.addEventListener('click', () => {
     searchEl.value = '';
+    changeSearch();
   });
 
   searchRecentListEl.addEventListener('click', (e: Event) => {
@@ -297,7 +305,12 @@ function init() {
   });
 
   // - 쿼리로 가져오기
+  const params = new URLSearchParams(window.location.search);
+  const search = params.get('search');
 
-  // - 서밋시 갱신 쿼리로
+  if (search) {
+    searchEl.value = search;
+    changeSearch();
+  }
 }
 init();

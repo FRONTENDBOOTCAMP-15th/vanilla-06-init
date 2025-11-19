@@ -55,7 +55,7 @@ class HeaderComponent extends HTMLElement {
   }
 
   private getUser(): User {
-    const user: User = JSON.parse(localStorage.getItem('user') || '{}');
+    const user: User = JSON.parse(localStorage.getItem('currentUser') || '{}');
 
     return user;
   }

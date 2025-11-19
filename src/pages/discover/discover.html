@@ -12,7 +12,7 @@
   <body>
     <header class="search_header">
       <h1 class="sr_only">검색 결과 페이지</h1>
-      <form id="searchForm" action="get">
+      <form id="searchForm" name="search">
         <div class="search_box">
           <input
             type="text"
@@ -20,7 +20,12 @@
             class="search_input"
             placeholder="검색어 입력"
           />
-          <button class="btn_reset" aria-label="검색어 초기화"></button>
+          <button
+            id="btnReset"
+            class="btn_reset"
+            aria-label="검색어 초기화"
+            type="button"
+          ></button>
         </div>
       </form>
       <div class="search_tab_area">
@@ -36,7 +41,7 @@
           <div class="inner">
             <h2 class="recommend_author_ttl">추천 작가 키워드</h2>
             <p class="recommend_author_txt">
-              일상의 따뜻한 위로, <span class="color-mint">그림</span> 작가를
+              일상의 따뜻한 위로, <span class="color_mint">그림</span> 작가를
               만나요
             </p>
 

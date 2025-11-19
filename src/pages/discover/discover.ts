@@ -5,6 +5,8 @@ import { formatDate } from '../../utils/formatDate.ts';
 import { summaryContent } from '../../utils/summaryContent.ts';
 
 const STORAGE_KEY = 'recentSearch';
+const searchBoxEl = document.querySelector('.search_box') as HTMLDivElement;
+const btnResetEl = document.querySelector('#btnReset') as HTMLButtonElement;
 const formEl = document.querySelector('#searchForm') as HTMLFormElement;
 const searchEl = document.querySelector('#searchInput') as HTMLInputElement;
 const searchInitEl = document.querySelector(
@@ -16,35 +18,24 @@ const searchResultEl = document.querySelector(
 const searchEls = document.querySelectorAll<HTMLDivElement>('.search_panel');
 const postAreaEl = document.querySelector('#postArea') as HTMLDivElement;
 const authorAreaEl = document.querySelector('#authorArea') as HTMLDivElement;
+const searchTabAreabEl = document.querySelector(
+  '.search_tab_area',
+) as HTMLDivElement;
 const searchTabEls = document.querySelectorAll<HTMLButtonElement>(
   '.search_tab_area .search_tab',
 );
 const searchRecentListEl = document.querySelector(
   '#searchInitPanel .search_recent_list',
 ) as HTMLUListElement;
+const countEl = document.querySelector(
+  '.search_result_count',
+) as HTMLSpanElement;
 
 const emptyHTML = `
       <div class="empty_box">
         <p class="txt">검색 결과가 없습니다.</p>
       </div>
       `;
-
-let timer: number | undefined;
-searchEl.addEventListener('input', () => {
-  clearTimeout(timer);
-
-  timer = window.setTimeout(() => {
-    changeSearch();
-  }, 300);
-});
-
-formEl.addEventListener('submit', (e: Event) => {
-  e.preventDefault();
-
-  changeSearch();
-  const val = searchEl.value;
-  saveRecentSearch(val);
-});
 
 function activeCheckTab(val: string) {
   let activeIndex = -1;
@@ -110,13 +101,16 @@ async function matchingAuthor(val: string) {
   }
 }
 
-function changeSearch() {
-  const val = searchEl.value;
-
+function changeSearch(val = searchEl.value) {
+  console.log(val);
   searchEls.forEach(t => t.classList.remove('active'));
   if (val === '') {
+    searchTabAreabEl.classList.remove('active');
+    searchBoxEl.classList.remove('is_val');
     searchInitEl.classList.add('active');
   } else {
+    searchTabAreabEl.classList.add('active');
+    searchBoxEl.classList.add('is_val');
     searchResultEl.classList.add('active');
   }
 
@@ -144,6 +138,8 @@ function highlight(content: string, keyword: string): string {
 }
 
 function renderPost(posts: PostItem[], val: string) {
+  countEl.innerText = `글 검색 결과 ${posts.length}건`;
+
   const result = posts.map(post => {
     const { datetime, display } = formatDate(post.createdAt);
 
@@ -161,11 +157,10 @@ function renderPost(posts: PostItem[], val: string) {
             <span class="by">by</span>
             <span class="author">${post.user.name}</span>
           </div>
-          <img
-            class="thumb"
-            src="${post.image}"
-            alt=""
-          />
+          <init-img
+          class="thumb"
+          src="${post.image}"
+        />
         </a>
       </article>
     `;
@@ -185,6 +180,8 @@ function renderAuthor(posts: UserItem[], val: string) {
     return item.name.includes(val);
   });
 
+  countEl.innerText = `작가 검색 결과 ${filtered.length}건`;
+
   const result = filtered.map(item => {
     return `
       <article class="author_card">
@@ -194,7 +191,7 @@ function renderAuthor(posts: UserItem[], val: string) {
             src="${item.image}"
             alt=""
           />
-          <h3 class="author_ttl">${item.name}</h3>
+          <h3 class="author_ttl">${highlight(item.name, val)}</h3>
           <p class="author_excerpt">
             ${summaryContent(item.extra?.statusMsg || '')}
           </p>
@@ -230,11 +227,19 @@ function saveRecentSearch(keyword: string) {
   list.unshift(keyword);
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  renderRecentSearch();
 }
 
 function getRecentSearch() {
   const stored = localStorage.getItem(STORAGE_KEY);
   return stored ? JSON.parse(stored) : [];
+}
+
+function removeRecentSearch(keyword: string) {
+  console.log(keyword);
+  const currentList: string[] = getRecentSearch();
+  const updatedList: string[] = currentList.filter(item => item !== keyword);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedList));
 }
 
 function renderRecentSearch() {
@@ -258,5 +263,54 @@ function renderRecentSearch() {
 
 function init() {
   renderRecentSearch();
+
+  let timer: number | undefined;
+  searchEl.addEventListener('input', () => {
+    clearTimeout(timer);
+
+    timer = window.setTimeout(() => {
+      changeSearch();
+    }, 300);
+  });
+
+  formEl.addEventListener('submit', (e: Event) => {
+    e.preventDefault();
+    const val = searchEl.value;
+    saveRecentSearch(val);
+    changeSearch();
+  });
+
+  btnResetEl.addEventListener('click', () => {
+    searchEl.value = '';
+    changeSearch();
+  });
+
+  searchRecentListEl.addEventListener('click', (e: Event) => {
+    const el = e.target as HTMLElement;
+
+    const removeButton = el.closest('.btn_remove');
+
+    if (removeButton) {
+      const searchRecentItem = el.closest(
+        '.search_recent_item',
+      ) as HTMLUListElement;
+      const text = searchRecentItem?.querySelector(
+        '.search_recent_link',
+      )?.textContent;
+      if (text) {
+        removeRecentSearch(text);
+      }
+      el.closest('.search_recent_item')?.remove();
+    }
+  });
+
+  // - 쿼리로 가져오기
+  const params = new URLSearchParams(window.location.search);
+  const search = params.get('search');
+
+  if (search) {
+    searchEl.value = search;
+    changeSearch();
+  }
 }
 init();

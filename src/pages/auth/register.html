@@ -7,10 +7,11 @@
     <title>회원가입 | init 브런치</title>
 
     <script type="module" src="../../main.ts"></script>
+    <script type="module" src="./register.ts"></script>
     <link rel="stylesheet" href="./register.css" />
   </head>
   <body>
-    <section class="register_singup">
+    <section class="register_signup">
       <div class="inner">
         <h1 class="register_member">회원가입</h1>
 
@@ -28,10 +29,14 @@
                 maxlength="20"
               />
             </div>
-            <button type="button" class="register_button">중복확인</button>
+            <button type="button" id="nicknameCheckBtn" class="register_button">
+              중복확인
+            </button>
           </div>
           <div class="register_msg">
-            <p class="regiter_msg1">사용할 수 있는 별명입니다.</p>
+            <p id="registerMsg1" class="register_msg1">
+              사용할 수 있는 별명입니다.
+            </p>
           </div>
 
           <div class="register_field">
@@ -45,10 +50,14 @@
                 name="email"
               />
             </div>
-            <button type="button" class="register_button">중복확인</button>
+            <button type="button" id="emailCheckBtn" class="register_button">
+              중복확인
+            </button>
           </div>
           <div class="register_msg">
-            <p class="regiter_msg1">사용할 수 있는 이메일입니다.</p>
+            <p id="registerMsg2" class="regiter_msg1">
+              사용할 수 있는 이메일입니다.
+            </p>
           </div>
 
           <div class="register_field">

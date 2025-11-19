@@ -46,7 +46,7 @@ function loadPosts() {
     const sortedPosts = data.map((item: Post, index: number) => {
       return `
               <li class="mainpage_item">
-              <a href="./src/pages/posts/detail.html?postid=${item._id}">
+              <a href="./src/pages/posts/detail.html?postId=${item._id}">
               <span class="mainpage_num">${index + 1}</span>
               <div class="mainpage_text">
               <h2 class="mainpage_secondtitle">${item.title || ''}</h2>

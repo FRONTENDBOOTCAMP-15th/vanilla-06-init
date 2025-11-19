@@ -5,10 +5,10 @@
   - 템플릿 분리
   - 데이터 정규화(normalize)
   - 안전한 초기화
-  - 기존 recordViewedPost 유지
 */
 
 const CLIENT_ID = 'febc15-vanilla06-ecad';
+
 const API_BASE_URL = 'https://fesp-api.koyeb.app/market';
 
 // -----------------------
@@ -42,24 +42,6 @@ const getToken = (): string | null => localStorage.getItem('accessToken');
 const truncateContent = (content: string, limit = 20): string =>
   content.length > limit ? content.substring(0, limit) + '...' : content;
 
-// 저장 관련: 최근 본 글 기록 (기존 함수 유지)
-export function recordViewedPost(postId: string) {
-  const historyJson = localStorage.getItem('recentViewedPosts') || '[]';
-  let history: string[];
-
-  try {
-    history = JSON.parse(historyJson);
-  } catch (e) {
-    history = [];
-    console.error('최근 본 글 기록 파싱 오류:', e);
-  }
-
-  history = history.filter((id) => id !== postId);
-  history.unshift(postId);
-  history = history.slice(0, 10);
-  localStorage.setItem('recentViewedPosts', JSON.stringify(history));
-}
-
 // -----------------------
 // 공통 API 함수
 // -----------------------
@@ -70,7 +52,6 @@ async function apiGet<T>(path: string, needAuth = false): Promise<T | null> {
     if (!token) return null;
     headers['Authorization'] = `Bearer ${token}`;
   }
-
   try {
     const res = await fetch(`${API_BASE_URL}${path}`, { headers });
     if (!res.ok) {
@@ -160,18 +141,25 @@ function renderList<T>(selector: string, items: T[], emptyMessage: string, templ
 async function fetchInterestAuthors(): Promise<Author[]> {
   const data = await apiGet<any[]>('/bookmarks/user', true);
   if (!data) return [];
-  // API 스펙에 따라 매핑
+
+  // 서버 응답이 배열인지 확인 (오류 방지)
+  if (!Array.isArray(data)) return [];
+
+  // Author 타입으로 정규화
   return data.map(normalizeAuthor);
 }
 
 async function fetchInterestPosts(): Promise<Post[]> {
   const data = await apiGet<any[]>('/bookmarks/post', true);
   if (!data) return [];
+  // 서버 응답이 배열인지 확인 (오류 방지)
+  if (!Array.isArray(data)) return [];
+  // Post 타입으로 정규화
   return data.map(normalizePost);
 }
 
 async function fetchRecentlyViewedPosts(): Promise<Post[]> {
-  const historyJson = localStorage.getItem('recentViewedPosts') || '[]';
+  const historyJson = localStorage.getItem('recent') || '[]';
   let postIds: string[];
   try {
     postIds = JSON.parse(historyJson);
@@ -181,19 +169,18 @@ async function fetchRecentlyViewedPosts(): Promise<Post[]> {
   }
 
   if (!postIds || postIds.length === 0) return [];
-
   // ids 쿼리 길이 제한에 주의. 여기선 단순 호출
   const res = await apiGet<any[]>(`/posts/list/by-ids?ids=${postIds.join(',')}`);
   if (!res) {
     // API 실패 시에도 사용자가 볼 수 있게 임시 id 기반 데이터를 반환
-    return postIds.map((id) => ({ _id: id, image: '/public/icons/book-placeholder.svg', title: `임시 제목 (${id})`, name: '정보 없음' } as Post));
+    return postIds.map((id) => ({ _id: id, image: '/public/icons/ico-picture-gray.svg', title: `임시 제목 (${id})`, name: '정보 없음' } as Post));
   }
 
   // API가 반환한 순서가 보장되지 않으면 postIds 순서에 맞춰 정렬할 수 있음
   const normalized = res.map(normalizePost);
   // 순서 맞추기 (postIds 기준)
   const byId = new Map(normalized.map((p) => [p._id, p]));
-  return postIds.map((id) => byId.get(id) ?? { _id: id, image: '/public/icons/book-placeholder.svg', title: `임시 제목 (${id})`, name: '정보 없음' });
+  return postIds.map((id) => byId.get(id) ?? { _id: id, image: '/public/icons/ico-picture-gray.svg', title: `임시 제목 (${id})`, name: '정보 없음' });
 }
 
 async function fetchMyPosts(): Promise<MyPost[]> {

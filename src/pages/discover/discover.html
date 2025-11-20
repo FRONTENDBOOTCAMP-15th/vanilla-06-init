@@ -12,7 +12,7 @@
   <body>
     <header class="search_header">
       <h1 class="sr_only">검색 결과 페이지</h1>
-      <form id="searchForm" action="get">
+      <form id="searchForm" name="search">
         <div class="search_box">
           <input
             type="text"
@@ -20,7 +20,12 @@
             class="search_input"
             placeholder="검색어 입력"
           />
-          <button class="btn_reset" aria-label="검색어 초기화"></button>
+          <button
+            id="btnReset"
+            class="btn_reset"
+            aria-label="검색어 초기화"
+            type="button"
+          ></button>
         </div>
       </form>
       <div class="search_tab_area">
@@ -36,7 +41,7 @@
           <div class="inner">
             <h2 class="recommend_author_ttl">추천 작가 키워드</h2>
             <p class="recommend_author_txt">
-              일상의 따뜻한 위로, <span class="color-mint">그림</span> 작가를
+              일상의 따뜻한 위로, <span class="color_mint">그림</span> 작가를
               만나요
             </p>
 
@@ -76,17 +81,17 @@
         <div class="inner">
           <div class="aux-area">
             <span class="search_result_count">글 검색 결과 800건</span>
-            <div class="search_sort_area">
+            <!-- <div class="search_sort_area">
               <button class="search_sort_btn sort_relevance active">
                 정확도
               </button>
               <button class="search_sort_btn sort_recent">최신순</button>
-            </div>
+            </div> -->
           </div>
 
           <!-- s:글 결과 목록 -->
           <div id="postArea" class="post_area active">
-            <article class="post_card">
+            <!-- <article class="post_card">
               <a href="#" class="post_link">
                 <h3 class="post_ttl">
                   딸의 정부청사 출장에 부모님이 동행하는 이유
@@ -106,13 +111,13 @@
                   alt=""
                 />
               </a>
-            </article>
+            </article> -->
           </div>
           <!-- e:글 결과 목록 -->
 
           <!-- s:작가 결과 목록 -->
           <div id="authorArea" class="author_area">
-            <article class="author_card">
+            <!-- <article class="author_card">
               <a href="#" class="author_link">
                 <img
                   class="thumb"
@@ -128,7 +133,7 @@
                 <a href="#" class="keyword">콘텐츠</a>
                 <a href="#" class="keyword">만화</a>
               </div>
-            </article>
+            </article> -->
           </div>
           <!-- e:작가 결과 목록 -->
         </div>
@@ -136,11 +141,11 @@
       <!-- e:검색 결과 내용 -->
 
       <!-- s:검색 결과 없음 -->
-      <div class="search_panel">
+      <!-- <div class="search_panel">
         <div class="empty_box">
           <p class="txt">검색 결과가 없습니다.</p>
         </div>
-      </div>
+      </div> -->
       <!-- e:검색 결과 없음 -->
     </div>
 

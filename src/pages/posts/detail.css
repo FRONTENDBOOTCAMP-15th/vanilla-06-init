@@ -229,7 +229,7 @@
   background-color: #ffffff;
 
   font-size: 0.875rem;
-  border: 1px solid #00c6be;
+  border: 0.0625rem solid #00c6be;
   border-radius: 1.875rem;
 
   cursor: pointer;
@@ -238,25 +238,24 @@
 
 /* 활성화된 구독중 버튼 */
 .detail_btn_subs.active {
-  background-color: #00c6be; 
+  background-color: #00c6be;
   color: #ffffff;
   border-color: #00c6be;
 }
 
 /* 체크 이미지 아이콘 붙이기 */
 .detail_btn_subs.active::before {
-  content: "";
+  content: '';
   display: inline-block;
-  width: 14px;    /* 아이콘 크기 조절 */
-  height: 14px;
-  margin-right: 4px;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-right: 0.25rem;
 
-  background-image: url("../../../public/icons/ico-done-white.png"); /* 경로 수정 */
+  background-image: url('/icons/ico-done-white.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
-
 
 /* 액션바 */
 .detail_action_bar {
@@ -297,4 +296,11 @@
 
 .detail_like_input:checked + .detail_like_label .detail_like_icon {
   background-position: 0 0;
+}
+
+/* 마우스 커서 */
+.detail_author,
+.detail_author_name,
+.detail_author_img {
+  cursor: pointer;
 }

@@ -22,3 +22,9 @@
 .color_mint {
   color: #00c6be !important;
 }
+.d_flex {
+  display: flex !important;
+}
+.color_red {
+  color: red !important;
+}

@@ -1,5 +1,4 @@
-const LOGIN_API_URL = 'https://fesp-api.koyeb.app/market/users/login';
-const CLIENT_ID = 'brunch';
+import { getAxios } from '../../utils/axios';
 
 document.addEventListener('DOMContentLoaded', () => {
   const accessToken = localStorage.getItem('accessToken');
@@ -43,23 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
+    const axios = getAxios();
+
     try {
       loginButton.disabled = true;
       loginButton.textContent = '로그인 중...';
 
-      const response = await fetch(LOGIN_API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'client-id': CLIENT_ID,
-        },
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+      const { data } = await axios.post('users/login', {
+        email: email,
+        password: password,
       });
-
-      const data = await response.json();
 
       if (!data.ok) {
         alert(data.message || '로그인에 실패했습니다.');
@@ -94,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (signupButton) {
     signupButton.addEventListener('click', () => {
-      window.location.href = '/src/pages/auth/register.html';
+      window.location.href = './register.html';
     });
   }
 });

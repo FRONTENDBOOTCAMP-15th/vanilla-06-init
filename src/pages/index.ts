@@ -72,7 +72,7 @@ function loadPosts() {
                     <p class="mainpage_overay_name">${item.user.name || ''}</p>
                   </div>
                   <img
-                    src="/public/icons/logo/logo-white.png"
+                    src="/icons/logo/logo-white.png"
                     class="mainpage_book_logo"
                   />
                 </div>

@@ -74,13 +74,13 @@
   display: block;
   width: 1.5rem;
   height: 1.5rem;
-  background-image: url(/public/icons/toggle-eye.svg);
+  background-image: url(/icons/toggle-eye.svg);
   background-size: 100% auto;
-  background-position: top 0 center;
+  background-position: top -24px center;
 }
 
 .eye_checkbox input[type='checkbox']:checked + .icon {
-  background-position: top -24px center;
+  background-position: top 0 center;
 }
 
 .register_msg {

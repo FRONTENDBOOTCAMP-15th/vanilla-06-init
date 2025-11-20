@@ -54,7 +54,9 @@ async function apiGet<T>(path: string, needAuth = false): Promise<T | null> {
   try {
     const res = await fetch(`${API_BASE_URL}${path}`, { headers });
     if (res.status === 404) {
-      console.warn(`[API Warning] ${path} (${res.status}) - API 경로 문제 또는 데이터 없음 (404)`);
+      console.warn(
+        `[API Warning] ${path} (${res.status}) - API 경로 문제 또는 데이터 없음 (404)`,
+      );
       return null;
     }
     if (!res.ok) {
@@ -71,7 +73,8 @@ async function apiGet<T>(path: string, needAuth = false): Promise<T | null> {
 // -----------------------
 // [3] 데이터 정규화
 // -----------------------
-const DEFAULT_PROFILE_IMAGE = 'https://d2.naver.com/static/img/k2/default/img_profile_default.png';
+const DEFAULT_PROFILE_IMAGE =
+  'https://d2.naver.com/static/img/k2/default/img_profile_default.png';
 
 function normalizeAuthor(raw: any): Author {
   if (!raw) return { _id: '', image: DEFAULT_PROFILE_IMAGE, name: '정보 없음' };
@@ -93,7 +96,8 @@ function normalizePost(raw: any): Post {
   const id = raw._id ?? raw.targetId ?? raw.id ?? '';
   const title = raw.title ?? '제목 없음';
   // user 객체 또는 name 필드에서 작성자 이름 추출
-  const authorName = raw.user?.name ?? raw.name ?? raw.authorName ?? '정보 없음';
+  const authorName =
+    raw.user?.name ?? raw.name ?? raw.authorName ?? '정보 없음';
 
   let image = raw.image;
   if (!image || image === 'undefined') image = '';
@@ -116,6 +120,8 @@ function normalizeMyPost(raw: any): MyPost {
 // [4] HTML 템플릿
 // -----------------------
 const authorTemplate = (author: Author) => {
+  console.log('[author]');
+  console.log(author);
   if (!author._id) return '';
   return `
     <a href="/src/pages/author/author.html?userId=${author._id}" class="brunch_author_link">
@@ -126,6 +132,8 @@ const authorTemplate = (author: Author) => {
 };
 
 const postTemplate = (post: Post) => {
+  console.log('[post]');
+  console.log(post);
   if (!post._id) return '';
   return `
     <a class="brunch_link" href="/src/pages/posts/detail.html?postId=${post._id}">
@@ -147,6 +155,8 @@ const postTemplate = (post: Post) => {
 };
 
 const myPostTemplate = (post: MyPost) => {
+  console.log('[MyPost]');
+  console.log(post);
   if (!post._id) return '';
   return `
     <a href="/src/pages/posts/detail.html?postId=${post._id}" class="mybrunch_link">
@@ -166,7 +176,7 @@ function renderList<T>(
   selector: string,
   items: T[],
   emptyMessage: string,
-  template: (item: T) => string
+  template: (item: T) => string,
 ) {
   const container = document.querySelector(selector);
   if (!container) return;
@@ -183,11 +193,21 @@ function renderList<T>(
 }
 
 function renderInterestAuthors(authors: Author[]) {
-  renderList('.js-drawer-author', authors, '관심 작가가 없습니다.', authorTemplate);
+  renderList(
+    '.js-drawer-author',
+    authors,
+    '관심 작가가 없습니다.',
+    authorTemplate,
+  );
 }
 
 function renderRecentlyViewedPosts(posts: Post[]) {
-  renderList('.js-drawer-recent', posts, '최근 본 글이 없습니다.', postTemplate);
+  renderList(
+    '.js-drawer-recent',
+    posts,
+    '최근 본 글이 없습니다.',
+    postTemplate,
+  );
 }
 
 function renderInterestPosts(posts: Post[]) {
@@ -216,9 +236,8 @@ async function fetchInterestAuthors(): Promise<Author[]> {
         return normalizeAuthor(item);
       })
       .filter((item: Author) => item._id !== ''); // 유효한 데이터만 필터링
-
   } catch (e) {
-    console.error("[Drawer] 로컬 구독 목록 로드 실패:", e);
+    console.error('[Drawer] 로컬 구독 목록 로드 실패:', e);
     return [];
   }
 }
@@ -229,7 +248,7 @@ async function fetchInterestPosts(): Promise<Post[]> {
   const list = res?.item ?? [];
 
   return list
-    .map((item) => {
+    .map(item => {
       const target = item.post || item.product || item.target;
       if (!target) return null;
       return normalizePost(target);
@@ -248,12 +267,12 @@ async function fetchRecentlyViewedPosts(): Promise<Post[]> {
 
   if (postIds.length === 0) return [];
 
-  const promises = postIds.map((id) => apiGet<{ item: any }>(`/posts/${id}`));
+  const promises = postIds.map(id => apiGet<{ item: any }>(`/posts/${id}`));
   const results = await Promise.all(promises);
 
   return results
-    .filter((res) => res && res.item)
-    .map((res) => normalizePost(res!.item));
+    .filter(res => res && res.item)
+    .map(res => normalizePost(res!.item));
 }
 
 async function fetchMyPosts(): Promise<MyPost[]> {
@@ -278,8 +297,10 @@ export async function initializeDrawer(): Promise<void> {
   if (!checkDOM) return;
 
   // 구독 상태 변경 이벤트 리스너 추가 (subscribe-button이 dispatch 할 때마다 새로고침)
-  window.addEventListener('subscribe-change', initializeDrawer as EventListener);
-
+  window.addEventListener(
+    'subscribe-change',
+    initializeDrawer as EventListener,
+  );
 
   try {
     // 모든 데이터 병렬로 가져오기
@@ -289,6 +310,11 @@ export async function initializeDrawer(): Promise<void> {
       fetchInterestPosts(),
       fetchMyPosts(),
     ]);
+
+    console.log(authors);
+    console.log(recent);
+    console.log(interest);
+    console.log(myPosts);
 
     // 렌더링
     renderInterestAuthors(authors);

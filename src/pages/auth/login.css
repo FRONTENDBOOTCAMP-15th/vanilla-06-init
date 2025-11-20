@@ -75,7 +75,7 @@
   display: block;
   width: 1.25rem;
   height: 1.25rem;
-  background-image: url(/public/icons/toggle-checkbox.svg);
+  background-image: url(/icons/toggle-checkbox.svg);
   background-size: 100% auto;
   background-position: top 0 center;
 }
@@ -93,9 +93,14 @@
   align-items: center;
   flex-shrink: 0;
   border-radius: 0.25rem;
-  background: #aaa;
+  background: #00c6be;
+
   color: #fff;
   margin: 3rem auto 0;
+
+  &:disabled {
+    background: #aaa;
+  }
 }
 
 .login_member {

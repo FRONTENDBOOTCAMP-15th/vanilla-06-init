@@ -1,4 +1,5 @@
 import { getAxios } from '../../utils/axios.ts';
+import { summaryContent } from '../../utils/summaryContent.ts';
 
 const axios = getAxios();
 
@@ -18,6 +19,11 @@ function saveRecent(id: string) {
 // API 함수들
 async function getPostDetail(id: number) {
   const { data } = await axios.get(`/posts/${id}`);
+  return data;
+}
+async function getUserDetail(id: number) {
+  const { data } = await axios.get(`/users/${id}`);
+  console.log(data);
   return data;
 }
 
@@ -93,6 +99,13 @@ async function renderDetail() {
     const data = await getPostDetail(postId);
     const post = data.item;
 
+    console.log(post.user);
+    console.log(post.user._id);
+
+    const data2 = await getUserDetail(post.user._id);
+
+    const user = data2.item;
+
     // DOM 요소 찾기
     const likeInput = document.querySelector(
       '.detail_like_input',
@@ -130,11 +143,17 @@ async function renderDetail() {
     if (firstImage) {
       detailHeader.style.backgroundImage = `url(${firstImage.src})`;
     } else {
-      detailHeader.style.backgroundImage = 'none';
+      detailHeader.style.backgroundImage =
+        'url(https://t1.daumcdn.net/brunch/static/img/brunchstory/brunchstory_og_image.png)';
     }
 
     document.querySelector('.detail_author')!.textContent = post.user.name;
     document.querySelector('.detail_author_name')!.textContent = post.user.name;
+    document.querySelector('.detail_author_job')!.textContent = user.extra.job;
+    document.querySelector('.detail_author_desc')!.textContent = summaryContent(
+      user.extra.biography || '',
+      20,
+    );
 
     document
       .querySelector('.detail_author_img')!

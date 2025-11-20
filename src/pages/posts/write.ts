@@ -60,9 +60,6 @@ async function submitPost() {
   const content = editor.root.innerHTML;
   const preview = await imageUpload();
 
-  console.log('[preview]');
-  console.log(preview);
-
   const body = {
     type: 'brunch',
     title: ttlVal,

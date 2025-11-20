@@ -247,3 +247,103 @@
   font-weight: 300;
   line-height: 1.1875rem; /* 146.154% */
 }
+
+.visual {
+  position: relative;
+  background: #8d4e8e;
+
+  .visual_swiper {
+    width: 100%;
+    height: 30.5rem;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.26) 100%
+    );
+
+    .brunch_link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 3.42rem;
+    }
+
+    .brunch_link .brunch_txt {
+      margin-top: 0;
+      margin-bottom: 4.17rem;
+
+      .ttl {
+        margin-bottom: 0.72rem;
+        font-weight: 300;
+        font-size: 1.375rem;
+        line-height: 1.9375rem;
+        color: #fff;
+      }
+
+      .name {
+        font-size: 0.75rem;
+        line-height: 1rem;
+        color: #fff;
+      }
+    }
+
+    .cheering {
+      display: flex;
+      gap: 0.25rem;
+      align-items: center;
+      margin-top: 1.88rem;
+      font-size: 0.875rem;
+      line-height: 1.3125rem;
+      color: #fff;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 1.3125rem;
+        height: 1.3125rem;
+        flex-shrink: 0;
+        background-image: url('/public/icons/ico-view-cheer-white.svg');
+      }
+    }
+  }
+
+  .pagination_area {
+    display: flex;
+    align-items: center;
+    gap: 0.56rem;
+    position: absolute;
+    z-index: 100;
+    bottom: 1.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .swiper_bar {
+      position: relative;
+      flex-shrink: 0;
+      width: calc(1.25rem * 6);
+      height: calc(0.0625rem * 1);
+      background: rgba(255, 255, 255, 0.2);
+
+      .bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        height: 100%;
+        background: #fff;
+      }
+    }
+
+    .swiper-pagination {
+      position: static;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      line-height: 0.8125rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .swiper-pagination-current {
+      color: #fff;
+    }
+  }
+}

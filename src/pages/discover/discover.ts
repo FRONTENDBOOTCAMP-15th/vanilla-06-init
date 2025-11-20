@@ -145,7 +145,7 @@ function renderPost(posts: PostItem[], val: string) {
 
     return `
       <article class="post_card">
-        <a href="#" class="post_link">
+        <a href="/src/pages/posts/detail.html?postId=${post._id}" class="post_link">
           <h3 class="post_ttl">
             ${highlight(post.title, val)}
           </h3>
@@ -157,7 +157,7 @@ function renderPost(posts: PostItem[], val: string) {
             <span class="by">by</span>
             <span class="author">${post.user.name}</span>
           </div>
-          <init-img
+          <img
           class="thumb"
           src="${post.image}"
         />
@@ -185,7 +185,7 @@ function renderAuthor(posts: UserItem[], val: string) {
   const result = filtered.map(item => {
     return `
       <article class="author_card">
-        <a href="#" class="author_link">
+        <a href="/src/pages/author/autor.html?userId=${item._id}" class="author_link">
           <img
             class="thumb"
             src="${item.image}"

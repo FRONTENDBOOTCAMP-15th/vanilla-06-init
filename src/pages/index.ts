@@ -1,3 +1,5 @@
+import Swiper from 'swiper/bundle';
+import 'swiper/swiper-bundle.css';
 import { getAxios } from '../utils/axios';
 import { summaryContent } from '../utils/summaryContent';
 
@@ -20,6 +22,7 @@ interface Post {
   content?: string;
   extra: Extra;
   user: User;
+  likes?: string;
 }
 
 async function getposts() {
@@ -37,7 +40,7 @@ async function getposts() {
 }
 
 const data = await getposts();
-console.log(data);
+renderVisual(data);
 
 const list = document.querySelector<HTMLOListElement>('.mainpage_list');
 
@@ -126,4 +129,88 @@ function loadAuthors() {
 
 if (div) {
   div.innerHTML = loadAuthors().join('');
+}
+
+function renderVisual(posts: Post[]) {
+  console.log(posts);
+  const visualEl = document.querySelector('#visual') as HTMLDivElement;
+  const wrapperEl = visualEl.querySelector('.swiper-wrapper') as HTMLDivElement;
+
+  const filtered = getRandomItems(posts, 6);
+
+  const result = filtered.map(item => {
+    return `
+      <div class="swiper-slide">
+        <a class="brunch_link" href="/src/pages/posts/detail.html?postId=${item._id}">
+          <div class="brunch_txt">
+            <b class="ttl">${item.title}</b>
+            <span class="name">
+              <span class="by">by</span>
+              ${item.user.name}
+            </span>
+          </div>
+          <div class="brunch_book">
+            <div class="txt_box">
+              <b class="ttl">${item.title}</b>
+              <span class="name">${item.user.name}</span>
+            </div>
+          </div>
+          <span class="cheering"> ${item.likes}명이 응원</span>
+        </a>
+      </div>
+    `;
+  });
+
+  if (filtered.length) {
+    wrapperEl.innerHTML = result.join('');
+  }
+
+  visualSwiper(filtered.length);
+}
+
+function getRandomItems<T>(array: T[], count: number) {
+  const shuffled = [...array];
+  let currentIndex = shuffled.length;
+  let randomIndex: number;
+
+  while (currentIndex !== 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [shuffled[currentIndex], shuffled[randomIndex]] = [
+      shuffled[randomIndex],
+      shuffled[currentIndex],
+    ];
+  }
+
+  return shuffled.slice(0, count);
+}
+
+function visualSwiper(num: number) {
+  const visualEl = document.querySelector('#visual') as HTMLDivElement;
+  const barEl = document.querySelector('.bar') as HTMLDivElement;
+
+  barEl.style.width = `${100 / num}%`;
+
+  const swiper = new Swiper('.visual .swiper', {
+    loop: true,
+    speed: 500,
+    autoplay: {
+      delay: 4500,
+      disableOnInteraction: false,
+    },
+    pagination: {
+      el: '.pagination_area .swiper-pagination',
+      type: 'fraction',
+    },
+    on: {
+      slideChange: function (swiperInstance) {
+        const realIndex = swiperInstance.realIndex;
+        const percent = (realIndex / num) * 100;
+        barEl.style.left = `${percent}%`;
+      },
+    },
+  });
+
+  visualEl.addEventListener('mouseenter', () => swiper.autoplay.stop());
+  visualEl.addEventListener('mouseleave', () => swiper.autoplay.start());
 }

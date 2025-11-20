@@ -109,7 +109,7 @@ const div = document.querySelector<HTMLDivElement>('.mainpage_author_group');
 function loadAuthors() {
   if (author) {
     const sortedAuthors = author.map((item: Post) => {
-      return `<a href="./src/pages/author/author.html?id=${item._id}">
+      return `<a href="./src/pages/author/author.html?userId=${item._id}">
       <div class="mainpage_author">
       <img src="${item.image}" class="naimpage_pic" />
       <div class="mainpage_info">

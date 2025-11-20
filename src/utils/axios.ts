@@ -13,7 +13,7 @@ export function getAxios() {
 
   // 요청 인터셉터
   instance.interceptors.request.use(config => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
 
     console.log(token);
 

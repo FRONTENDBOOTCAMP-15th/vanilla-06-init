@@ -1,4 +1,4 @@
-import { getAxios } from './axios';
+// import { getAxios } from './axios';
 
 function accessPages() {
   // 로그인 필요한 페이지 목록

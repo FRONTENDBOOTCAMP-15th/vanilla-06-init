@@ -66,6 +66,7 @@ nicknameCheckBtn.addEventListener('click', async () => {
     console.log(data);
     console.log(data.length === 0);
 
+    registerMsg1.closest('.register_msg')!.classList.add('d_flex');
     if (data.length === 0) {
       registerMsg1.textContent = '사용할 수 있는 별명입니다.';
       registerMsg1.closest('.register_msg')!.classList.add('d_flex');
@@ -73,7 +74,6 @@ nicknameCheckBtn.addEventListener('click', async () => {
       registerMsg1.classList.remove('color_red');
     } else {
       registerMsg1.textContent = '중복된 별명입니다.';
-      registerMsg1.closest('.register_msg')!.classList.add('d_flex');
       registerMsg1.classList.add('color_red');
       registerMsg1.classList.remove('color_mint');
     }
@@ -107,6 +107,7 @@ emailCheckBtn.addEventListener('click', async () => {
     const data = response.data.item;
     console.log(data);
 
+    registerMsg2.closest('.register_msg')!.classList.add('d_flex');
     if (data.length === 0) {
       registerMsg2.textContent = '사용할 수 있는 이메일입니다.';
       registerMsg2.closest('.register_msg')!.classList.add('d_flex');
@@ -114,7 +115,6 @@ emailCheckBtn.addEventListener('click', async () => {
       registerMsg2.classList.remove('color_red');
     } else {
       registerMsg2.textContent = '중복된 이메일입니다.';
-      registerMsg2.closest('.register_msg')!.classList.add('d_flex');
       registerMsg2.classList.add('color_red');
       registerMsg2.classList.remove('color_mint');
     }

@@ -1,8 +1,5 @@
 import { getAxios } from '../../utils/axios';
 
-const LOGIN_API_URL = 'https://fesp-api.koyeb.app/market/users/login';
-const CLIENT_ID = 'brunch';
-
 document.addEventListener('DOMContentLoaded', () => {
   const accessToken = localStorage.getItem('accessToken');
   if (accessToken) {

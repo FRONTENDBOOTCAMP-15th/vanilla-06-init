@@ -5,7 +5,6 @@
 
 const CLIENT_ID = 'febc15-vanilla06-ecad';
 const API_BASE_URL = 'https://fesp-api.koyeb.app/market';
-const LOCAL_AUTHORS_KEY = 'subscribedAuthors';
 
 // -----------------------
 // [1] 타입 정의
@@ -48,7 +47,7 @@ async function apiGet<T>(path: string, needAuth = false): Promise<T | null> {
   if (needAuth) {
     const token = getToken();
     if (!token) return null;
-    headers['Authorization'] = `Bearer ${token}`;
+    headers['Authorization'] = `Bearer ${token}`; // ⚠️ 422 에러 원인: 토큰 유효성 및 형식 확인 필수!
   }
 
   try {
@@ -58,7 +57,7 @@ async function apiGet<T>(path: string, needAuth = false): Promise<T | null> {
       return null;
     }
     if (!res.ok) {
-      console.warn(`[API Warning] ${path} (${res.status}) - 요청 실패`);
+      console.warn(`[API Warning] ${path} (${res.status}) - 요청 실패`); // ⚠️ 422 에러가 여기서 잡힙니다.
       return null;
     }
     return (await res.json()) as T;
@@ -201,28 +200,26 @@ function renderMyPosts(posts: MyPost[]) {
 // -----------------------
 // [6] 데이터 Fetch 함수
 // -----------------------
+/**
+ * ✅ [수정] 관심 작가 목록을 로컬 스토리지 대신 서버에서 가져옵니다. (GET /bookmarks/author)
+ */
 async function fetchInterestAuthors(): Promise<Author[]> {
-  const token = getToken();
-  if (!token) return [];
+  const res = await apiGet<{ item: any[] }>('/bookmarks/author', true);
+  const list = res?.item ?? [];
 
-  try {
-    const json = localStorage.getItem(LOCAL_AUTHORS_KEY);
-    const localList = json ? JSON.parse(json) : [];
-
-    // 로컬 데이터를 Author 타입으로 정규화
-    return localList
-      .map((item: any) => {
-        // _id, name, image 필드가 로컬에 저장되어 있으므로 바로 정규화
-        return normalizeAuthor(item);
-      })
-      .filter((item: Author) => item._id !== ''); // 유효한 데이터만 필터링
-
-  } catch (e) {
-    console.error("[Drawer] 로컬 구독 목록 로드 실패:", e);
-    return [];
-  }
+  // API 응답 구조: item 배열 안에 author 객체가 포함
+  return list
+    .map((item) => {
+      const target = item.author;
+      if (!target) return null;
+      return normalizeAuthor(target);
+    })
+    .filter((item): item is Author => item !== null);
 }
 
+/**
+ * ✅ 관심 글 목록을 서버에서 가져옵니다. (GET /bookmarks/post)
+ */
 async function fetchInterestPosts(): Promise<Post[]> {
   // GET /bookmarks/post는 404가 나지 않는다고 가정하고 API 유지
   const res = await apiGet<{ item: any[] }>('/bookmarks/post', true);
@@ -248,6 +245,7 @@ async function fetchRecentlyViewedPosts(): Promise<Post[]> {
 
   if (postIds.length === 0) return [];
 
+  // ⚠️ 404 에러 원인: postIds에 유효하지 않은 ID (예: '48')가 있는지 확인하고 삭제 필요
   const promises = postIds.map((id) => apiGet<{ item: any }>(`/posts/${id}`));
   const results = await Promise.all(promises);
 
@@ -256,6 +254,9 @@ async function fetchRecentlyViewedPosts(): Promise<Post[]> {
     .map((res) => normalizePost(res!.item));
 }
 
+/**
+ * ✅ 내 브랜치 (내 글)은 현재 구현되어 있지 않고 빈 배열을 반환합니다.
+ */
 async function fetchMyPosts(): Promise<MyPost[]> {
   return [];
 }

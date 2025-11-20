@@ -1,8 +1,6 @@
 // src/pages/user/register.ts
 import { getAxios } from '../../utils/axios';
 
-const SIGNUP_URL = 'https://fesp-api.koyeb.app/market/users';
-
 const form = document.querySelector('.register_action') as HTMLFormElement;
 const nicknameInput = document.querySelector('#nickname') as HTMLInputElement;
 const emailInput = document.querySelector('#email') as HTMLInputElement;
@@ -70,6 +68,7 @@ nicknameCheckBtn.addEventListener('click', async () => {
 
     if (data.length === 0) {
       registerMsg1.textContent = '사용할 수 있는 별명입니다.';
+      registerMsg1.closest('.register_msg')!.classList.add('d_flex');
       registerMsg1.classList.add('color_mint');
       registerMsg1.classList.remove('color_red');
     } else {
@@ -110,6 +109,7 @@ emailCheckBtn.addEventListener('click', async () => {
 
     if (data.length === 0) {
       registerMsg2.textContent = '사용할 수 있는 이메일입니다.';
+      registerMsg2.closest('.register_msg')!.classList.add('d_flex');
       registerMsg2.classList.add('color_mint');
       registerMsg2.classList.remove('color_red');
     } else {
@@ -189,22 +189,20 @@ form.addEventListener('submit', async event => {
     return;
   }
 
-  const bodyData = {
-    email,
-    password: pwd,
-    name: nickname,
-    type: 'user',
-    loginType: 'email',
-  };
-
   const axios = getAxios();
 
   try {
-    const { data } = await axios.post('users/', { params: bodyData });
+    const { data } = await axios.post('users', {
+      email,
+      password: pwd,
+      name: nickname,
+      type: 'user',
+      loginType: 'email',
+    });
 
     console.log(data);
 
-    if (!data.response.ok) {
+    if (!data.ok) {
       alert('회원가입 실패.');
       return;
     }

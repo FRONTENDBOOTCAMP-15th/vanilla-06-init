@@ -89,4 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
       window.location.href = './register.html';
     });
   }
+
+  emailInput.addEventListener('input', checkFormValid);
+  passwordInput.addEventListener('input', checkFormValid);
+
+  // 값 체크 함수
+  function checkFormValid() {
+    const email = emailInput?.value.trim();
+    const password = passwordInput?.value.trim();
+
+    const isValid = email !== '' && password !== '';
+
+    loginButton!.disabled = !isValid;
+  }
 });

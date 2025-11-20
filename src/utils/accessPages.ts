@@ -9,10 +9,11 @@ function accessPages() {
     '/src/pages/author/author.html',
   ];
 
-  console.log(AUTH_REQUIRED_PAGES);
   const currentPath = window.location.pathname;
   const needAuth = AUTH_REQUIRED_PAGES.some(page => currentPath.includes(page));
   const accessToken = localStorage.getItem('accessToken');
+  console.log(AUTH_REQUIRED_PAGES);
+  console.log(currentPath);
 
   if (needAuth && !accessToken) {
     // getAxios().post('/bookmarks/user/-1');

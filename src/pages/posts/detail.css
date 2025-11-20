@@ -260,6 +260,10 @@
 /* 액션바 */
 .detail_action_bar {
   display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  background-color: #fff;
   height: 3.125rem;
   padding: 0 1.25rem;
   align-items: center;
@@ -287,7 +291,7 @@
   width: 1.3125rem;
   height: 1.3125rem;
 
-  background-image: url('/public/icons/toggle-like.png');
+  background-image: url('/icons/toggle-like.png');
   background-size: 1.3125rem 2.625rem;
   background-position: 0 -1.3125rem;
 }

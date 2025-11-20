@@ -273,7 +273,7 @@
         display: block;
         width: 100%;
         padding-top: calc(172 / 122 * 100%);
-        background-image: url('/public/icons/ico-brunch-book.png');
+        background-image: url('/icons/ico-brunch-book.png');
         background-position: center bottom 0.5781rem;
         background-repeat: no-repeat;
       }
@@ -313,7 +313,7 @@
         width: 1.3125rem;
         height: 1.3125rem;
         flex-shrink: 0;
-        background-image: url('/public/icons/ico-view-cheer-white.svg');
+        background-image: url('/icons/ico-view-cheer-white.svg');
       }
     }
   }

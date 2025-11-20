@@ -72,7 +72,7 @@ function loadPosts() {
                     <p class="mainpage_overay_name">${item.user.name || ''}</p>
                   </div>
                   <img
-                    src="/public/icons/logo/logo-white.png"
+                    src="/icons/logo/logo-white.png"
                     class="mainpage_book_logo"
                   />
                 </div>
@@ -109,7 +109,7 @@ const div = document.querySelector<HTMLDivElement>('.mainpage_author_group');
 function loadAuthors() {
   if (author) {
     const sortedAuthors = author.map((item: Post) => {
-      return `<a href="./src/pages/author/author.html?id=${item._id}">
+      return `<a href="./src/pages/author/author.html?userId=${item._id}">
       <div class="mainpage_author">
       <img src="${item.image}" class="naimpage_pic" />
       <div class="mainpage_info">

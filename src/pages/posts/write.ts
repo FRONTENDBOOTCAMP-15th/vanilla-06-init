@@ -73,6 +73,8 @@ async function submitPost() {
   try {
     const { data } = await axios.post('/posts', body);
     console.log('저장 완료:', data);
+    alert('글이 작성되었습니다');
+    location.reload();
   } catch (err) {
     console.error(err);
   }
@@ -112,3 +114,12 @@ ttlInput.addEventListener('input', checkFormValid);
 subTtlInput.addEventListener('input', checkFormValid);
 editor.on('text-change', checkFormValid);
 previewInput.addEventListener('input', checkFormValid);
+
+const btnClose = document.querySelector('.btn_close') as HTMLButtonElement;
+btnClose?.addEventListener('click', () => {
+  const isLeave = confirm('페이지를 떠나시겠습니까?');
+
+  if (isLeave) {
+    history.back();
+  }
+});

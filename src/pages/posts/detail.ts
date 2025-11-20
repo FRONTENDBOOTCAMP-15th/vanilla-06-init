@@ -1,5 +1,6 @@
 import { getAxios } from '../../utils/axios.ts';
 import { summaryContent } from '../../utils/summaryContent.ts';
+import 'quill/dist/quill.snow.css';
 
 const axios = getAxios();
 

@@ -2,6 +2,8 @@ import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 import { getAxios } from '../utils/axios';
 import { summaryContent } from '../utils/summaryContent';
+import { getAllPost } from '../utils/allPost.ts';
+import type { PostItem, AllPostItem } from '../types/post.ts';
 
 interface User {
   name?: string;
@@ -40,7 +42,9 @@ async function getposts() {
 }
 
 const data = await getposts();
-renderVisual(data);
+const allPostData = await getAllPost();
+const likeData = await getLikeRank();
+renderVisual(likeData);
 
 const list = document.querySelector<HTMLOListElement>('.mainpage_list');
 
@@ -131,14 +135,28 @@ if (div) {
   div.innerHTML = loadAuthors().join('');
 }
 
-function renderVisual(posts: Post[]) {
-  console.log(posts);
+async function getLikeRank() {
+  const sorted: AllPostItem[] = allPostData.item
+    .slice()
+    .sort((a: AllPostItem, b: AllPostItem) => b.likes - a.likes)
+    .slice(0, 6);
+
+  return sorted;
+}
+
+function findImageById(id: number): string | null {
+  const posts = allPostData.item;
+  const item = posts.find((post: PostItem) => post._id === id);
+
+  if (!item || !item.user) return null;
+  return item.image ?? null;
+}
+
+function renderVisual(posts: AllPostItem[]) {
   const visualEl = document.querySelector('#visual') as HTMLDivElement;
   const wrapperEl = visualEl.querySelector('.swiper-wrapper') as HTMLDivElement;
 
-  const filtered = getRandomItems(posts, 6);
-
-  const result = filtered.map(item => {
+  const result = posts.map(item => {
     return `
       <div class="swiper-slide">
         <a class="brunch_link" href="/src/pages/posts/detail.html?postId=${item._id}">
@@ -150,7 +168,7 @@ function renderVisual(posts: Post[]) {
             </span>
           </div>
           <div class="brunch_book">
-            <img class="bg" src="${item.image}" alt="">
+            <img class="bg" src="${findImageById(item._id)}" alt="">
             <div class="txt_box">
               <b class="ttl">${item.title}</b>
               <span class="name">${item.user.name}</span>
@@ -162,11 +180,11 @@ function renderVisual(posts: Post[]) {
     `;
   });
 
-  if (filtered.length) {
+  if (result.length) {
     wrapperEl.innerHTML = result.join('');
   }
 
-  visualSwiper(filtered.length);
+  visualSwiper(result.length);
 }
 
 function getRandomItems<T>(array: T[], count: number) {

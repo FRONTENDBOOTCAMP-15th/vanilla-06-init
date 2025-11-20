@@ -85,6 +85,12 @@ function getRandom(arr: string[]): string {
   return arr[randomIndex];
 }
 
+function getRandomAvatar(nickname = 'user') {
+  const randomStr = Math.random().toString(36).substring(2, 6);
+  const username = encodeURIComponent(nickname + randomStr);
+  return `https://avatar.iran.liara.run/username?username=${username}`;
+}
+
 if (
   !form ||
   !nicknameInput ||
@@ -257,6 +263,7 @@ form.addEventListener('submit', async event => {
       name: nickname,
       type: 'user',
       loginType: 'email',
+      iamge: getRandomAvatar(nickname),
       extra: {
         job: getRandom(jobArr),
         biography: getRandom(statusMsgArr),

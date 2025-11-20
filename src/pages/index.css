@@ -267,17 +267,6 @@
       align-items: center;
       padding-top: 3.42rem;
     }
-    .brunch_book {
-      &::before {
-        content: '';
-        display: block;
-        width: 100%;
-        padding-top: calc(172 / 122 * 100%);
-        background-image: url('/icons/ico-brunch-book.png');
-        background-position: center bottom 0.5781rem;
-        background-repeat: no-repeat;
-      }
-    }
 
     .brunch_link .brunch_txt {
       margin-top: 0;

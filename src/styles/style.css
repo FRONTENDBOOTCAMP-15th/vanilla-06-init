@@ -549,13 +549,9 @@
     display: block;
     width: 100%;
     padding-top: calc(172 / 122 * 100%);
-    background-image:
-      url('/icons/ico-brunch-book.png'),
-      url('https://img1.daumcdn.net/thumb/R240x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/haoS/image/hQBgd-M8Hs2EGbIz2h-4PBAo6yM');
-    background-position:
-      center bottom 0.5781rem,
-      center center;
-    background-repeat: no-repeat, no-repeat;
+    background-image: url('/icons/ico-brunch-book.png');
+    background-position: center bottom 0.5781rem;
+    background-repeat: no-repeat;
   }
 
   &::after {

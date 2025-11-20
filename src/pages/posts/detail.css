@@ -83,6 +83,7 @@
   padding-bottom: 2.5rem;
 }
 .editor_render_area {
+  all: unset;
   padding: 4.375rem 0 2.5rem;
 }
 

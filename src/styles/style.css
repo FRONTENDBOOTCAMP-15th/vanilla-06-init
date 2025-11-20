@@ -542,6 +542,7 @@
   position: relative;
   width: 7.67856rem;
   border-radius: 0.096rem 0.19194rem 0.19194rem 0.096rem;
+  overflow: hidden;
 
   &::before {
     content: '';
@@ -566,6 +567,16 @@
     width: 0.19194rem;
     height: 100%;
     background: rgba(255, 255, 255, 0.1);
+  }
+
+  .bg {
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
   }
 
   .txt_box {

@@ -150,6 +150,7 @@ function renderVisual(posts: Post[]) {
             </span>
           </div>
           <div class="brunch_book">
+            <img class="bg" src="${item.image}" alt="">
             <div class="txt_box">
               <b class="ttl">${item.title}</b>
               <span class="name">${item.user.name}</span>

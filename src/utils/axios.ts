@@ -8,14 +8,14 @@ export function getAxios() {
     baseURL: API_SERVER,
     headers: {
       'Client-Id': 'febc15-vanilla06-ecad',
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
   });
 
   // 요청 인터셉터
   instance.interceptors.request.use(config => {
     const token = localStorage.getItem('accessToken');
-
-    console.log(token);
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;

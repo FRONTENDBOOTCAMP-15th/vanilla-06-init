@@ -9,14 +9,12 @@ function accessPages() {
     '/src/pages/author/author.html',
   ];
 
-  console.log(AUTH_REQUIRED_PAGES);
   const currentPath = window.location.pathname;
   const needAuth = AUTH_REQUIRED_PAGES.some(page => currentPath.includes(page));
   const accessToken = localStorage.getItem('accessToken');
 
   if (needAuth && !accessToken) {
     // getAxios().post('/bookmarks/user/-1');
-
     alert('로그인이 필요한 기능입니다.');
     window.location.href = '/src/pages/auth/login.html';
   }

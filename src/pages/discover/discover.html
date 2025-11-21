@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" href="/icons/logo/logo_symbol.svg" type="image/svg" />
     <title>발견 | init 브런치</title>
 
     <script type="module" src="/src/main.ts"></script>
@@ -47,9 +47,21 @@
 
             <div class="keyword_scroll_wrap">
               <div class="keyword_area">
-                <a href="#" class="keyword">한의사</a>
-                <a href="#" class="keyword">출간작가</a>
-                <a href="#" class="keyword">에세이스트</a>
+                <a
+                  href="/src/pages/discover/discover.html?search=한의사"
+                  class="keyword"
+                  >한의사</a
+                >
+                <a
+                  href="/src/pages/discover/discover.html?search=출간작가"
+                  class="keyword"
+                  >출간작가</a
+                >
+                <a
+                  href="/src/pages/discover/discover.html?search=에세이스트"
+                  class="keyword"
+                  >에세이스트</a
+                >
               </div>
             </div>
           </div>
@@ -59,7 +71,7 @@
           <div class="inner">
             <h2 class="recent_keyword_ttl">최근 검색어</h2>
             <ul class="search_recent_list">
-              <li class="search_recent_item">
+              <!-- <li class="search_recent_item">
                 <a href="#" class="search_recent_link">아이유</a>
                 <button
                   type="button"
@@ -69,7 +81,7 @@
               </li>
               <li class="search_recent_item">
                 <a href="#" class="search_recent_link">뉴진스</a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </section>
@@ -80,7 +92,7 @@
       <div id="searchResultPanel" class="search_panel search_result_panel">
         <div class="inner">
           <div class="aux-area">
-            <span class="search_result_count">글 검색 결과 800건</span>
+            <span class="search_result_count"></span>
             <!-- <div class="search_sort_area">
               <button class="search_sort_btn sort_relevance active">
                 정확도

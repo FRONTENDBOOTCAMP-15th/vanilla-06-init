@@ -22,13 +22,13 @@
     }
 
     .btn_close {
-      background-image: url('/public/icons/ico-close-thin.svg');
+      background-image: url('/icons/ico-close-thin.svg');
     }
     .btn_submit:disabled {
-      background-image: url('/public/icons/ico-done-thin.svg');
+      background-image: url('/icons/ico-done-thin.svg');
     }
     .btn_submit {
-      background-image: url('/public/icons/ico-done-on-thin.svg');
+      background-image: url('/icons/ico-done-on-thin.svg');
     }
 
     .ttl {
@@ -85,7 +85,7 @@
       display: inline-block;
       width: 40px;
       height: 40px;
-      background-image: url('/public/icons/ico-picture-gray.svg');
+      background-image: url('/icons/ico-picture-gray.svg');
       background-position: center center;
       background-size: 100% auto;
       cursor: pointer;
@@ -139,7 +139,7 @@
       height: 1rem;
       flex-shrink: 0;
       border-radius: 50%;
-      background-image: url('/public/icons/ico-close-circle-gray.png');
+      background-image: url('/icons/ico-close-circle-gray.png');
       background-position: center center;
       background-size: 100 auto;
       background-repeat: no-repeat;
@@ -262,7 +262,7 @@
       width: 1rem;
       height: 1rem;
       margin-left: auto;
-      background-image: url('/public/icons/ico-close-gray.png');
+      background-image: url('/icons/ico-close-gray.png');
       background-position: center center;
       background-size: 0.5625rem auto;
       background-repeat: no-repeat;
@@ -490,7 +490,7 @@
     width: 2.94269rem;
     height: 4.20244rem;
     flex-shrink: 0;
-    background-image: url('/public/icons/ico-brunch-gray.svg');
+    background-image: url('/icons/ico-brunch-gray.svg');
     background-repeat: no-repeat;
     background-size: 100 auto;
   }
@@ -521,7 +521,7 @@
         width: 1.25rem;
         height: 1.25rem;
         flex-shrink: 0;
-        background-image: url('/public/icons/arw-right-sm.svg');
+        background-image: url('/icons/arw-right-sm.svg');
         background-size: 100% auto;
       }
     }
@@ -537,6 +537,11 @@
 }
 
 /* brunch_book */
+.brunch_book_list .brunch_link {
+  display: block;
+  width: 7.67856rem;
+}
+
 .brunch_book {
   flex-shrink: 0;
   position: relative;
@@ -549,13 +554,9 @@
     display: block;
     width: 100%;
     padding-top: calc(172 / 122 * 100%);
-    background-image:
-      url('/public/icons/ico-brunch-book.png'),
-      url('https://img1.daumcdn.net/thumb/R240x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/haoS/image/hQBgd-M8Hs2EGbIz2h-4PBAo6yM');
-    background-position:
-      center bottom 0.5781rem,
-      center center;
-    background-repeat: no-repeat, no-repeat;
+    background-image: url('/icons/ico-brunch-book.png');
+    background-position: center bottom 0.5781rem;
+    background-repeat: no-repeat;
   }
 
   &::after {
@@ -633,6 +634,7 @@
     align-items: center;
     flex-shrink: 0;
     gap: 1rem;
+    max-width: 5rem;
   }
 
   .thumb {

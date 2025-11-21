@@ -16,6 +16,7 @@ export interface UserItem {
   updatedAt: string;
   extra: {
     birthday: string;
+    biography: string;
     membershipClass: string;
     address: [
       {
@@ -28,28 +29,22 @@ export interface UserItem {
     keyword: string[] | null;
   };
 }
-export interface UserItem {
+
+export interface BookmarkUser {
   _id: number;
-  email: string;
-  name: string;
-  phone: string;
-  address: string;
-  type: 'user' | 'seller' | 'admin';
-  loginType: 'email' | 'kakao';
-  image: string;
   createdAt: string;
-  updatedAt: string;
-  extra: {
-    birthday: string;
-    membershipClass: string;
-    address: [
-      {
-        id: number;
-        name: string;
-        value: string;
-      },
-    ];
-    statusMsg: string | null;
-    keyword: string[] | null;
+  user_id: number;
+  memo: string;
+  user: {
+    _id: number;
+    name: string;
+    extra: {
+      job: string;
+      biography: string;
+      keyword: string[];
+    };
+    loginType: 'email' | 'kakao';
+    image: string;
+    type: 'user' | 'seller' | 'admin';
   };
 }

@@ -2,6 +2,8 @@ import Swiper from 'swiper/bundle';
 import 'swiper/swiper-bundle.css';
 import { getAxios } from '../utils/axios';
 import { summaryContent } from '../utils/summaryContent';
+import { getAllPost } from '../utils/allPost.ts';
+import type { PostItem, AllPostItem } from '../types/post.ts';
 
 interface User {
   name?: string;
@@ -28,10 +30,7 @@ interface Post {
 async function getposts() {
   const axios = getAxios();
   try {
-    const response = await axios.get(
-      '/posts?type=brunch&sort={"likes": -1}&limit=10',
-    );
-    console.log(response.data.item);
+    const response = await axios.get('/posts?type=brunch&limit=10');
     return response.data.item;
   } catch (err) {
     console.error('목록 조회 실패.', err);
@@ -40,7 +39,9 @@ async function getposts() {
 }
 
 const data = await getposts();
-renderVisual(data);
+const allPostData = await getAllPost();
+const likeData = await getLikeRank();
+renderVisual(likeData);
 
 const list = document.querySelector<HTMLOListElement>('.mainpage_list');
 
@@ -72,7 +73,7 @@ function loadPosts() {
                     <p class="mainpage_overay_name">${item.user.name || ''}</p>
                   </div>
                   <img
-                    src="/public/icons/logo/logo-white.png"
+                    src="/icons/logo/logo-white.png"
                     class="mainpage_book_logo"
                   />
                 </div>
@@ -91,9 +92,10 @@ async function getAuthors() {
   const axios = getAxios();
   try {
     const response = await axios.get(
-      '/users?sort={"bookmarkedBy.users": -1}&limit=4',
+      '/users?sort={"likedBy.users": -1}&limit=4',
     );
-    console.log(response.data.item);
+    console.log('getAuthors');
+    console.log(response);
     return response.data.item;
   } catch (err) {
     console.error('작가 목록 조회 실패.', err);
@@ -109,7 +111,7 @@ const div = document.querySelector<HTMLDivElement>('.mainpage_author_group');
 function loadAuthors() {
   if (author) {
     const sortedAuthors = author.map((item: Post) => {
-      return `<a href="./src/pages/author/author.html?id=${item._id}">
+      return `<a href="./src/pages/author/author.html?userId=${item._id}">
       <div class="mainpage_author">
       <img src="${item.image}" class="naimpage_pic" />
       <div class="mainpage_info">
@@ -131,14 +133,28 @@ if (div) {
   div.innerHTML = loadAuthors().join('');
 }
 
-function renderVisual(posts: Post[]) {
-  console.log(posts);
+async function getLikeRank() {
+  const sorted: AllPostItem[] = allPostData.item
+    .slice()
+    .sort((a: AllPostItem, b: AllPostItem) => b.likes - a.likes)
+    .slice(0, 6);
+
+  return sorted;
+}
+
+function findImageById(id: number): string | null {
+  const posts = allPostData.item;
+  const item = posts.find((post: PostItem) => post._id === id);
+
+  if (!item || !item.user) return null;
+  return item.image ?? null;
+}
+
+function renderVisual(posts: AllPostItem[]) {
   const visualEl = document.querySelector('#visual') as HTMLDivElement;
   const wrapperEl = visualEl.querySelector('.swiper-wrapper') as HTMLDivElement;
 
-  const filtered = getRandomItems(posts, 6);
-
-  const result = filtered.map(item => {
+  const result = posts.map(item => {
     return `
       <div class="swiper-slide">
         <a class="brunch_link" href="/src/pages/posts/detail.html?postId=${item._id}">
@@ -150,7 +166,7 @@ function renderVisual(posts: Post[]) {
             </span>
           </div>
           <div class="brunch_book">
-            <img class="bg" src="${item.image}" alt="">
+            <img class="bg" src="${findImageById(item._id)}" alt="">
             <div class="txt_box">
               <b class="ttl">${item.title}</b>
               <span class="name">${item.user.name}</span>
@@ -162,28 +178,11 @@ function renderVisual(posts: Post[]) {
     `;
   });
 
-  if (filtered.length) {
+  if (result.length) {
     wrapperEl.innerHTML = result.join('');
   }
 
-  visualSwiper(filtered.length);
-}
-
-function getRandomItems<T>(array: T[], count: number) {
-  const shuffled = [...array];
-  let currentIndex = shuffled.length;
-  let randomIndex: number;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [shuffled[currentIndex], shuffled[randomIndex]] = [
-      shuffled[randomIndex],
-      shuffled[currentIndex],
-    ];
-  }
-
-  return shuffled.slice(0, count);
+  visualSwiper(result.length);
 }
 
 function visualSwiper(num: number) {

@@ -31,7 +31,7 @@ body {
       display: block;
       width: 100%;
       padding: calc(22 / 120 * 100%);
-      background-image: url('/public/icons/logo/logo.png');
+      background-image: url('/icons/logo/logo.png');
       background-position: center center;
       background-size: 100% auto;
       background-repeat: no-repeat;
@@ -58,10 +58,10 @@ body {
   }
 
   .link_notice {
-    background-image: url('/public/icons/ico-notice-thin.svg');
+    background-image: url('/icons/ico-notice-thin.svg');
   }
   .link_search {
-    background-image: url('/public/icons/ico-search-thin.svg');
+    background-image: url('/icons/ico-search-thin.svg');
   }
   .link_profile {
     position: relative;
@@ -134,38 +134,38 @@ body {
 
     .ico_home {
       &::before {
-        background-image: url('/public/icons/ico-home.svg');
+        background-image: url('/icons/ico-home.svg');
       }
     }
     &.active .ico_home::before {
-      background-image: url('/public/icons/ico-home-on.svg');
+      background-image: url('/icons/ico-home-on.svg');
     }
 
     .ico_discover {
       &::before {
-        background-image: url('/public/icons/ico-search.svg');
+        background-image: url('/icons/ico-search.svg');
       }
     }
     &.active .ico_discover::before {
-      background-image: url('/public/icons/ico-search-on.svg');
+      background-image: url('/icons/ico-search-on.svg');
     }
 
     .ico_write {
       &::before {
-        background-image: url('/public/icons/ico-write.svg');
+        background-image: url('/icons/ico-write.svg');
       }
     }
     &.active .ico_write::before {
-      background-image: url('/public/icons/ico-write-on.svg');
+      background-image: url('/icons/ico-write-on.svg');
     }
 
     .ico_drawer {
       &::before {
-        background-image: url('/public/icons/ico-mybox.svg');
+        background-image: url('/icons/ico-mybox.svg');
       }
     }
     &.active .ico_drawer::before {
-      background-image: url('/public/icons/ico-mybox-on.svg');
+      background-image: url('/icons/ico-mybox-on.svg');
     }
   }
 }
@@ -204,13 +204,13 @@ body {
       background-repeat: no-repeat;
 
       &.ico_kakao {
-        background-image: url('/public/icons/ico-kakao-white.png');
+        background-image: url('/icons/ico-kakao-white.png');
       }
       &.ico_facebook {
-        background-image: url('/public/icons/ico-facebook-white.png');
+        background-image: url('/icons/ico-facebook-white.png');
       }
       &.ico_twitter_x {
-        background-image: url('/public/icons/ico-twiiter-x-white.png');
+        background-image: url('/icons/ico-twiiter-x-white.png');
       }
     }
   }
@@ -241,7 +241,7 @@ body {
       display: block;
       width: 100%;
       padding: calc(15 / 87 * 100%);
-      background-image: url('/public/icons/logo/logo-white.png');
+      background-image: url('/icons/logo/logo-white.png');
       background-position: center center;
       background-size: 100% auto;
       background-repeat: no-repeat;

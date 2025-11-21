@@ -135,7 +135,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0 1.25rem;
+  padding: 0 1.25rem 2.5rem;
   border: 0.0625rem solid #eeeeee;
 }
 
@@ -260,6 +260,11 @@
 /* 액션바 */
 .detail_action_bar {
   display: flex;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  background-color: #fff;
+  margin-top: auto;
   height: 3.125rem;
   padding: 0 1.25rem;
   align-items: center;
@@ -287,7 +292,7 @@
   width: 1.3125rem;
   height: 1.3125rem;
 
-  background-image: url('/public/icons/toggle-like.png');
+  background-image: url('/icons/toggle-like.png');
   background-size: 1.3125rem 2.625rem;
   background-position: 0 -1.3125rem;
 }
@@ -303,4 +308,44 @@
 .detail_author_name,
 .detail_author_img {
   cursor: pointer;
+}
+
+/* 블러 */
+.detail_header_wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.detail_header_wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background-image: inherit;
+  background-size: cover;
+  background-position: 50% 50%;
+
+  /* 블러 효과 */
+  filter: blur(12px);
+
+  transform: scale(1.1);
+
+  z-index: 0; /* 텍스트 뒤로 */
+}
+
+.detail_header_wrap::after {
+  display: block;
+  content: '';
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.55);
+}
+
+.detail_header {
+  position: relative;
+  z-index: 10;
 }

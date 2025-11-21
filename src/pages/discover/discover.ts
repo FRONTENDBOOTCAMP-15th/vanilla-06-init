@@ -185,7 +185,7 @@ function renderAuthor(posts: UserItem[], val: string) {
   const result = filtered.map(item => {
     return `
       <article class="author_card">
-        <a href="/src/pages/author/autor.html?userId=${item._id}" class="author_link">
+        <a href="/src/pages/author/author.html?userId=${item._id}" class="author_link">
           <img
             class="thumb"
             src="${item.image}"
@@ -193,7 +193,7 @@ function renderAuthor(posts: UserItem[], val: string) {
           />
           <h3 class="author_ttl">${highlight(item.name, val)}</h3>
           <p class="author_excerpt">
-            ${summaryContent(item.extra?.statusMsg || '')}
+            ${summaryContent(item.extra?.biography || '')}
           </p>
           </a>
           <div class="keyword_area">
@@ -311,6 +311,7 @@ function init() {
   if (search) {
     searchEl.value = search;
     changeSearch();
+    saveRecentSearch(search);
   }
 }
 init();

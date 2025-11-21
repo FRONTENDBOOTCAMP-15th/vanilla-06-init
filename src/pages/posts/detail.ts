@@ -4,6 +4,19 @@ import 'quill/dist/quill.snow.css';
 
 const axios = getAxios();
 
+// 날짜 포맷 함수
+function formatDate(dateStr: string) {
+  const date = new Date(dateStr);
+
+  return date
+    .toLocaleDateString('en-US', {
+      month: 'short',
+      day: '2-digit',
+      year: 'numeric',
+    })
+    .replace(',', '.');
+}
+
 // URL에서 postId 가져오기
 const params = new URLSearchParams(window.location.search);
 const postId = Number(params.get('postId'));
@@ -24,7 +37,6 @@ async function getPostDetail(id: number) {
 }
 async function getUserDetail(id: number) {
   const { data } = await axios.get(`/users/${id}`);
-  console.log(data);
   return data;
 }
 
@@ -100,11 +112,7 @@ async function renderDetail() {
     const data = await getPostDetail(postId);
     const post = data.item;
 
-    console.log(post.user);
-    console.log(post.user._id);
-
     const data2 = await getUserDetail(post.user._id);
-
     const user = data2.item;
 
     // DOM 요소 찾기
@@ -130,24 +138,30 @@ async function renderDetail() {
       post.extra.subTitle;
     document.querySelector('.editor_render_area')!.innerHTML = post.content;
 
-    // 썸네일 이미지
+    // 날짜 렌더링
+    const dateEl = document.querySelector('.detail_date') as HTMLTimeElement;
+    if (post.createdAt) {
+      dateEl.textContent = formatDate(post.createdAt);
+      dateEl.setAttribute('datetime', post.createdAt);
+    }
+
+    // 썸네일 처리 (본문 첫 이미지  글쓰기 썸네일)
     const detailHeader = document.querySelector(
       '.detail_header_wrap',
     ) as HTMLDivElement;
 
-    // 본문에서 첫 이미지 찾기
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = post.content;
-
     const firstImage = tempDiv.querySelector('img') as HTMLImageElement;
 
-    if (firstImage) {
+    // base64 처리 추가
+    if (firstImage && !firstImage.src.startsWith('data:image')) {
       detailHeader.style.backgroundImage = `url(${firstImage.src})`;
     } else {
-      detailHeader.style.backgroundImage =
-        'url(https://t1.daumcdn.net/brunch/static/img/brunchstory/brunchstory_og_image.png)';
+      detailHeader.style.backgroundImage = `url(${post.image})`;
     }
 
+    // 작가 정보 렌더링
     document.querySelector('.detail_author')!.textContent = post.user.name;
     document.querySelector('.detail_author_name')!.textContent = post.user.name;
     document.querySelector('.detail_author_job')!.textContent = user.extra.job;
@@ -158,22 +172,20 @@ async function renderDetail() {
 
     document
       .querySelector('.detail_author_img')!
-      .setAttribute('src', post.user.image);
+      .setAttribute('src', post.user.image || '');
 
-    // 프로필 클릭하면 작가 홈 이동
+    // 작가 홈 이동
     const authorProfile = document.querySelector('.detail_author_img');
     authorProfile?.addEventListener('click', e => {
       e.stopPropagation();
       window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
     });
 
-    // 작가 이름 클릭하면 작가 홈 이동
     const authorName = document.querySelector('.detail_author_name');
     authorName?.addEventListener('click', () => {
       window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
     });
 
-    // by 옆의 글자 클릭 가능
     const authorText = document.querySelector('.detail_author');
     authorText?.addEventListener('click', () => {
       window.location.href = `/src/pages/author/author.html?userId=${post.user._id}`;
@@ -188,7 +200,6 @@ async function renderDetail() {
 
     const subscriberCount = await getSubscriberCount(post.user._id);
 
-    // UI 적용
     likeInput.checked = !!myLikeId;
     likeCountEl.textContent = post.likes.toString();
     subCountEl.textContent = subscriberCount.toString();
@@ -196,9 +207,6 @@ async function renderDetail() {
     if (mySubId) {
       subBtn.textContent = '구독중';
       subBtn.classList.add('active');
-    } else {
-      subBtn.textContent = '+ 구독';
-      subBtn.classList.remove('active');
     }
 
     // 좋아요 클릭 이벤트
@@ -227,7 +235,6 @@ async function renderDetail() {
       subCountEl.textContent = updatedSubs.toString();
     });
 
-    // 최근 본 글 저장
     saveRecent(String(postId));
   } catch (err) {
     console.error('상세 조회 실패:', err);

@@ -1,5 +1,6 @@
 // src/pages/user/register.ts
 import { getAxios } from '../../utils/axios';
+import { guessGender } from '../../utils/gender.ts';
 
 const form = document.querySelector('.register_action') as HTMLFormElement;
 const nicknameInput = document.querySelector('#nickname') as HTMLInputElement;
@@ -85,10 +86,9 @@ function getRandom(arr: string[]): string {
   return arr[randomIndex];
 }
 
-function getRandomAvatar(nickname = 'user') {
-  const randomStr = Math.random().toString(36).substring(2, 6);
-  const username = encodeURIComponent(nickname + randomStr);
-  return `https://avatar.iran.liara.run/username?username=${username}`;
+function getRandomAvatar(nickname = '홍길동') {
+  const gender = guessGender(nickname);
+  return `https://avatar.iran.liara.run/public/${gender}?username=${encodeURIComponent(nickname)}`;
 }
 
 if (
@@ -263,7 +263,7 @@ form.addEventListener('submit', async event => {
       name: nickname,
       type: 'user',
       loginType: 'email',
-      iamge: getRandomAvatar(nickname),
+      image: getRandomAvatar(nickname),
       extra: {
         job: getRandom(jobArr),
         biography: getRandom(statusMsgArr),

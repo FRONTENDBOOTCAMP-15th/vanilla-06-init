@@ -9,6 +9,26 @@ import { getAllPost } from '../../utils/allPost.ts';
 import { getAxios } from '../../utils/axios';
 import { formatDate } from '../../utils/formatDate.ts';
 
+interface CurrentObj {
+  _id: number;
+  email: string;
+  name: string;
+  type: 'user';
+  loginType: string;
+  image: string;
+  extra: {
+    job: string;
+    biography: string;
+  };
+  createdAt: string;
+  updatedAt: string;
+  notifications: string[];
+  token: {
+    accessToken: string;
+    refreshToken: string;
+  };
+}
+
 const brunchAuthorListEl = document.querySelector(
   '#brunchAuthorList',
 ) as HTMLDivElement;
@@ -25,6 +45,17 @@ const mybrunchListEl = document.querySelector(
 const axios = getAxios();
 
 const allPostData = await getAllPost();
+const currentUserStr = localStorage.getItem('currentUser');
+let currentUserObj: CurrentObj | null = null;
+
+if (currentUserStr) {
+  try {
+    currentUserObj = JSON.parse(currentUserStr) as CurrentObj;
+  } catch (err) {
+    console.error('currentUser parsing error', err);
+  }
+}
+const currentId = currentUserObj!._id;
 
 function findImageById(id: number): string | null {
   const posts = allPostData.item;
@@ -34,21 +65,22 @@ function findImageById(id: number): string | null {
   return item.image ?? null;
 }
 
-async function getBookmarkUser() {
+async function getBookmarkTarget() {
   try {
-    const { data } = await axios.get('/bookmarks/user');
+    const { data } = await axios.get(`/users/${currentId}/bookmarks`);
     return data;
   } catch (err) {
     console.log(err);
   }
 }
-async function getBookmarkPost() {
-  try {
-    const { data } = await axios.get('/bookmarks/post');
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+
+const dataBookmark = await getBookmarkTarget();
+
+function getBookmarkUser() {
+  return dataBookmark.item.user;
+}
+function getBookmarkPost() {
+  return dataBookmark.item.post;
 }
 
 function renderAuthor(author: BookmarkUser[]) {
@@ -70,11 +102,9 @@ function renderAuthor(author: BookmarkUser[]) {
   }
 }
 
-async function authorInit() {
-  const data = await getBookmarkUser();
-  if (data?.ok) {
-    renderAuthor(data.item);
-  }
+function authorInit() {
+  const data = getBookmarkUser();
+  renderAuthor(data);
 }
 authorInit();
 
@@ -108,14 +138,14 @@ function renderRecentPost(posts: PostId[]) {
           <img class="bg" src="${findImageById(item._id)}" alt="">
           <div class="txt_box">
             <b class="ttl">${item.title}</b>
-            <span class="name">${item.user._id}</span>
+            <span class="name">${item.user.name}</span>
           </div>
         </div>
         <div class="brunch_txt">
           <b class="ttl">${item.title}</b>
           <span class="name">
             <span class="by">by</span>
-            ${item.user._id}
+            ${item.user.name}
           </span>
         </div>
       </a>
@@ -136,11 +166,9 @@ async function recentInit() {
 }
 recentInit();
 
-async function likePostInit() {
-  const data = await getBookmarkPost();
-  if (data?.ok) {
-    renderPost(data.item);
-  }
+function likePostInit() {
+  const data = getBookmarkPost();
+  renderPost(data);
 }
 likePostInit();
 

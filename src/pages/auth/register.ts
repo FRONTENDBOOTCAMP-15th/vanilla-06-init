@@ -278,7 +278,7 @@ form.addEventListener('submit', async event => {
     }
 
     alert('회원가입 성공!');
-    window.location.href = '/index.html';
+    window.location.href = '/src/pages/auth/login.html';
   } catch (err) {
     console.log(err);
     alert('네트워크 에러 발생.');

@@ -187,23 +187,6 @@ function renderVisual(posts: AllPostItem[]) {
   visualSwiper(result.length);
 }
 
-function getRandomItems<T>(array: T[], count: number) {
-  const shuffled = [...array];
-  let currentIndex = shuffled.length;
-  let randomIndex: number;
-
-  while (currentIndex !== 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [shuffled[currentIndex], shuffled[randomIndex]] = [
-      shuffled[randomIndex],
-      shuffled[currentIndex],
-    ];
-  }
-
-  return shuffled.slice(0, count);
-}
-
 function visualSwiper(num: number) {
   const visualEl = document.querySelector('#visual') as HTMLDivElement;
   const barEl = document.querySelector('.bar') as HTMLDivElement;

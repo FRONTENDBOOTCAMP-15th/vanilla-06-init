@@ -83,7 +83,6 @@
   padding-bottom: 2.5rem;
 }
 .editor_render_area {
-  all: unset;
   padding: 4.375rem 0 2.5rem;
 }
 
@@ -136,7 +135,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 0 1.25rem;
+  padding: 0 1.25rem 2.5rem;
   border: 0.0625rem solid #eeeeee;
 }
 
@@ -308,4 +307,32 @@
 .detail_author_name,
 .detail_author_img {
   cursor: pointer;
+}
+
+/* 블러 */
+.detail_header_wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.detail_header_wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  background-image: inherit;
+  background-size: cover;
+  background-position: 50% 50%;
+
+  /* 블러 효과 */
+  filter: blur(12px);
+
+  transform: scale(1.1);
+
+  z-index: 0; /* 텍스트 뒤로 */
+}
+
+.detail_header {
+  position: relative;
+  z-index: 1;
 }

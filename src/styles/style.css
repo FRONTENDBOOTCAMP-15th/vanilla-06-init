@@ -537,6 +537,11 @@
 }
 
 /* brunch_book */
+.brunch_book_list .brunch_link {
+  display: block;
+  width: 7.67856rem;
+}
+
 .brunch_book {
   flex-shrink: 0;
   position: relative;
@@ -629,6 +634,7 @@
     align-items: center;
     flex-shrink: 0;
     gap: 1rem;
+    max-width: 5rem;
   }
 
   .thumb {

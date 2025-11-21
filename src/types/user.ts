@@ -16,6 +16,7 @@ export interface UserItem {
   updatedAt: string;
   extra: {
     birthday: string;
+    biography: string;
     membershipClass: string;
     address: [
       {

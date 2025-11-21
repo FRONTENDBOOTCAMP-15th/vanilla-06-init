@@ -33,6 +33,7 @@ function saveRecent(id: string) {
 // API 함수들
 async function getPostDetail(id: number) {
   const { data } = await axios.get(`/posts/${id}`);
+  console.log(data);
   return data;
 }
 async function getUserDetail(id: number) {
@@ -111,6 +112,13 @@ async function renderDetail() {
   try {
     const data = await getPostDetail(postId);
     const post = data.item;
+
+    const storedStr = localStorage.getItem('currentUser');
+    const stored = storedStr ? JSON.parse(storedStr) : null;
+
+    if (stored!._id == post.user._id) {
+      document.querySelector('.detail_btn_subs')!.classList.add('d_none');
+    }
 
     const data2 = await getUserDetail(post.user._id);
     const user = data2.item;

@@ -185,7 +185,7 @@ function renderAuthor(posts: UserItem[], val: string) {
   const result = filtered.map(item => {
     return `
       <article class="author_card">
-        <a href="/src/pages/author/autor.html?userId=${item._id}" class="author_link">
+        <a href="/src/pages/author/author.html?userId=${item._id}" class="author_link">
           <img
             class="thumb"
             src="${item.image}"
@@ -311,6 +311,7 @@ function init() {
   if (search) {
     searchEl.value = search;
     changeSearch();
+    saveRecentSearch(search);
   }
 }
 init();

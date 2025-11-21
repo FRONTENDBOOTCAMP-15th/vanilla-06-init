@@ -8,6 +8,8 @@ export function getAxios() {
     baseURL: API_SERVER,
     headers: {
       'Client-Id': 'febc15-vanilla06-ecad',
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
     },
   });
 

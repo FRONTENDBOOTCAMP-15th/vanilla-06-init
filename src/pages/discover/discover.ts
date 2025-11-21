@@ -193,7 +193,7 @@ function renderAuthor(posts: UserItem[], val: string) {
           />
           <h3 class="author_ttl">${highlight(item.name, val)}</h3>
           <p class="author_excerpt">
-            ${summaryContent(item.extra?.statusMsg || '')}
+            ${summaryContent(item.extra?.biography || '')}
           </p>
           </a>
           <div class="keyword_area">

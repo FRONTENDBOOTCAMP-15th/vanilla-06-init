@@ -1,4 +1,5 @@
 import { getAxios } from '../../utils/axios';
+import { formatDate } from '../../utils/formatDate';
 
 const axios = getAxios();
 
@@ -28,6 +29,16 @@ interface BookmarkCounts {
   subscribers: number;
   followingAuthors: number;
 }
+
+function userCheck() {
+  const storedStr = localStorage.getItem('currentUser');
+  const stored = storedStr ? JSON.parse(storedStr) : null;
+
+  if (stored!._id == userId) {
+    document.querySelector('.author_subs_btn')!.classList.add('d_none');
+  }
+}
+userCheck();
 
 // API 호출 함수들
 
@@ -69,12 +80,15 @@ async function toggleSubscribe(
 async function getBookmarkCounts(userId: number): Promise<BookmarkCounts> {
   const { data } = await axios.get(`/users/${userId}/bookmarks`);
 
+  console.log('getBookmarkCounts');
+  console.log(data);
+
   const byUser = data.item.byUser ?? [];
-  const byTarget = data.item.byTarget ?? [];
+  const user = data.item.user ?? [];
 
   return {
     subscribers: byUser.length,
-    followingAuthors: byTarget.length,
+    followingAuthors: user.length,
   };
 }
 
@@ -150,24 +164,25 @@ async function renderAuthorPage() {
     postContainer.innerHTML = `<p class="no_posts">작성한 게시글이 없습니다.</p>`;
   } else {
     postContainer.innerHTML = posts
-      .map(
-        (post: AuthorPost) => `
-      <article class="author_post" data-id="${post._id}">
-        <span class="author_post_tag">${post.extra.subTitle}</span>
+      .map((post: AuthorPost) => {
+        const { display } = formatDate(post.createdAt);
+        return `
+          <article class="author_post" data-id="${post._id}">
+            <span class="author_post_tag">${post.extra.subTitle}</span>
 
-        <h3 class="author_post_title">${post.title}</h3>
+            <h3 class="author_post_title">${post.title}</h3>
 
-        <span class="author_post_text">
-          ${post.content.replace(/<[^>]+>/g, '').slice(0, 30)}...
-        </span>
+            <span class="author_post_text">
+              ${post.content.replace(/<[^>]+>/g, '').slice(0, 30)}...
+            </span>
 
-        <div class="author_post_meta">
-          <span class="author_post_comment">댓글 ${post.comments ?? 0}</span>
-          <span class="author_post_date">${post.createdAt}</span>
-        </div>
-      </article>
-    `,
-      )
+            <div class="author_post_meta">
+              <span class="author_post_comment">댓글 ${post.comments ?? 0}</span>
+              <span class="author_post_date">${display}</span>
+            </div>
+          </article>
+    `;
+      })
       .join('');
   }
 

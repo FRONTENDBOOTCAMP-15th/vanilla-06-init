@@ -30,10 +30,7 @@ interface Post {
 async function getposts() {
   const axios = getAxios();
   try {
-    const response = await axios.get(
-      '/posts?type=brunch&sort={"likes": -1}&limit=10',
-    );
-    console.log(response.data.item);
+    const response = await axios.get('/posts?type=brunch&limit=10');
     return response.data.item;
   } catch (err) {
     console.error('목록 조회 실패.', err);
@@ -95,9 +92,10 @@ async function getAuthors() {
   const axios = getAxios();
   try {
     const response = await axios.get(
-      '/users?sort={"bookmarkedBy.users": -1}&limit=4',
+      '/users?sort={"likedBy.users": -1}&limit=4',
     );
-    console.log(response.data.item);
+    console.log('getAuthors');
+    console.log(response);
     return response.data.item;
   } catch (err) {
     console.error('작가 목록 조회 실패.', err);

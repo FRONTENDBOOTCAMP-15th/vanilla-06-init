@@ -1,3 +1,8 @@
+.mainpage_list {
+  padding: 0;
+  padding-left: 0.44rem;
+}
+
 .mainpage_item a {
   display: contents;
 }

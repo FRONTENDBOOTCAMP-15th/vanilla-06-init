@@ -24,6 +24,12 @@ const registerMsg1 = document.querySelector(
 const registerMsg2 = document.querySelector(
   '#registerMsg2',
 ) as HTMLParagraphElement;
+const registerMsg3 = document.querySelector(
+  '#registerMsg3',
+) as HTMLParagraphElement;
+const registerMsg4 = document.querySelector(
+  '#registerMsg4',
+) as HTMLParagraphElement;
 
 const jobArr = [
   '개발자',
@@ -142,6 +148,7 @@ nicknameCheckBtn.addEventListener('click', async () => {
       registerMsg1.classList.add('color_red');
       registerMsg1.classList.remove('color_mint');
     }
+    validateAll();
   } catch (err) {
     console.error('목록 조회 실패.', err);
   }
@@ -183,6 +190,7 @@ emailCheckBtn.addEventListener('click', async () => {
       registerMsg2.classList.add('color_red');
       registerMsg2.classList.remove('color_mint');
     }
+    validateAll();
   } catch (err) {
     console.error('목록 조회 실패.', err);
   }
@@ -205,13 +213,13 @@ function checkPasswordRule(pwd: string): boolean {
 
 // 모든 조건 검사 → 버튼 활성/비활성
 function validateAll() {
-  const nickname = nicknameInput.value.trim();
-  const email = emailInput.value.trim();
+  // const nickname = nicknameInput.value.trim();
+  // const email = emailInput.value.trim();
   const pwd = pwdInput.value;
   const pwdCheck = pwdCheckInput.value;
 
-  const isNicknameValid = checkNickname(nickname);
-  const isEmailValid = checkEmail(email);
+  const isNicknameValid = registerMsg1.classList.contains('color_mint');
+  const isEmailValid = registerMsg2.classList.contains('color_mint');
   const isPwdRuleValid = checkPasswordRule(pwd);
   const isPwdSame = checkPasswordMatch(pwd, pwdCheck);
 
@@ -226,7 +234,37 @@ function validateAll() {
 nicknameInput.addEventListener('input', validateAll);
 emailInput.addEventListener('input', validateAll);
 pwdInput.addEventListener('input', validateAll);
+pwdInput.addEventListener('input', () => {
+  const pwd = pwdInput.value;
+  const isPwdRuleValid = checkPasswordRule(pwd);
+  if (isPwdRuleValid) {
+    registerMsg3.textContent = '사용가능한 비밀번호 입니다.';
+    registerMsg3.closest('.register_msg')!.classList.add('d_flex');
+    registerMsg3.classList.remove('color_red');
+    registerMsg3.classList.add('color_mint');
+  } else {
+    registerMsg3.textContent =
+      '대문자+소문자+숫자 포함, 8자 이상 되어야 합니다.';
+    registerMsg3.closest('.register_msg')!.classList.add('d_flex');
+    registerMsg3.classList.add('color_red');
+    registerMsg3.classList.remove('color_mint');
+  }
+});
 pwdCheckInput.addEventListener('input', validateAll);
+pwdCheckInput.addEventListener('input', () => {
+  const pwd = pwdInput.value;
+  const pwdCheck = pwdCheckInput.value;
+  const isPwdSame = checkPasswordMatch(pwd, pwdCheck);
+  if (isPwdSame) {
+    registerMsg4.textContent = '';
+    registerMsg4.closest('.register_msg')!.classList.remove('d_flex');
+  } else {
+    registerMsg4.textContent = '비밀번호가 일치 하지 않습니다.';
+    registerMsg4.closest('.register_msg')!.classList.add('d_flex');
+    registerMsg4.classList.add('color_red');
+    registerMsg4.classList.remove('color_mint');
+  }
+});
 
 // 폼 제출
 form.addEventListener('submit', async event => {

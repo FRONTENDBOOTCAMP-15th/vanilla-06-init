@@ -94,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   emailInput.addEventListener('input', checkFormValid);
   passwordInput.addEventListener('input', checkFormValid);
+  checkFormValid();
 
   // 값 체크 함수
   function checkFormValid() {

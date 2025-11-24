@@ -24,6 +24,44 @@ const editor = new Quill('#editor', {
   },
 });
 
+const toolbar = editor.getModule('toolbar') as {
+  addHandler: (type: string, handler: () => void) => void;
+};
+toolbar.addHandler('image', () => {
+  const input = document.createElement('input');
+  input.setAttribute('type', 'file');
+  input.setAttribute('accept', 'image/*');
+  input.click();
+
+  input.onchange = async () => {
+    const file = input.files?.[0];
+    if (!file) return;
+
+    if (file.size > MAX_SIZE) {
+      alert('3MB 미만의 이미지만 업로드할 수 있습니다.');
+      return;
+    }
+
+    const axios = getAxios();
+    const formData = new FormData();
+    formData.append('attach', file);
+
+    try {
+      const { data } = await axios.post('/files', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+
+      const imageUrl = `${data.item[0].path}`;
+      console.log('imageUrl::: ', imageUrl);
+      const range = editor.getSelection();
+      editor.insertEmbed(range?.index ?? 0, 'image', imageUrl);
+    } catch (err) {
+      console.error('이미지 업로드 실패:', err);
+      alert('이미지 업로드에 실패했습니다.');
+    }
+  };
+});
+
 // submit 시 HTML 가져오기
 const form = document.querySelector<HTMLFormElement>('#postForm')!;
 form.addEventListener('submit', (e: Event) => {
@@ -38,6 +76,7 @@ form.addEventListener('submit', (e: Event) => {
 async function imageUpload() {
   const axios = getAxios();
   const file = previewInput.files?.[0];
+  console.log(file);
   if (!file) return;
   const formData = new FormData();
   formData.append('attach', file);

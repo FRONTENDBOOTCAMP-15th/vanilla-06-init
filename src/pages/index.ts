@@ -38,9 +38,15 @@ async function getposts() {
   }
 }
 
-const data = await getposts();
-const allPostData = await getAllPost();
+// const data = await getposts();
+// const allPostData = await getAllPost();
+const [data, allPostData, author] = await Promise.all([
+  getposts(),
+  getAllPost(),
+  getAuthors(),
+]);
 const likeData = await getLikeRank();
+
 renderVisual(likeData);
 
 const list = document.querySelector<HTMLOListElement>('.mainpage_list');
@@ -103,7 +109,7 @@ async function getAuthors() {
   }
 }
 
-const author = await getAuthors();
+// const author = await getAuthors();
 console.log(author);
 
 const div = document.querySelector<HTMLDivElement>('.mainpage_author_group');

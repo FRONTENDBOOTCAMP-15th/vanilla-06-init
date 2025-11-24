@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (!data.ok) {
         alert(data.message || '로그인에 실패했습니다.');
+        window.location.href = './login.html';
         return;
       }
 
@@ -81,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       console.error('로그인 중 에러: ', err);
       alert('로그인 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.');
+      window.location.href = './login.html';
     }
   });
 
@@ -92,6 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   emailInput.addEventListener('input', checkFormValid);
   passwordInput.addEventListener('input', checkFormValid);
+  checkFormValid();
 
   // 값 체크 함수
   function checkFormValid() {
